@@ -1,4 +1,5 @@
 const { VueLoaderPlugin } = require('vue-loader');
+const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const liveReloadPlugin = require('webpack-livereload-plugin');
 const webpack = require('webpack');
@@ -21,8 +22,19 @@ module.exports = {
         index: './src/main.js',
     },
     output: {
-        path: __dirname + '/dist',
+        path: __dirname + '/dist/',
         filename: 'bundle.js'
+    },
+    resolve: {
+        alias: {
+            Components: path.resolve(__dirname, 'src/components/'),
+            Router: path.resolve(__dirname, 'src/router/'),
+            Views: path.resolve(__dirname, 'src/views/'), 
+            Store: path.resolve(__dirname, 'src/store/'),
+            Assets: path.resolve(__dirname, 'src/assets/'),
+            Scripts: path.resolve(__dirname, 'src/scripts/'),
+        },
+        extensions: ['.vue', '.js', '.scss', '.jpg', '.jpeg', '.png', '.svg']
     },
     module: {
         rules: [
