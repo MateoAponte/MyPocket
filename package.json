@@ -5,21 +5,27 @@
   "main": "index.js",
   "scripts": {
     "webpack": "webpack --mode development",
-    "dev": "nodemon --exec babel-node ./server/server.js",
-    "prod": "webpack --mode production"
+    "start": "nodemon --exec babel-node ./server/server.js",
+    "webpack-dev-server": "webpack-dev-server",
+    "dev": "webpack-dev-server --mode=development",
+    "prod": "webpack --mode=production"
   },
   "author": "Mateo Aponte Murcia",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.19.0",
     "body-parser": "^1.19.0",
+    "browser-sync-webpack-plugin": "^2.2.2",
     "css-loader": "^3.2.0",
     "express": "^4.17.1",
     "handlebars": "^4.5.2",
+    "is_js": "^0.9.0",
     "lodash": "^4.17.15",
+    "moment": "^2.24.0",
     "morgan": "^1.9.1",
     "node-sass": "^4.12.0",
     "nodemon": "^1.19.2",
+    "numeral": "^2.0.6",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.0"
   },
@@ -34,6 +40,8 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
+    "browser-sync": "^2.26.7",
+    "expose-loader": "^0.7.5",
     "express-handlebars": "^3.1.0",
     "html-webpack-plugin": "^3.2.0",
     "socket.io": "^2.2.0",

@@ -1,5 +1,5 @@
 const state = {
-    saludo: 'Mateo'
+    saludo: 'Mateo Aponte'
 }
 
 const getters = {

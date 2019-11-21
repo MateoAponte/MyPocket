@@ -9,11 +9,12 @@ import webpackConfig from '../webpack.config';
 import webpack from 'webpack';
 
 // Settings
-app.set('port', process.env.PORT || 8081);
+app.set('port', 8080);
+
 // Middlewares
-    app.use(morgan('dev'));
-    app.use(express.urlencoded({extended: false}))
-    app.use(webpackDevMiddleware(webpack(webpackConfig)));
+app.use(morgan('dev'));
+app.use(express.urlencoded({extended: false}));
+app.use(webpackDevMiddleware(webpack(webpackConfig)));
     
     // Router
     app.use(require('./router/router.js'));
