@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "webpack": "webpack --mode development",
-    "dev": "nodemon --exec babel-node ./server/server.js",
-    "prod": "webpack --mode production"
+    "start": "nodemon --exec babel-node ./server/server.js",
+    "webpack-dev-server": "webpack-dev-server",
+    "dev": "webpack-dev-server --mode=development",
+    "prod": "webpack --mode=production"
   },
   "author": "Mateo Aponte Murcia",
   "license": "ISC",

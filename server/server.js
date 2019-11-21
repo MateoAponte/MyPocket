@@ -8,9 +8,9 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackConfig from '../webpack.config';
 import webpack from 'webpack';
 
-app.set('port', 8080);
 // Settings
-console.log(webpackConfig.plugins[2]);
+app.set('port', 8080);
+
 // Middlewares
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}));
