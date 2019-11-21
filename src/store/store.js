@@ -1,4 +1,4 @@
-import common from 'Store/common/common';
+import common from '@Store/common/common';
 
 import Vue from 'vue';
 import Vuex from 'vuex';

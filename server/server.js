@@ -8,12 +8,13 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackConfig from '../webpack.config';
 import webpack from 'webpack';
 
+app.set('port', 8080);
 // Settings
-app.set('port', process.env.PORT || 8081);
+console.log(webpackConfig.plugins[2]);
 // Middlewares
-    app.use(morgan('dev'));
-    app.use(express.urlencoded({extended: false}))
-    app.use(webpackDevMiddleware(webpack(webpackConfig)));
+app.use(morgan('dev'));
+app.use(express.urlencoded({extended: false}));
+app.use(webpackDevMiddleware(webpack(webpackConfig)));
     
     // Router
     app.use(require('./router/router.js'));

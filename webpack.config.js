@@ -2,22 +2,11 @@ const { VueLoaderPlugin } = require('vue-loader');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const liveReloadPlugin = require('webpack-livereload-plugin');
+const browserSyncWebpackPlugin = require('browser-sync-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = {
     mode: 'development',
-    devServer: {
-        entry: {
-            disableHostCheck: true
-        },
-        headers: {
-          'Access-Control-Allow-Origin': '*'
-        },
-        hot: true,
-        watchOptions: {
-          poll: true
-        }
-      },
     entry: {
         index: './src/main.js',
     },
@@ -26,15 +15,15 @@ module.exports = {
         filename: 'bundle.js'
     },
     resolve: {
+        extensions: ['.vue', '.js', '.scss', '.jpg', '.jpeg', '.png', '.svg'],
         alias: {
-            Components: path.resolve(__dirname, 'src/components/'),
-            Router: path.resolve(__dirname, 'src/router/'),
-            Views: path.resolve(__dirname, 'src/views/'), 
-            Store: path.resolve(__dirname, 'src/store/'),
-            Assets: path.resolve(__dirname, 'src/assets/'),
-            Scripts: path.resolve(__dirname, 'src/scripts/'),
+            '@Components': path.resolve(__dirname, 'src/components/'),
+            '@Router': path.resolve(__dirname, 'src/router/'),
+            '@Views': path.resolve(__dirname, 'src/views/'), 
+            '@Store': path.resolve(__dirname, 'src/store/'),
+            '@Assets': path.resolve(__dirname, 'src/assets/'),
+            '@Scripts': path.resolve(__dirname, 'src/scripts/'),
         },
-        extensions: ['.vue', '.js', '.scss', '.jpg', '.jpeg', '.png', '.svg']
     },
     module: {
         rules: [
@@ -80,5 +69,6 @@ module.exports = {
         }),
        new liveReloadPlugin(),
        new webpack.HotModuleReplacementPlugin()
-    ]
+    ],
 }
+
