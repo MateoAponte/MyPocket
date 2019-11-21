@@ -1,0 +1,23 @@
+@import '../../themes/modules';
+
+.m-button{
+    border-radius: $border-radius;
+    border: 1px solid transparent;
+    font-size: 1em;
+    padding: 6px 10px;
+    box-sizing: border-box;
+    font-weight: 500;
+    text-transform: capitalize;
+    min-width: 100px;
+    transition: $transition;
+    cursor: pointer;
+
+    &:disabled {
+        cursor: not-allowed;
+    }
+
+    &-turquese{
+        background-color: $clrP-turquese;
+        color: $clrP-white;
+    }
+}

@@ -23,6 +23,7 @@ module.exports = {
             '@Store': path.resolve(__dirname, 'src/store/'),
             '@Assets': path.resolve(__dirname, 'src/assets/'),
             '@Scripts': path.resolve(__dirname, 'src/scripts/'),
+            '@Styles': path.resolve(__dirname, 'src/assets/scss/'),
         },
     },
     module: {

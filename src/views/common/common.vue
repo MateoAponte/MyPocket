@@ -1,5 +1,8 @@
 <template>
-    <h1>Hola {{getSaludo}}</h1>
+    <div>
+        <h1>Hola {{getSaludo}}</h1>
+        <button class="m-button m-button-turquese">Guardar</button>
+    </div>
 </template>
 
 <script>
