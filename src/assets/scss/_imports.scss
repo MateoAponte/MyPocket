@@ -1,14 +1,14 @@
 //contains 3rd-party styles, mixins, etc.
-@import './vendors/modules';
+@import './01_vendors/modules';
 //contains global styles, such as resets, typography, colors, etc.
-@import './base/modules';
+@import './02_base/modules';
 //contains global mixins, functions, helper selectors, etc.
-@import './utils/modules';
+@import './03_utils/modules';
 //contains styling for larger layout components; e.g. nav, header, footer, etc.
-@import './layout/modules';
+@import './04_layout/modules';
 //contains each self-contained component in its own .scss partial
-@import './components/modules';
+@import './05_component/modules';
 //contains styling for different themes
-@import './themes/modules';
+@import './06_themes/modules';
 //contains page-specific styling, if necessary
-@import './pages/modules';
+@import './07_pages/modules';
