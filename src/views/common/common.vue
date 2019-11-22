@@ -1,5 +1,5 @@
 <template>
-    <h1>Hola {{getSaludo}}</h1>
+    <h1>Hola {{getSaludo}} hoy es: {{moment().format('DD/MM')}}</h1>
 </template>
 
 <script>
