@@ -1,0 +1,29 @@
+.m-container{
+    width: 100%;
+    height: 200px;
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row nowrap;
+    box-sizing: content-box; 
+}
+
+.m-container-anormal{
+    width: 100%;
+    height: 200px;
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row nowrap;
+    box-sizing: content-box; 
+
+    div:nth-child(1){
+        width: 65%;
+    }
+
+    div:nth-child(2){
+        width: 35%;
+    }
+}

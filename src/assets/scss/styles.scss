@@ -1,2 +1,6 @@
 /* General styles go here */
 @import 'imports';
+body{
+    min-height: 100vh;
+    background-color: $bg-white;
+}

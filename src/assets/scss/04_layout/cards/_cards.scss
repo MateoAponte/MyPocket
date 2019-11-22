@@ -1,0 +1,15 @@
+.m-card{
+    width: 100%;
+    min-height: 200px;
+    margin: 30px 25px;
+    padding: 10px 30px;
+    border-radius: $border-radius;
+    background-color: $bg-card;
+    box-shadow: $shadow-gray;
+    border: $border-solid-gray;
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
