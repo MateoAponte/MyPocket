@@ -2,11 +2,14 @@ const { VueLoaderPlugin } = require('vue-loader');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const liveReloadPlugin = require('webpack-livereload-plugin');
-const browserSyncWebpackPlugin = require('browser-sync-webpack-plugin');
+const WebpackNotifierPlugin = require('webpack-notifier');
 const webpack = require('webpack');
 
+const devMode = process.env.NODE_ENV !== 'production';
+
 module.exports = {
-    mode: 'development',
+    mode: devMode ? 'development' : 'production',
+    devtool: devMode ? 'inline-source-map' : 'inline-map',
     entry: {
         index: './src/main.js',
     },
@@ -67,8 +70,9 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './src/index.html'
         }),
-       new liveReloadPlugin(),
-       new webpack.HotModuleReplacementPlugin()
+        new WebpackNotifierPlugin(),
+        new liveReloadPlugin(),
+        new webpack.HotModuleReplacementPlugin()
     ],
 }
 

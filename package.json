@@ -7,7 +7,7 @@
     "webpack": "webpack --mode development",
     "start": "nodemon --exec babel-node ./server/server.js",
     "webpack-dev-server": "webpack-dev-server",
-    "dev": "webpack-dev-server --mode=development",
+    "dev": "webpack-dev-server --inline --port 8080 --host localhost --open --mode=development",
     "prod": "webpack --mode=production"
   },
   "author": "Mateo Aponte Murcia",
@@ -53,6 +53,7 @@
     "webpack": "^4.39.3",
     "webpack-cli": "^3.3.7",
     "webpack-dev-server": "^3.8.0",
-    "webpack-livereload-plugin": "^2.2.0"
+    "webpack-livereload-plugin": "^2.2.0",
+    "webpack-notifier": "^1.8.0"
   }
 }
