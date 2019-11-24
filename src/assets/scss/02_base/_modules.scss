@@ -7,7 +7,12 @@ $bg-light-gray: #F4F4F4;
 $clrP-turquese: #7DD8D4;
 $clrP-orange: #FFB987;
 $clrP-black: #545454;
-$clrP-white: #fafafa;
+$clrP-white: #FAFAFA;
+$clrP-gray: #757575;
+
+$clrS-hight: #5DD155;
+$clrS-medium: #FCD855;
+$clrS-lower: #ED5F57;
 
 $bdrP-gray: #f5f5f5;
 
@@ -15,6 +20,14 @@ $shadow-gray: 0px 5px 15px #e6e6e6;
 
 $border-radius: 8px;
 $border-solid-gray: 1px solid $bdrP-gray;
-$border-input-gray: 1.5px solid darken($bdrP-gray, 8%);
+$border-input-gray: 1px solid #cccc;
 
 $transition: all 700ms ease-in;
+
+.space-around{
+    min-height: 100%;
+    display: flex;
+    flex: 1;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+}
