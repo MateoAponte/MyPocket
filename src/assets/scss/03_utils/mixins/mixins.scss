@@ -1,0 +1,6 @@
+@mixin FlexBox($flexDirection){
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: $flexDirection nowrap;
+}
