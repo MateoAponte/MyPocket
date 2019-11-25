@@ -35,3 +35,34 @@
     font-weight: 600;
     font-weight: bold;
 }
+
+.m-link{
+    width: 120px;
+    font-family: 'Questrial';
+    font-weight: 400;
+    font-size: 1em;
+    text-align: center;
+}
+
+.m-link-active{
+    color: $clrP-turquese !important;
+    position: relative;
+
+    &:hover{
+        color: darken($clrP-turquese, 15%);
+
+        &::before{
+            background-color: darken($clrP-turquese, 15%);
+        }
+    }
+
+    &::before{
+        content: '';
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 2px;
+        background-color: $clrP-turquese;
+    }
+}
