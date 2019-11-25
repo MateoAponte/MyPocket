@@ -1,12 +1,19 @@
 <template>
     <div class='app'>
-        <router-view/>
+        <header-generic/>
+        <router-view />
+        <footer-generic />
     </div>
 </template>
 
 <script>
+import HeaderGeneric from '@Views/common/header'
+import FooterGeneric from '@Views/common/footer'
 export default {
-    
+    components: {
+        HeaderGeneric,
+        FooterGeneric
+    }
 }
 </script>
 
