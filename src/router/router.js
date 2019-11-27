@@ -1,7 +1,11 @@
 import Vue from 'vue';
 import Router from "vue-router";
-import common from '@Views/common/common'
-import finance from '@Views/finance/finance'
+import Common from '@Views/common/Common'
+import Finance from '@Views/finance/Finance'
+import Login from '@Views/userAdmin/Login'
+import Registrer from '@Views/userAdmin/Registrer'
+import Confirmation from '@Views/userAdmin/Confirmation'
+import Configuration from '@Views/config/Configuration'
 
 Vue.use(Router)
 
@@ -10,12 +14,32 @@ export default new Router ({
         {
             path: '/',
             name: 'common',
-            component: common
+            component: Common
         },
         {
             path: '/finance',
             name: 'finance',
-            component: finance
+            component: Finance
         },
+        {
+            path: '/login',
+            name: 'finance',
+            component: Login
+        },
+        {
+            path: '/registrer',
+            name: 'registrer',
+            component: Registrer
+        },
+        {
+            path: '/confirmation',
+            name: 'confirmation',
+            component: Confirmation
+        },
+        {
+            path: '/configuration',
+            name: 'configuration',
+            component: Configuration
+        }
     ]
 })
