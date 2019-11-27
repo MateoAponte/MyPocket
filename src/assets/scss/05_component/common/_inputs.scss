@@ -8,3 +8,7 @@ input[type="text"].custom-form, input[type="password"].custom-form{
     border: $border-input-gray;
     color: $clrP-black;
 }
+
+.mini-input{
+    max-width: 20%;
+}

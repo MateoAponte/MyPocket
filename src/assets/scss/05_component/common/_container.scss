@@ -46,6 +46,10 @@
     @include FlexBox(column);
     align-items: flex-start;
 }
+.m-container-item--column--mini{
+    @extend .m-container-item--column;
+    max-width: 20%;
+}
 
 .m-container-item--row{
     width: 100%;
@@ -53,6 +57,11 @@
     margin-bottom: 8px;
     @include FlexBox(row);
     justify-content: space-between;
+    align-items: flex-end;
+}
+.m-container-item--row--center{
+    @extend .m-container-item--row;
+    justify-content: space-around;
 }
 
 .m-container-item{
@@ -109,7 +118,7 @@
             width: 100%;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: baseline;
             justify-content: center;
             
             &__title{
@@ -126,6 +135,10 @@
                 letter-spacing: 0.3px;
                 color: $clrP-gray;
             }
+        }
+
+        .centered-content{
+            align-items: center;
         }
     }
 
@@ -191,5 +204,12 @@
         border: $border-solid-gray;
         display: flex;
         flex-direction: column;
+    }
+}
+.form-control{
+    min-height: 65vh;
+
+    .m-head-container-card{
+        justify-content: space-around;
     }
 }

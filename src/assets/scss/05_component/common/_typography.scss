@@ -6,6 +6,14 @@
     line-height: 28px;
 }
 
+.m-title-big{
+    font-size: 1.4em;
+    font-family: 'Questrial';
+    font-weight: 600;
+    letter-spacing: 0.7px;
+    line-height: 28px;
+}
+
 .m-value-light {
     font-size: 0.8em;
     font-family: 'Nunito';
@@ -42,6 +50,10 @@
     font-weight: 400;
     font-size: 1em;
     text-align: center;
+}
+
+.m-mini-paragraph{
+    font-size: 0.75em;
 }
 
 .m-link-active{
