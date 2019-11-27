@@ -41,7 +41,7 @@
                                 </div>
                             </div>
                             <div class="m-card-body">
-                                <div class="m-container-item">
+                                <div class="m-container-item" v-for="data in userData" :key="data">
                                     <div class="m-container-item--status">
                                         <span class="m-container-item--status--lower">
                                             .
@@ -51,10 +51,10 @@
                                         <div class="m-container-item--info--column">
                                             <div class="m-container-item--info__item">
                                                 <span class="m-container-item--info__item__title">
-                                                    Universidad
+                                                    {{data.thing}}
                                                 </span>
                                                 <span class="m-container-item--info__item__value">
-                                                        {{moment().format('YYYY/MM/DD')}}
+                                                    {{moment().format('YYYY/MM/DD')}}
                                                 </span>
                                             </div>
                                         </div>
@@ -69,106 +69,7 @@
                                     <div class="m-container-item--value">
                                         <div class="m-container-item--value--row">
                                             <span class="m-container-item--value__title">
-                                                {{numeral('250000').format('$0,0')}}
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="m-container-item">
-                                    <div class="m-container-item--status">
-                                        <span class="m-container-item--status--lower">
-                                            .
-                                        </span>
-                                    </div>
-                                    <div class="m-container-item--info">
-                                        <div class="m-container-item--info--column">
-                                            <div class="m-container-item--info__item">
-                                                <span class="m-container-item--info__item__title">
-                                                    Universidad
-                                                </span>
-                                                <span class="m-container-item--info__item__value">
-                                                        {{moment().format('YYYY/MM/DD')}}
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="m-container-item--info--column">
-                                            <div class="m-container-item--info__item centered-content">
-                                                <span class="m-container-item--info__item__title">
-                                                    {{numeral('75.156').format('0.00')}}%
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="m-container-item--value">
-                                        <div class="m-container-item--value--row">
-                                            <span class="m-container-item--value__title">
-                                                {{numeral('250000').format('$0,0')}}
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="m-container-item">
-                                    <div class="m-container-item--status">
-                                        <span class="m-container-item--status--medium">
-                                            .
-                                        </span>
-                                    </div>
-                                    <div class="m-container-item--info">
-                                        <div class="m-container-item--info--column">
-                                            <div class="m-container-item--info__item">
-                                                <span class="m-container-item--info__item__title">
-                                                    Universidad
-                                                </span>
-                                                <span class="m-container-item--info__item__value">
-                                                        {{moment().format('YYYY/MM/DD')}}
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="m-container-item--info--column">
-                                            <div class="m-container-item--info__item centered-content">
-                                                <span class="m-container-item--info__item__title">
-                                                    {{numeral('75.156').format('0.00')}}%
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="m-container-item--value">
-                                        <div class="m-container-item--value--row">
-                                            <span class="m-container-item--value__title">
-                                                {{numeral('250000').format('$0,0')}}
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="m-container-item">
-                                    <div class="m-container-item--status">
-                                        <span class="m-container-item--status--hight">
-                                            .
-                                        </span>
-                                    </div>
-                                    <div class="m-container-item--info">
-                                        <div class="m-container-item--info--column">
-                                            <div class="m-container-item--info__item">
-                                                <span class="m-container-item--info__item__title">
-                                                    Universidad
-                                                </span>
-                                                <span class="m-container-item--info__item__value">
-                                                        {{moment().format('YYYY/MM/DD')}}
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="m-container-item--info--column">
-                                            <div class="m-container-item--info__item centered-content">
-                                                <span class="m-container-item--info__item__title">
-                                                    {{numeral('75.156').format('0.00')}}%
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="m-container-item--value">
-                                        <div class="m-container-item--value--row">
-                                            <span class="m-container-item--value__title">
-                                                {{numeral('250000').format('$0,0')}}
+                                                {{numeral(data.cost).format('$0,0')}}
                                             </span>
                                         </div>
                                     </div>
@@ -229,6 +130,48 @@
 
 <script>
 export default {
-    
+    data: function(){
+        return {
+            userData: [
+                {
+                    "thing": "Universidad",
+                    "cost": "500000",
+                    "priority": "Alta"
+                }, {
+                    "thing": "Celular",
+                    "cost": "250000",
+                    "priority": "Alta"
+                }, {
+                    "thing": "Bicicleta",
+                    "cost": "167000",
+                    "priority": "Alta"
+                }, {
+                    "thing": "Comida",
+                    "cost": "100000",
+                    "priority": "Media"
+                }, {
+                    "thing": "Transporte",
+                    "cost": "80000",
+                    "priority": "Media"
+                }, {
+                    "thing": "Canastas",
+                    "cost": "300000",
+                    "priority": "Alta"
+                }, {
+                    "thing": "Jose",
+                    "cost": "150000",
+                    "priority": "Alta"
+                }, {
+                    "thing": "Otros",
+                    "cost": "50000",
+                    "priority": "Baja"
+                }, {
+                    "thing": "Audifonos (Balaca)",
+                    "cost": "80000",
+                    "priority": "Media"
+                }
+            ]
+        }
+    }
 }
 </script>
