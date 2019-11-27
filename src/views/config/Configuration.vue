@@ -12,10 +12,10 @@
                         <label class="m-label">
                             Eres:
                         </label>
-                        <input type="text" class="custom-form">
+                        <input type="text" class="custom-form special-check">
                     </div>
                     <div class="m-container-item--column">
-                        <input type="text" class="custom-form">
+                        <input type="text" class="custom-form special-check">
                     </div>
                 </div>
                 <div class="m-container-item--row">

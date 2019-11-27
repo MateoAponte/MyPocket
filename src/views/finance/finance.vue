@@ -2,23 +2,29 @@
     <div class="m-general-container">
         <div class="m-head-container">
             <div class="m-head-container-card">
-                <div class="m-container-item--column">
-                    <label class="m-label">
-                        En que:
-                    </label>
-                    <input type="password" class="custom-form">
+                <div class="m-container-item--row">
+                    <div class="m-container-item--column">
+                        <label class="m-label">
+                            En que:
+                        </label>
+                        <input type="text" class="custom-form">
+                    </div>
+                    <div class="m-container-item--column">
+                        <label class="m-label">
+                            Cuando:
+                        </label>
+                        <input type="text" class="custom-form">
+                    </div>
                 </div>
-                <div class="m-container-item--column">
-                    <label class="m-label">
-                        Cuanto:
-                    </label>
-                    <input type="password" class="custom-form">
-                </div>
-                <div class="m-container-item--column">
-                    <label class="m-label">
-                        Prioridad:
-                    </label>
-                    <input type="password" class="custom-form">
+                <div class="m-container-item--row">
+                    <div class="m-container-item--column--medium">
+                        <label class="m-label">
+                            Prioridad:
+                        </label>
+                    </div>
+                    <div class="m-container-item--column">
+                        <input type="text" class="custom-form">
+                    </div>
                 </div>
                 <div class="m-container-item--row">
                     <button class="m-button m-button-turquese">Guardar</button>
@@ -92,7 +98,7 @@
                                         Información:
                                     </label>
                                     <label class="m-title">
-                                        {{numeral('1900000').format('$0,0')}}
+                                        {{numeral('1000').format('$0,0')}}
                                     </label>
                                 </div>
                                 <div class="m-container-item--row">
@@ -100,7 +106,7 @@
                                         Información:
                                     </label>
                                     <label class="m-title">
-                                        {{numeral('1900000').format('$0,0')}}
+                                        {{numeral('1000').format('$0,0')}}
                                     </label>
                                 </div>
                                 <div class="m-container-item--row">
@@ -108,7 +114,7 @@
                                         Información:
                                     </label>
                                     <label class="m-title">
-                                        {{numeral('1900000').format('$0,0')}}
+                                        {{numeral('1000').format('$0,0')}}
                                     </label>
                                 </div>
                                 <div class="m-container-item--row">
@@ -116,7 +122,7 @@
                                         Información:
                                     </label>
                                     <label class="m-title">
-                                        {{numeral('1900000').format('$0,0')}}
+                                        {{numeral('1000').format('$0,0')}}
                                     </label>
                                 </div>
                             </div>
@@ -134,39 +140,39 @@ export default {
         return {
             userData: [
                 {
-                    "thing": "Universidad",
+                    "thing": "Prueba",
                     "cost": "500000",
                     "priority": "Alta"
                 }, {
-                    "thing": "Celular",
+                    "thing": "Prueba",
                     "cost": "250000",
                     "priority": "Alta"
                 }, {
-                    "thing": "Bicicleta",
+                    "thing": "Prueba",
                     "cost": "167000",
                     "priority": "Alta"
                 }, {
-                    "thing": "Comida",
+                    "thing": "Prueba",
                     "cost": "100000",
                     "priority": "Media"
                 }, {
-                    "thing": "Transporte",
+                    "thing": "Prueba",
                     "cost": "80000",
                     "priority": "Media"
                 }, {
-                    "thing": "Canastas",
+                    "thing": "Prueba",
                     "cost": "300000",
                     "priority": "Alta"
                 }, {
-                    "thing": "Jose",
+                    "thing": "Prueba",
                     "cost": "150000",
                     "priority": "Alta"
                 }, {
-                    "thing": "Otros",
+                    "thing": "Prueba",
                     "cost": "50000",
                     "priority": "Baja"
                 }, {
-                    "thing": "Audifonos (Balaca)",
+                    "thing": "Prueba",
                     "cost": "80000",
                     "priority": "Media"
                 }

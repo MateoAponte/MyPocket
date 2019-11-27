@@ -50,6 +50,10 @@
     @extend .m-container-item--column;
     max-width: 20%;
 }
+.m-container-item--column--medium{
+    @extend .m-container-item--column;
+    max-width: 30%;
+}
 
 .m-container-item--row{
     width: 100%;
@@ -195,9 +199,9 @@
     justify-content: center;
     
     &-card{
-        min-width: 450px;
+        min-width: 580px;
         min-height: 100%;
-        padding: 10px 25px;
+        padding: 10px 15px;
         border-radius: $border-radius;
         background-color: $bg-card;
         box-shadow: $shadow-gray;

@@ -21,23 +21,29 @@
                         <input type="text" class="custom-form">
                     </div>
                 </div>
-                <div class="m-container-item--column">
-                    <label class="m-label">
-                        Presupuesto:
-                    </label>
-                    <input type="text" class="custom-form">
+                <div class="m-container-item--row">
+                    <div class="m-container-item--column">
+                        <label class="m-label">
+                            Presupuesto:
+                        </label>
+                        <input type="text" class="custom-form">
+                    </div>
                 </div>
-                <div class="m-container-item--column">
-                    <label class="m-label">
-                        Contraseña:
-                    </label>
-                    <input type="password" class="custom-form">
+                <div class="m-container-item--row">
+                    <div class="m-container-item--column">
+                        <label class="m-label">
+                            Contraseña:
+                        </label>
+                        <input type="password" class="custom-form">
+                    </div>
                 </div>
-                <div class="m-container-item--column">
-                    <label class="m-label">
-                        Confirma Contraseña:
-                    </label>
-                    <input type="password" class="custom-form">
+                <div class="m-container-item--row">
+                    <div class="m-container-item--column">
+                        <label class="m-label">
+                            Confirma Contraseña:
+                        </label>
+                        <input type="password" class="custom-form">
+                    </div>
                 </div>
                 <div class="m-container-item--row">
                     <button class="m-button m-button-turquese m-button-long">Ingresar</button>
