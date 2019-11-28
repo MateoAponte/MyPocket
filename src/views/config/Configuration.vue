@@ -8,14 +8,21 @@
                     </span>
                 </div>
                 <div class="m-container-item--row">
+                    <span class="m-mini-paragraph">
+                        Necesitamos que confirme su información para poder continuar; <br/>Por favor, llene y confirme estos datos:
+                    </span>
+                </div>
+                <div class="m-container-item--row">
                     <div class="m-container-item--column">
                         <label class="m-label">
-                            Eres:
+                            Info:
                         </label>
-                        <input type="text" class="custom-form special-check">
+                        <input type="radio" name="size" id="info_1" value="Trabajador" v-model="readOffice"/>
+                        <label class="special-label" for="info_1">Trabajador</label>
                     </div>
                     <div class="m-container-item--column">
-                        <input type="text" class="custom-form special-check">
+                        <input type="radio" name="size" id="info_2" value="Estudiante" v-model="readOffice" />
+                        <label class="special-label" for="info_2">Estudiante</label>
                     </div>
                 </div>
                 <div class="m-container-item--row">
@@ -23,13 +30,13 @@
                         <label class="m-label">
                             Nombre:
                         </label>
-                        <input type="text" class="custom-form">
+                        <input type="text" class="custom-form"  placeholder="Ingrese su nombre" v-model="userConfig.name" />
                     </div>
                     <div class="m-container-item--column">
                         <label class="m-label">
                             Apellido:
                         </label>
-                        <input type="text" class="custom-form">
+                        <input type="text" class="custom-form" placeholder="Ingrese su apellido" v-model="userConfig.lastname" />
                     </div>
                 </div>
                 <div class="m-container-item--row">
@@ -37,13 +44,13 @@
                         <label class="m-label">
                             Interes:
                         </label>
-                        <input type="text" class="custom-form">
+                        <input type="text" class="custom-form" placeholder="0%" v-model="userConfig.added" :disabled="readOffice === 'Estudiante'" />
                     </div>
                     <div class="m-container-item--column">
                         <label class="m-label">
                             Presupuesto:
                         </label>
-                        <input type="text" class="custom-form">
+                        <input type="text" class="custom-form"  placeholder="Ingrese su presupuesto" v-model="userConfig.bugnet"/>
                     </div>
                 </div>
                 <div class="m-container-item--row">
@@ -51,7 +58,7 @@
                         <label class="m-label">
                             Contraseña:
                         </label>
-                        <input type="password" class="custom-form">
+                        <input type="password" class="custom-form"  placeholder="Ingrese su contraseña" v-model="userConfig.password" />
                     </div>
                 </div>
                 <div class="m-container-item--row">
@@ -59,7 +66,7 @@
                         <label class="m-label">
                             Confirmación:
                         </label>
-                        <input type="password" class="custom-form">
+                        <input type="password" class="custom-form"  placeholder="Ingrese la confirmación de su contraseña" v-model="userConfig.confirmPassword" />
                     </div>
                 </div>
                 <div class="m-container-item--row">
@@ -72,6 +79,32 @@
 
 <script>
 export default {
-    name: 'Login'
+    name: 'Login',
+    data: function(){
+        return {
+            userConfig: {
+                ocupation: '',
+                name: '',
+                lastname: '',
+                added: '',
+                bugnet: '',
+                password: '',
+                confirmPassword: ''
+            }
+        }
+    },
+    computed: {
+        readOffice: {
+            set(newVal){
+                if(newVal == 'Estudiante'){
+                    this.userConfig.added = '0'
+                }
+                return this.userConfig.ocupation = newVal;
+            },
+            get(){
+                return this.userConfig.ocupation;
+            }
+        }
+    }
 }
 </script>

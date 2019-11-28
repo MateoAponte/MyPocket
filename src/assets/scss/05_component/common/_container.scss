@@ -63,9 +63,23 @@
     justify-content: space-between;
     align-items: flex-end;
 }
+.minify-padding{
+    padding: 3px 8px;
+}
 .m-container-item--row--center{
     @extend .m-container-item--row;
     justify-content: space-around;
+}
+.m-container-item--col-row{
+    @extend .m-container-item--row;
+    justify-content: flex-end;
+    padding: 0;
+    margin: 0;
+
+    .m-container-item--column{
+        width: auto;
+        margin: 0px 10px 8px;
+    }
 }
 
 .m-container-item{
@@ -78,7 +92,6 @@
     display: flex;
     align-items: center;
     box-sizing: border-box;
-    color: $clrP-black;
     border: $border-solid-gray;
 
     &--status{
@@ -86,21 +99,16 @@
         height: 100%;
         display: flex;
         justify-content: center;
+        font-size: 35px;
 
         &--hight{
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: $clrS-hight;
-            color: transparent;
+            color: $clrS-hight;
         }
         &--medium{
-            @extend .m-container-item--status--hight;
-            background-color: $clrS-medium;
+            color: $clrS-medium;
         }
         &--lower{
-            @extend .m-container-item--status--hight;
-            background-color: $clrS-lower;
+            color: $clrS-lower;
         }
     }
 
@@ -128,7 +136,7 @@
             &__title{
                 font-family: 'Questrial';
                 font-weight: 600;
-                font-size: 1.3em;
+                font-size: 1.1em;
                 letter-spacing: 0.3px;
             }
             &__value{
@@ -164,7 +172,7 @@
         &__title{
             font-family: 'Questrial';
             font-weight: 600;
-            font-size: 1.3em;
+            font-size: 1.1em;
             letter-spacing: 0.3px;
             margin-left: auto;
         }
@@ -215,5 +223,18 @@
 
     .m-head-container-card{
         justify-content: space-around;
+    }
+}
+
+div, body{
+    &::-webkit-scrollbar-thumb{
+        width: 100%;
+        background-color: $clrP-darkGray;
+        border-radius: 25px;
+    }
+    
+    &::-webkit-scrollbar{
+        width: 13px;
+        background-color: $bg-light-gray;
     }
 }

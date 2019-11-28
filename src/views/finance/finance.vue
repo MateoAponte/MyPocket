@@ -7,13 +7,13 @@
                         <label class="m-label">
                             En que:
                         </label>
-                        <input type="text" class="custom-form">
+                        <input type="text" class="custom-form" placeholder="Ejm. Libros">
                     </div>
                     <div class="m-container-item--column">
                         <label class="m-label">
                             Cuando:
                         </label>
-                        <input type="text" class="custom-form">
+                        <input type="text" class="custom-form" placeholder="Ejm. 400000">
                     </div>
                 </div>
                 <div class="m-container-item--row">
@@ -22,8 +22,25 @@
                             Prioridad:
                         </label>
                     </div>
-                    <div class="m-container-item--column">
-                        <input type="text" class="custom-form">
+                    <div class="m-container-item--column m-container-item--col-row">
+                        <div class="m-container-item--column">
+                            <div class="radio-button">
+                                <input id="hight" name="radio" type="radio">
+                                <label for="hight" class="radio-label">Alta</label>
+                            </div>
+                        </div>
+                        <div class="m-container-item--column">
+                            <div class="radio-button">
+                                <input id="medium" name="radio" type="radio">
+                                <label for="medium" class="radio-label">Media</label>
+                            </div>
+                        </div>
+                        <div class="m-container-item--column">
+                            <div class="radio-button">
+                                <input id="lower" name="radio" type="radio">
+                                <label for="lower" class="radio-label">Baja</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="m-container-item--row">
@@ -49,8 +66,8 @@
                             <div class="m-card-body">
                                 <div class="m-container-item" v-for="data in userData" :key="data">
                                     <div class="m-container-item--status">
-                                        <span class="m-container-item--status--lower">
-                                            .
+                                        <span :class="setColorPriority(data.priority)">
+                                            <font-awesome-icon icon="flag" />
                                         </span>
                                     </div>
                                     <div class="m-container-item--info">
@@ -60,14 +77,14 @@
                                                     {{data.thing}}
                                                 </span>
                                                 <span class="m-container-item--info__item__value">
-                                                    {{moment().format('YYYY/MM/DD')}}
+                                                    {{moment(data.date).format('YYYY/MM/DD')}}
                                                 </span>
                                             </div>
                                         </div>
                                         <div class="m-container-item--info--column">
                                             <div class="m-container-item--info__item centered-content">
                                                 <span class="m-container-item--info__item__title">
-                                                    {{numeral('75.156').format('0.00')}}%
+                                                    {{numeral(setPercent(data.cost)).format('0.00')}}%
                                                 </span>
                                             </div>
                                         </div>
@@ -93,36 +110,36 @@
                                 </div>
                             </div>
                             <div class="m-card-body space-around">
-                                <div class="m-container-item--row">
+                                <div class="m-container-item--row minify-padding">
                                     <label class="m-title">
-                                        Información:
+                                        Presupuesto:
                                     </label>
                                     <label class="m-title">
-                                        {{numeral('1000').format('$0,0')}}
-                                    </label>
-                                </div>
-                                <div class="m-container-item--row">
-                                    <label class="m-title">
-                                        Información:
-                                    </label>
-                                    <label class="m-title">
-                                        {{numeral('1000').format('$0,0')}}
+                                        {{numeral(setBudget).format('$0,0')}}
                                     </label>
                                 </div>
-                                <div class="m-container-item--row">
+                                <div class="m-container-item--row minify-padding">
                                     <label class="m-title">
-                                        Información:
+                                        Descuento:
                                     </label>
                                     <label class="m-title">
-                                        {{numeral('1000').format('$0,0')}}
+                                        {{numeral(setPercentil).format('$0,0')}}
                                     </label>
                                 </div>
-                                <div class="m-container-item--row">
+                                <div class="m-container-item--row minify-padding">
                                     <label class="m-title">
-                                        Información:
+                                        Gastos:
                                     </label>
                                     <label class="m-title">
-                                        {{numeral('1000').format('$0,0')}}
+                                        {{numeral(setExpenses).format('$0,0')}}
+                                    </label>
+                                </div>
+                                <div class="m-container-item--row minify-padding">
+                                    <label class="m-title">
+                                        Sobrante:
+                                    </label>
+                                    <label class="m-title">
+                                        {{numeral(setRes).format('$0,0')}}
                                     </label>
                                 </div>
                             </div>
@@ -142,41 +159,90 @@ export default {
                 {
                     "thing": "Prueba",
                     "cost": "500000",
-                    "priority": "Alta"
+                    "priority": "Alta",
+                    "date": "2019/11/27",
                 }, {
                     "thing": "Prueba",
                     "cost": "250000",
-                    "priority": "Alta"
+                    "priority": "Alta",
+                    "date": "2019/11/27",
                 }, {
                     "thing": "Prueba",
                     "cost": "167000",
-                    "priority": "Alta"
+                    "priority": "Alta",
+                    "date": "2019/11/27",
                 }, {
                     "thing": "Prueba",
                     "cost": "100000",
-                    "priority": "Media"
+                    "priority": "Media",
+                    "date": "2019/11/27",
                 }, {
                     "thing": "Prueba",
                     "cost": "80000",
-                    "priority": "Media"
+                    "priority": "Media",
+                    "date": "2019/11/27",
                 }, {
                     "thing": "Prueba",
                     "cost": "300000",
-                    "priority": "Alta"
+                    "priority": "Alta",
+                    "date": "2019/11/27",
                 }, {
                     "thing": "Prueba",
                     "cost": "150000",
-                    "priority": "Alta"
+                    "priority": "Alta",
+                    "date": "2019/11/27",
                 }, {
                     "thing": "Prueba",
                     "cost": "50000",
-                    "priority": "Baja"
+                    "priority": "Baja",
+                    "date": "2019/11/27",
                 }, {
                     "thing": "Prueba",
                     "cost": "80000",
-                    "priority": "Media"
+                    "priority": "Media",
+                    "date": "2019/11/27",
                 }
-            ]
+            ],
+            summaryData:{
+                budget: 10000,
+                expenses: 0,
+                percentil: 8
+            }
+        }
+    },
+    methods: {
+        setColorPriority(value) {
+            switch (value){
+                case 'Alta':
+                    return 'm-container-item--status--hight';
+                break;
+                case 'Media':
+                    return 'm-container-item--status--medium';
+                break;
+                case 'Baja':
+                    return 'm-container-item--status--lower';
+                break;
+            }
+        },
+        setPercent(value){
+            return (value * 100) / this.summaryData.budget;
+        }
+    },
+    computed: {
+        setExpenses(){
+            this.userData.forEach( x => {
+                this.summaryData.expenses += parseInt(x.cost);
+            } );
+            return this.summaryData.expenses;
+        },
+        setBudget(){
+            return this.summaryData.budget;
+        },
+        setPercentil(){
+            return this.summaryData.budget * (this.summaryData.percentil / 100);
+        },
+        setRes(){
+            return this.setBudget - this.setExpenses;
         }
     }
 }

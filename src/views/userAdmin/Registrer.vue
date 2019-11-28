@@ -12,13 +12,13 @@
                         <label class="m-label">
                             Nombre:
                         </label>
-                        <input type="text" class="custom-form">
+                        <input type="text" class="custom-form" placeholder="Ingrese su nombre">
                     </div>
                     <div class="m-container-item--column">
                         <label class="m-label">
                             Apellido:
                         </label>
-                        <input type="text" class="custom-form">
+                        <input type="text" class="custom-form" placeholder="Ingrese su apellido">
                     </div>
                 </div>
                 <div class="m-container-item--row">
@@ -26,7 +26,7 @@
                         <label class="m-label">
                             Presupuesto:
                         </label>
-                        <input type="text" class="custom-form">
+                        <input type="text" class="custom-form" placeholder="Ingrese su presupuesto">
                     </div>
                 </div>
                 <div class="m-container-item--row">
@@ -34,7 +34,7 @@
                         <label class="m-label">
                             Contraseña:
                         </label>
-                        <input type="password" class="custom-form">
+                        <input type="password" class="custom-form" placeholder="Ingrese la contraseña">
                     </div>
                 </div>
                 <div class="m-container-item--row">
@@ -42,7 +42,7 @@
                         <label class="m-label">
                             Confirma Contraseña:
                         </label>
-                        <input type="password" class="custom-form">
+                        <input type="password" class="custom-form" placeholder="Ingrese la confirmación de su contraseña">
                     </div>
                 </div>
                 <div class="m-container-item--row">

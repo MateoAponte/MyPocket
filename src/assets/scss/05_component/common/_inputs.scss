@@ -7,6 +7,27 @@ input[type="text"].custom-form, input[type="password"].custom-form{
     outline: none;
     border: $border-input-gray;
     color: $clrP-black;
+    transition: box-shadow 200ms ease-in;
+
+    &::placeholder{
+        color: lighten($clrP-gray, 25%);
+        font-family: 'Questrial';
+        font-weight: 400;
+        letter-spacing: 0.2px;
+        font-size: 1.1em;
+    }
+
+    &:disabled{
+        cursor: not-allowed;
+        background-color: $clrS-gray;
+        &::placeholder{
+            color: lighten($clrP-gray, 20%);
+        }
+    }
+
+    &:focus{
+        box-shadow: 0px 0px 5px #076E9C;
+    }
 }
 
 .special-check{
