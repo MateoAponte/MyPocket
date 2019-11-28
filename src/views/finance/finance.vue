@@ -1,20 +1,22 @@
 <template>
     <div class="m-general-container">
-        <div class="m-head-container">
-            <div class="m-head-container-card">
+        <ValidationObserver class="m-head-container"  v-slot="{ handleSubmit }">
+            <form @submit.prevent="handleSubmit(onSubmit)" class="m-head-container-card">
                 <div class="m-container-item--row">
-                    <div class="m-container-item--column">
+                    <ValidationProvider name="objeto" rules="string" v-slot="{ classes, errors }" class="m-container-item--column">
                         <label class="m-label">
                             En que:
                         </label>
-                        <input type="text" class="custom-form" placeholder="Ejm. Libros">
-                    </div>
-                    <div class="m-container-item--column">
+                        <input type="text" class="custom-form" placeholder="Ejm. Libros" v-model="itemData.thing" />
+                        <span class="m-error">{{ errors[0] }}</span>
+                    </ValidationProvider>
+                    <ValidationProvider name="costo" rules="number" v-slot="{ classes, errors }" class="m-container-item--column">
                         <label class="m-label">
-                            Cuando:
+                            Costo   :
                         </label>
-                        <input type="text" class="custom-form" placeholder="Ejm. 400000">
-                    </div>
+                        <input type="text" class="custom-form" placeholder="Ejm. 400000" v-model="itemData.cost" />
+                        <span class="m-error">{{ errors[0] }}</span>
+                    </ValidationProvider>
                 </div>
                 <div class="m-container-item--row">
                     <div class="m-container-item--column--medium">
@@ -25,30 +27,30 @@
                     <div class="m-container-item--column m-container-item--col-row">
                         <div class="m-container-item--column">
                             <div class="radio-button">
-                                <input id="hight" name="radio" type="radio">
+                                <input id="hight" name="radio" type="radio" value="Alta" v-model="itemData.priority" />
                                 <label for="hight" class="radio-label">Alta</label>
                             </div>
                         </div>
                         <div class="m-container-item--column">
                             <div class="radio-button">
-                                <input id="medium" name="radio" type="radio">
+                                <input id="medium" name="radio" type="radio" value="Media" v-model="itemData.priority" />
                                 <label for="medium" class="radio-label">Media</label>
                             </div>
                         </div>
                         <div class="m-container-item--column">
                             <div class="radio-button">
-                                <input id="lower" name="radio" type="radio">
+                                <input id="lower" name="radio" type="radio" value="Baja" v-model="itemData.priority" />
                                 <label for="lower" class="radio-label">Baja</label>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="m-container-item--row">
-                    <button class="m-button m-button-turquese">Guardar</button>
-                    <button class="m-button m-button-orange">Agregar</button>
+                    <button class="m-button m-button-esmerald" type="submit">Guardar</button>
+                    <button class="m-button m-button-orange" @click="setNewValue">Agregar</button>
                 </div>
-            </div>
-        </div>
+            </form>
+        </ValidationObserver>
 
         <div class="m-container">
             <div class="m-container-row">
@@ -63,11 +65,46 @@
                                     <button class="m-button m-button-orange">Mostrar Todos</button>
                                 </div>
                             </div>
-                            <div class="m-card-body">
-                                <div class="m-container-item" v-for="data in userData" :key="data">
+                            <div class="m-card-body relative">
+                                <div class="m-container-item--row minify-padding fixed">
+                                    <div class="m-container-item--status">
+                                        <span class="m-container-item--status__title">
+                                            Prioridad
+                                        </span>
+                                    </div>
+                                    <div class="m-container-item--info">
+                                        <div class="m-container-item--info--column">
+                                            <div class="m-container-item--info__item">
+                                                <span class="m-container-item--info__item__title">
+                                                    Información
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="m-container-item--info--column">
+                                            <div class="m-container-item--info__item centered-content">
+                                                <span class="m-container-item--info__item__title">
+                                                    Porcentaje
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="m-container-item--value">
+                                        <div class="m-container-item--value--row">
+                                            <span class="m-container-item--value__title">
+                                                Costo
+                                            </span>
+                                        </div>  
+                                    </div>
+                                    <div class="m-container-item--actions">
+                                        <span class="m-container-item--actions__title">
+                                            Acciones
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="m-container-item" v-for="(data, index) in userData" :key="index">
                                     <div class="m-container-item--status">
                                         <span :class="setColorPriority(data.priority)">
-                                            <font-awesome-icon icon="flag" />
+                                            <font-awesome-icon icon="th-list" />
                                         </span>
                                     </div>
                                     <div class="m-container-item--info">
@@ -94,6 +131,14 @@
                                             <span class="m-container-item--value__title">
                                                 {{numeral(data.cost).format('$0,0')}}
                                             </span>
+                                        </div>  
+                                    </div>
+                                    <div class="m-container-item--actions">
+                                        <div class="m-container-item--actions--column">
+                                            <font-awesome-icon icon="trash" />
+                                        </div>
+                                        <div class="m-container-item--actions--column">
+                                            <font-awesome-icon icon="check-circle" />
                                         </div>
                                     </div>
                                 </div>
@@ -111,36 +156,69 @@
                             </div>
                             <div class="m-card-body space-around">
                                 <div class="m-container-item--row minify-padding">
-                                    <label class="m-title">
-                                        Presupuesto:
-                                    </label>
-                                    <label class="m-title">
-                                        {{numeral(setBudget).format('$0,0')}}
-                                    </label>
+                                    <div class="m-container-item--column--medium simple-column simple-column-left">
+                                        <label class="m-title">
+                                            Items:
+                                        </label>
+                                    </div>
+                                    <div class="m-container-item--column column-underline"></div>
+                                    <div class="m-container-item--column--medium simple-column simple-column-right">
+                                        <label class="m-title">
+                                            {{numeral(setQuantityItems).format('0')}}
+                                        </label>
+                                    </div>
                                 </div>
                                 <div class="m-container-item--row minify-padding">
-                                    <label class="m-title">
-                                        Descuento:
-                                    </label>
-                                    <label class="m-title">
-                                        {{numeral(setPercentil).format('$0,0')}}
-                                    </label>
+                                    <div class="m-container-item--column--medium simple-column simple-column-left">
+                                        <label class="m-title">
+                                            Presupuesto:
+                                        </label>
+                                    </div>
+                                    <div class="m-container-item--column column-underline"></div>
+                                    <div class="m-container-item--column--medium simple-column simple-column-right">
+                                        <label class="m-title">
+                                            {{numeral(setBudget).format('$0,0')}}
+                                        </label>
+                                    </div>
                                 </div>
                                 <div class="m-container-item--row minify-padding">
-                                    <label class="m-title">
-                                        Gastos:
-                                    </label>
-                                    <label class="m-title">
-                                        {{numeral(setExpenses).format('$0,0')}}
-                                    </label>
+                                    <div class="m-container-item--column--medium simple-column simple-column-left">
+                                        <label class="m-title">
+                                            Descuento:
+                                        </label>
+                                    </div>
+                                    <div class="m-container-item--column column-underline"></div>
+                                    <div class="m-container-item--column--medium simple-column simple-column-right">
+                                        <label class="m-title">
+                                            {{numeral(setPercentil).format('$0,0')}}
+                                        </label>
+                                    </div>
                                 </div>
                                 <div class="m-container-item--row minify-padding">
-                                    <label class="m-title">
-                                        Sobrante:
-                                    </label>
-                                    <label class="m-title">
-                                        {{numeral(setRes).format('$0,0')}}
-                                    </label>
+                                    <div class="m-container-item--column--medium simple-column simple-column-left">
+                                        <label class="m-title">
+                                            Gastos:
+                                        </label>
+                                    </div>
+                                    <div class="m-container-item--column column-underline"></div>
+                                    <div class="m-container-item--column--medium simple-column simple-column-right">
+                                        <label class="m-title">
+                                            {{numeral(setExpenses).format('$0,0')}}
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="m-container-item--row minify-padding">
+                                    <div class="m-container-item--column--medium simple-column simple-column-left">
+                                        <label class="m-title">
+                                            Sobrante:
+                                        </label>
+                                    </div>
+                                    <div class="m-container-item--column column-underline"></div>
+                                    <div class="m-container-item--column--medium simple-column simple-column-right">
+                                        <label class="m-title">
+                                            {{numeral(setRes).format('$0,0')}}
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -155,6 +233,11 @@
 export default {
     data: function(){
         return {
+            itemData: {
+                thing: '',
+                cost: '',
+                priority: ''
+            },
             userData: [
                 {
                     "thing": "Prueba",
@@ -211,6 +294,9 @@ export default {
         }
     },
     methods: {
+        onSubmit(){
+            alert('Ejecutado')
+        },
         setColorPriority(value) {
             switch (value){
                 case 'Alta':
@@ -226,10 +312,14 @@ export default {
         },
         setPercent(value){
             return (value * 100) / this.summaryData.budget;
+        },
+        setNewValue(value){
+            this.userData.push(_.cloneDeep(this.itemData));
         }
     },
     computed: {
         setExpenses(){
+            this.summaryData.expenses = 0;
             this.userData.forEach( x => {
                 this.summaryData.expenses += parseInt(x.cost);
             } );
@@ -243,6 +333,9 @@ export default {
         },
         setRes(){
             return this.setBudget - this.setExpenses;
+        },
+        setQuantityItems(){
+            return this.userData.length - 1;
         }
     }
 }
