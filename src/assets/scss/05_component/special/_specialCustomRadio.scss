@@ -1,0 +1,48 @@
+ /**
+  * 1. Hides the input from view
+  * 2. Ensures the element does not consume any space
+  */
+ 
+ input[type="radio"] {
+   visibility: hidden; /* 1 */
+   height: 0; /* 2 */
+   width: 0; /* 2 */
+ }
+ 
+ label.special-label {
+    width: 100%;
+    min-height: 80px;
+   display: flex;
+   flex: auto;
+   vertical-align: middle;
+   align-items: center;
+   justify-content: center;
+   text-align: center;
+   cursor: pointer;
+   background-color: $clrS-gray;
+   color: $clrP-black;
+   padding: 5px 10px;
+   border-radius: 6px;
+   transition: color 200ms ease-in, background-color 300ms ease-in, border 300ms ease-in;
+   user-select: none;
+  margin-right: 8px;
+  box-shadow: $shadow-gray;
+  border: $border-input-gray;
+ }
+ 
+ label.special-label:last-of-type {
+  margin-right: 0;
+ }
+ 
+ input[type="radio"]:checked + label.special-label {
+   background-color: $clrP-turquese;
+   border: 1px solid $clrP-turquese;
+   color: $clrP-white;
+  }
+  
+  input[type="radio"]:hover:not(:checked) + label.special-label {
+  background-color: lighten($clrS-gray, 4%);
+  color: $clrP-black;
+ }
+ 
+ 
