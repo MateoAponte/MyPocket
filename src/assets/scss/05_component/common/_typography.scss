@@ -52,19 +52,30 @@
     text-align: center;
 }
 
+.m-error{
+    color: $clrS-lower;
+    font-size: 0.6em;
+    font-family: 'Nunito';
+    letter-spacing: 0.3px;
+    font-weight: 400;
+    position: absolute;
+    min-width: 280px;
+    bottom: -15px;
+}
+
 .m-mini-paragraph{
     font-size: 0.75em;
 }
 
 .m-link-active{
-    color: $clrP-turquese !important;
+    color: $clrP-esmerald !important;
     position: relative;
 
     &:hover{
-        color: darken($clrP-turquese, 15%);
+        color: darken($clrP-esmerald, 15%);
 
         &::before{
-            background-color: darken($clrP-turquese, 15%);
+            background-color: darken($clrP-esmerald, 15%);
         }
     }
 
@@ -75,6 +86,6 @@
         bottom: 0;
         left: 0;
         height: 2px;
-        background-color: $clrP-turquese;
+        background-color: $clrP-esmerald;
     }
 }

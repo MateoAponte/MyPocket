@@ -45,6 +45,7 @@
     margin-bottom: 8px;
     @include FlexBox(column);
     align-items: flex-start;
+    position: relative;
 }
 .m-container-item--column--mini{
     @extend .m-container-item--column;
@@ -94,8 +95,9 @@
     box-sizing: border-box;
     border: $border-solid-gray;
 
-    &--status{
-        width: 20%;
+}
+    .m-container-item--status{
+        width: 15%;
         height: 100%;
         display: flex;
         justify-content: center;
@@ -110,9 +112,18 @@
         &--lower{
             color: $clrS-lower;
         }
+
+        &__title{
+            margin-right: 10px;
+            font-family: 'Questrial';
+            font-weight: 600;
+            font-size: 18px;
+            letter-spacing: 0.3px;
+            justify-self: flex-start;
+        }
     }
 
-    &--info{
+    .m-container-item--info{
         width: 50%;
         height: 100%;
         display: flex;
@@ -154,8 +165,8 @@
         }
     }
 
-    &--value{
-        width: 20%;
+    .m-container-item--value{
+        width: 15%;
         height: 100%;
         display: flex;
         flex-direction: column;
@@ -174,7 +185,7 @@
             font-weight: 600;
             font-size: 1.1em;
             letter-spacing: 0.3px;
-            margin-left: auto;
+            margin: auto;
         }
         &__value{
             font-family: 'Questrial';
@@ -196,7 +207,41 @@
             margin-left: 10px;
         }
     }
-}
+
+    .m-container-item--actions{
+        width: 20%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 0 35px;
+
+        &--column{
+            width: auto;
+            height: 100%;
+            margin: 5px;
+            display: flex;
+            flex-direction: row;
+            font-size: 1.2em;
+            color: $clrP-black;
+
+            svg{
+                cursor: pointer;
+                transition: all 100ms ease-in;
+
+                &:hover{
+                    transform: scale(1.3);
+                }
+            }
+        }
+        &__title{
+            font-family: 'Questrial';
+            font-weight: 600;
+            font-size: 1.1em;
+            letter-spacing: 0.3px;
+            text-align: center;
+        }
+    }
 
 .m-head-container{
     width: 100%;
@@ -224,6 +269,19 @@
     .m-head-container-card{
         justify-content: space-around;
     }
+}
+.simple-column{
+    margin: 0;
+    padding: 0px 8px;
+}
+.simple-column-right{
+    align-items: flex-start;
+}
+.simple-column-left{
+    align-items: flex-end;
+}
+.column-underline{
+    border-bottom: 1px dashed $clrP-darkGray;
 }
 
 div, body{

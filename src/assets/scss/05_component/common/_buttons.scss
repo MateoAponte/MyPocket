@@ -10,15 +10,15 @@
     box-sizing: border-box;
     text-transform: capitalize;
     min-width: 100px;
-    transition: $transition;
+    transition: all 300ms ease-in;
     cursor: pointer;
 
     &:disabled {
         cursor: not-allowed;
     }
 
-    &-turquese{
-        background-color: $clrP-turquese;
+    &-esmerald{
+        background-color: $clrP-esmerald;
         color: $clrP-white;
     }
 

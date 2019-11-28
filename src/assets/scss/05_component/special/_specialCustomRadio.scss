@@ -19,7 +19,7 @@
    justify-content: center;
    text-align: center;
    cursor: pointer;
-   background-color: $clrS-gray;
+   background-color: lighten($clrS-gray, 6%);
    color: $clrP-black;
    padding: 5px 10px;
    border-radius: 6px;
@@ -35,13 +35,13 @@
  }
  
  input[type="radio"]:checked + label.special-label {
-   background-color: $clrP-turquese;
-   border: 1px solid $clrP-turquese;
+   background-color: $clrP-esmerald;
+   border: 1px solid $clrP-esmerald;
    color: $clrP-white;
   }
   
   input[type="radio"]:hover:not(:checked) + label.special-label {
-  background-color: lighten($clrS-gray, 4%);
+  background-color: desaturate(lighten($clrP-esmerald, 15%), 5%);
   color: $clrP-black;
  }
  

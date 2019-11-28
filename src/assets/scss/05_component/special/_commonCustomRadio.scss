@@ -1,6 +1,3 @@
-$white: #fff;
-$blue: #2083FE;
-$mid-dark-gray: #dcdcdc;
 .radio-label{
     cursor: pointer;
     font-family: 'Questrial';
@@ -12,9 +9,9 @@ $mid-dark-gray: #dcdcdc;
     + .radio-label {
       &:before {
         content: '';
-        background: $white;
+        background: $clrP-white;
         border-radius: 100%;
-        border: 1px solid $mid-dark-gray;
+        border: 1px solid #cccc;
         display: inline-block;
         width: 1em;
         height: 1em;
@@ -30,8 +27,8 @@ $mid-dark-gray: #dcdcdc;
     &:checked {
       + .radio-label {
         &:before {
-          background-color: $blue;
-          box-shadow: inset 0 0 0 3px $white;
+          background-color: $clrS-blue;
+          box-shadow: inset 0 0 0 3px $clrP-white;
         }
       }
     }
@@ -39,16 +36,16 @@ $mid-dark-gray: #dcdcdc;
       + .radio-label {
         &:before {
           outline: none;
-          border-color: $blue;
+          border-color: $clrS-blue;
         }
       }
     }
     &:disabled {
       + .radio-label {
         &:before {
-          box-shadow: inset 0 0 0 4px $white;
-          border-color: $mid-dark-gray;
-          background: $mid-dark-gray;
+          box-shadow: inset 0 0 0 4px $clrP-white;
+          border-color: #cccc;
+          background: #cccc;
         }
       }
     }
