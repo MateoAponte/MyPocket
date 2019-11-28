@@ -6,7 +6,6 @@
   "scripts": {
     "webpack": "webpack --mode development",
     "start": "nodemon --exec babel-node ./server/server.js",
-    "webpack-dev-server": "webpack-dev-server",
     "dev": "webpack-dev-server --inline --port 8080 --host localhost --open --mode=development",
     "prod": "webpack --mode=production"
   },
@@ -33,7 +32,8 @@
     "nodemon": "^1.19.2",
     "numeral": "^2.0.6",
     "sass-loader": "^8.0.0",
-    "style-loader": "^1.0.0"
+    "style-loader": "^1.0.0",
+    "vee-validate": "^3.1.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

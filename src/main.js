@@ -2,9 +2,9 @@ import Vue from 'vue';
 import App from '@Views/App';
 import router from '@Router/router';
 import store from '@Store/store';
-
+import { ValidationProvider, ValidationObserver, validate, extend, configure } from 'vee-validate';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faMapPin, faFlagCheckered, faFlag } from '@fortawesome/free-solid-svg-icons';
+import { faMapPin, faFlagCheckered, faFlag, faThList, faCheckCircle, faEdit, faUndoAlt, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 import moment from 'moment';
@@ -17,8 +17,38 @@ Vue.set(Vue.prototype, "_", _);
 Vue.set(Vue.prototype, "numeral", numeral);
 Vue.set(Vue.prototype, "is", is);
 
-library.add(faMapPin, faFlagCheckered, faFlag);
+configure({
+    classes: {
+        invalid: 'is-invalid',
+    }
+})
+
+extend('string', {
+    validate(value){
+        return {
+            required: true,
+            valid: value.match(/[0-9]/g) === null && value != false
+        }
+    },
+    message: "* El campo {_field_} no puede llevar Números",
+    computesRequired: true
+});
+
+extend('number', {
+    validate(value){
+        return {
+            required: true,
+            valid: value.match(/[a-zA-Z]|\s/g) === null && value != false
+        }
+    },
+    message: "* El campo {_field_} no puede llevar letras y/o espacios",
+    computesRequired: true
+});
+
+library.add(faMapPin, faFlagCheckered, faFlag, faThList, faCheckCircle, faEdit, faUndoAlt, faTrash );
 Vue.component('font-awesome-icon', FontAwesomeIcon);
+Vue.component('ValidationProvider', ValidationProvider);
+Vue.component('ValidationObserver', ValidationObserver);
 
 window.eventBus = new Vue();
 Vue.config.productionTip = false;
