@@ -1,7 +1,7 @@
 <template>
     <div class="m-general-container">
         <ValidationObserver class="m-head-container" v-slot="{ handleSubmit }">
-            <form @submit="handleSubmit(onSubmit)" class="m-head-container-card">
+            <form @submit.prevent="handleSubmit(onSubmit)" class="m-head-container-card">
                 <div class="m-container-item--row--center">
                     <span class="m-title-big">
                         REGISTRO

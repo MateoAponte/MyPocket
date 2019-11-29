@@ -54,12 +54,30 @@ export default {
                 name: '',
                 lastname: '',
                 password: '',
-            }
+            },
+            configUser: {}
         }
     },
     methods: {
         onSubmit(){
-            alert('suceesfull')
+            let data = this.loginData;
+
+            app.axios.post('/login', 
+                { configUser: data }
+            )
+            .then( res => {
+                this.configUser = res.data;
+            })
+            .catch( error => {
+                console.log(error);
+            })
+            .finally( res => {
+                if(this.configUser.status == 'Loged'){
+                    this.$router.push({path: 'finance'})
+                } else {
+                    this.$router.push({path: 'registrer'})
+                }
+            } );
         }
     }
 }
