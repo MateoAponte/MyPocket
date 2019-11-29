@@ -1,7 +1,7 @@
 <template>
     <div class="m-general-container">
         <ValidationObserver class="m-head-container" v-slot="{ handleSubmit }">
-            <form @submit.prevent="handleSubmit(onSubmit)" class="m-head-container-card">
+            <form @submit="handleSubmit(onSubmit)" class="m-head-container-card">
                 <div class="m-container-item--row--center">
                     <span class="m-title-big">
                         REGISTRO
@@ -74,12 +74,30 @@ export default {
                 budget: '',
                 password: '',
                 confirmPassword: ''
-            }
+            },
+            configUser: {}
         }
     },
     methods: {
         onSubmit(){
-            alert('suceesfull')
+            let data = this.registrerData;
+
+            app.axios.post('/registrer', 
+                { configUser: data }
+            )
+            .then( res => {
+                this.configUser = res.data;
+            })
+            .catch( error => {
+                console.log(error);
+            })
+            .finally( res => {
+                if(this.configUser.status == 'Loged'){
+                    this.$router.push({path: 'login'})
+                } else {
+                    this.$router.push({path: 'configuration'})
+                }
+            } );
         }
     }
 }

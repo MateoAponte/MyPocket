@@ -21,7 +21,8 @@ app.use(webpackDevMiddleware(webpack(webpackConfig)));
     
     // Static
     app.use(express.static(path.join(__dirname, './dist')));
-    app.use(bodyParser.json());       // to support JSON-encoded bodies
+    app.use(bodyParser.json());
+    app.use(express.json());
     app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
       extended: true
     })); 
