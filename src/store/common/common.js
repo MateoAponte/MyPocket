@@ -1,19 +1,23 @@
 const state = {
-    saludo: 'Mateo Aponte'
+    getUserData: {}
 }
 
 const getters = {
-    getSaludo(state){
-        return state.saludo;
+    getUserData(state){
+        return state.getUserData;
     }
 }
 
 const mutations = {
-
+    setUserData(state, payload){
+        state.userData = payload
+    }
 }
 
 const actions = {
-
+    updateUserData({ commit }, payload){
+        commit('setUserData', payload);
+    }
 }
 
 export default {

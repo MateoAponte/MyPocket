@@ -4,7 +4,7 @@ import router from '@Router/router';
 import store from '@Store/store';
 import { ValidationProvider, ValidationObserver, validate, extend, configure } from 'vee-validate';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faMapPin, faFlagCheckered, faFlag, faThList, faCheckCircle, faEdit, faUndoAlt, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faMapPin, faFlagCheckered, faFlag, faThList, faCheckCircle, faEdit, faUndoAlt, faTrash, faCog } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 import moment from 'moment';
@@ -16,6 +16,7 @@ Vue.set(Vue.prototype, "moment", moment);
 Vue.set(Vue.prototype, "_", _);
 Vue.set(Vue.prototype, "numeral", numeral);
 Vue.set(Vue.prototype, "is", is);
+library.add(faMapPin, faFlagCheckered, faFlag, faThList, faCheckCircle, faEdit, faUndoAlt, faTrash, faCog );
 
 const config = {
     classes: {
@@ -73,7 +74,6 @@ extend('radio', {
     computesRequired: true
 });
 
-library.add(faMapPin, faFlagCheckered, faFlag, faThList, faCheckCircle, faEdit, faUndoAlt, faTrash );
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.component('ValidationProvider', ValidationProvider);
 Vue.component('ValidationObserver', ValidationObserver);
