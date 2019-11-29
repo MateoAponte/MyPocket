@@ -44,8 +44,21 @@ $transition: all 300ms ease-in;
     background-color: $bg-white;
 }
 
+.is-invalid{
+    input{
+        background-color: red;
+        border: 1px solid $clrS-lower;
+    }
+}
 .is-valid{
     input{
+        background-color: red;
+        border: 1px solid $clrS-lower;
+    }
+}
+.is-dirty{
+    input{
+        background-color: red;
         border: 1px solid $clrS-lower;
     }
 }

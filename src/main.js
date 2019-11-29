@@ -17,11 +17,17 @@ Vue.set(Vue.prototype, "_", _);
 Vue.set(Vue.prototype, "numeral", numeral);
 Vue.set(Vue.prototype, "is", is);
 
-configure({
+const config = {
     classes: {
-        invalid: 'is-invalid',
-    }
-})
+    valid: 'is-valid',
+    invalid: 'is-invalid'
+  },
+  bails: true,
+  skipOptional: true,
+  mode: 'aggressive',
+  useConstraintAttrs: true
+}
+configure(config);
 
 extend('string', {
     validate(value){
@@ -30,7 +36,7 @@ extend('string', {
             valid: value.match(/[0-9]/g) === null && value != false
         }
     },
-    message: "* El campo {_field_} no puede llevar Números",
+    message: "* El campo {_field_} es incorrecto",
     computesRequired: true
 });
 
@@ -41,7 +47,29 @@ extend('number', {
             valid: value.match(/[a-zA-Z]|\s/g) === null && value != false
         }
     },
-    message: "* El campo {_field_} no puede llevar letras y/o espacios",
+    message: "* El campo {_field_} es incorrecto",
+    computesRequired: true
+});
+
+extend('password', {
+    validate(value){
+        return {
+            required: true,
+            valid: value.match(/\s/g) === null && value != false
+        }
+    },
+    message: "* El campo {_field_} es incorrecto",
+    computesRequired: true
+});
+
+extend('radio', {
+    validate(value){
+        return {
+            required: true,
+            valid: value != false
+        }
+    },
+    message: "* El campo {_field_} no puede ir vacío",
     computesRequired: true
 });
 

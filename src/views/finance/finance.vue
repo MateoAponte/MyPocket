@@ -1,16 +1,16 @@
 <template>
     <div class="m-general-container">
-        <ValidationObserver class="m-head-container"  v-slot="{ handleSubmit }">
+        <ValidationObserver class="m-head-container" v-slot="{ handleSubmit }">
             <form @submit.prevent="handleSubmit(onSubmit)" class="m-head-container-card">
                 <div class="m-container-item--row">
-                    <ValidationProvider name="objeto" rules="string" v-slot="{ classes, errors }" class="m-container-item--column">
+                    <ValidationProvider name="objeto" rules="string" v-slot="{ errors }" class="m-container-item--column">
                         <label class="m-label">
                             En que:
                         </label>
                         <input type="text" class="custom-form" placeholder="Ejm. Libros" v-model="itemData.thing" />
                         <span class="m-error">{{ errors[0] }}</span>
                     </ValidationProvider>
-                    <ValidationProvider name="costo" rules="number" v-slot="{ classes, errors }" class="m-container-item--column">
+                    <ValidationProvider name="costo" rules="number" v-slot="{ errors }" class="m-container-item--column">
                         <label class="m-label">
                             Costo   :
                         </label>
@@ -24,30 +24,31 @@
                             Prioridad:
                         </label>
                     </div>
-                    <div class="m-container-item--column m-container-item--col-row">
+                    <ValidationProvider name="prioridad" rules="radio" v-slot="{ errors }" class="m-container-item--column m-container-item--col-row">
                         <div class="m-container-item--column">
                             <div class="radio-button">
-                                <input id="hight" name="radio" type="radio" value="Alta" v-model="itemData.priority" />
+                                <input id="hight" name="prority" type="radio" value="Alta" v-model="itemData.priority" />
                                 <label for="hight" class="radio-label">Alta</label>
                             </div>
+                            <span class="m-error">{{errors[0]}}</span>
                         </div>
                         <div class="m-container-item--column">
                             <div class="radio-button">
-                                <input id="medium" name="radio" type="radio" value="Media" v-model="itemData.priority" />
+                                <input id="medium" name="prority" type="radio" value="Media" v-model="itemData.priority" />
                                 <label for="medium" class="radio-label">Media</label>
                             </div>
                         </div>
                         <div class="m-container-item--column">
                             <div class="radio-button">
-                                <input id="lower" name="radio" type="radio" value="Baja" v-model="itemData.priority" />
+                                <input id="lower" name="prority" type="radio" value="Baja" v-model="itemData.priority" />
                                 <label for="lower" class="radio-label">Baja</label>
                             </div>
                         </div>
-                    </div>
+                    </ValidationProvider>
                 </div>
                 <div class="m-container-item--row">
                     <button class="m-button m-button-esmerald" type="submit">Guardar</button>
-                    <button class="m-button m-button-orange" @click="setNewValue">Agregar</button>
+                    <button class="m-button m-button-orange" type="submit">Agregar</button>
                 </div>
             </form>
         </ValidationObserver>
