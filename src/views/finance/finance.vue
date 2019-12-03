@@ -47,8 +47,8 @@
                     </ValidationProvider>
                 </div>
                 <div class="m-container-item--row">
-                    <button class="m-button m-button-esmerald" type="submit">Guardar</button>
-                    <button class="m-button m-button-orange" type="submit">Agregar</button>
+                    <button class="m-button m-button-esmerald m-button-flex" type="submit">Guardar <font-awesome-icon icon="save" /></button>
+                    <button class="m-button m-button-azure m-button-flex" type="submit">Agregar <font-awesome-icon icon="plus" /></button>
                 </div>
             </form>
         </ValidationObserver>
@@ -61,9 +61,9 @@
                             <div class="m-card-header">
                                 <div class="m-container-item--row">
                                     <label class="m-title">
-                                        Lista:
+                                        Lista
                                     </label>
-                                    <button class="m-button m-button-orange">Mostrar Todos</button>
+                                    <button class="m-button m-button-azure">Mostrar Todos</button>
                                 </div>
                             </div>
                             <div class="m-card-body relative">

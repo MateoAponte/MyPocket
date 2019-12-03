@@ -64,9 +64,7 @@ export default {
         }
     },
     computed: {
-        ...mapGetters('common', [
-            'getSaludo'
-        ])
+
     }
 }
 </script>

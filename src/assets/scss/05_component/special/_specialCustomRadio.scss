@@ -35,13 +35,13 @@
  }
  
  input[type="radio"]:checked + label.special-label {
-   background-color: $clrP-esmerald;
-   border: 1px solid $clrP-esmerald;
+   background-color: $clrP-azure;
+   border: 1px solid $clrP-azure;
    color: $clrP-white;
   }
   
   input[type="radio"]:hover:not(:checked) + label.special-label {
-  background-color: desaturate(lighten($clrP-esmerald, 15%), 5%);
+  background-color: desaturate(lighten($clrP-azure, 10%), 5%);
   color: $clrP-black;
  }
  

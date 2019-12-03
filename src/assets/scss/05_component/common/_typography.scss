@@ -68,24 +68,18 @@
 }
 
 .m-link-active{
-    color: $clrP-esmerald !important;
+    color: $clrP-black!important;
     position: relative;
-
-    &:hover{
-        color: darken($clrP-esmerald, 15%);
-
-        &::before{
-            background-color: darken($clrP-esmerald, 15%);
-        }
-    }
 
     &::before{
         content: '';
-        width: 100%;
+        width: 85%;
         position: absolute;
         bottom: 0;
         left: 0;
+        right: 0;
         height: 2px;
+        margin: auto;
         background-color: $clrP-esmerald;
     }
 }

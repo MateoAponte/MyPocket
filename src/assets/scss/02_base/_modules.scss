@@ -4,8 +4,8 @@ $bg-white: #FAFAFA;
 $bg-card: #FFFFFF;
 $bg-light-gray: #ececec;
 
-$clrP-esmerald: #25DB86;
-$clrP-orange: #ff935c;
+$clrP-esmerald: #26C196;
+$clrP-azure: #739AFF;
 $clrP-black: #545454;
 $clrP-white: #FAFAFA;
 $clrP-gray: #757575;
@@ -43,22 +43,9 @@ $transition: all 300ms ease-in;
     top: 0;
     background-color: $bg-white;
 }
-
-.is-invalid{
-    input{
-        background-color: red;
-        border: 1px solid $clrS-lower;
-    }
-}
-.is-valid{
-    input{
-        background-color: red;
-        border: 1px solid $clrS-lower;
-    }
-}
-.is-dirty{
-    input{
-        background-color: red;
-        border: 1px solid $clrS-lower;
-    }
+.flex-center{
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
 }

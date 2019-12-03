@@ -22,13 +22,22 @@
         color: $clrP-white;
     }
 
-    &-orange{
-        background-color: $clrP-orange;
+    &-azure{
+        background-color: $clrP-azure;
         color: $clrP-white;
     }
 
     &-long{
         margin: 0 10px;
         width: 100%;
+    }
+
+    &-flex{
+        min-width: 120px;
+        display: flex;
+        flex-flow: row nowrap;
+        box-sizing: border-box;
+        justify-content: space-between;
+        align-items: center;
     }
 }

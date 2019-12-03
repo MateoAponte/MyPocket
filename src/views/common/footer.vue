@@ -8,11 +8,15 @@
             <div class="footer-vertical-separator"></div>
             <div class="footer-container-column derPanel">
                 <div class="m-social-networks">
-                    <span class="m-icon-networks">s</span>
+                    <span class="m-icon-networks">
+                        <i class="la la-instagram"></i>
+                    </span>
                     <span class="m-value-networks">mateAp_design</span>
                 </div>
                 <div class="m-social-networks">
-                    <span class="m-icon-networks">s</span>
+                    <span class="m-icon-networks">
+                        <i class="la la-github"></i>
+                    </span>
                     <span class="m-value-networks">mateAp_design</span>
                 </div>
             </div>
@@ -22,7 +26,7 @@
         </div>
         <div class="footer-container-row">
             <span class="copyright-container">
-                Created by MateoAp - Web Developer Junior
+                <i class="la la-heart"></i> Created by MateoAp - Web Developer Junior <font-awesome-icon icon="file-code"/>
             </span>
         </div>
     </footer>
