@@ -4,8 +4,8 @@ import Common from '@Views/common/Common'
 import Finance from '@Views/finance/Finance'
 import Login from '@Views/userAdmin/Login'
 import Registrer from '@Views/userAdmin/Registrer'
-import Confirmation from '@Views/userAdmin/Confirmation'
 import Configuration from '@Views/config/Configuration'
+import Summary from '@Views/summary/Summary'
 
 Vue.use(Router)
 
@@ -22,6 +22,11 @@ export default new Router ({
             component: Finance
         },
         {
+            path: '/summary',
+            name: 'summary',
+            component: Summary
+        },
+        {
             path: '/login',
             name: 'finance',
             component: Login
@@ -30,11 +35,6 @@ export default new Router ({
             path: '/registrer',
             name: 'registrer',
             component: Registrer
-        },
-        {
-            path: '/confirmation',
-            name: 'confirmation',
-            component: Confirmation
         },
         {
             path: '/configuration',

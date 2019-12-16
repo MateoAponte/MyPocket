@@ -10,7 +10,7 @@
         <div class="header-container-column">
             <div class="header-container-column-section">
                 <router-link to="/finance" class="m-link-container" active-class="m-link-active" >Finanzas</router-link>
-                <router-link to="/graphics" class="m-link-container" active-class="m-link-active" >Resumen</router-link>
+                <router-link to="/summary" class="m-link-container" active-class="m-link-active" >Resumen</router-link>
                 <router-link to="/graphics" class="m-link-container" active-class="m-link-active" >Balance</router-link>
                 <router-link to="/graphics" class="m-link-container" active-class="m-link-active" >Configuración</router-link>
             </div>
