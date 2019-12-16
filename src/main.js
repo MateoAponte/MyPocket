@@ -74,6 +74,17 @@ extend('radio', {
     computesRequired: true
 });
 
+extend('category', {
+    validate(value){
+        return {
+            required: true,
+            valid: value.name != null || value.name != undefined
+        }
+    },
+    message: "* Debe seleccionar una categoría",
+    computesRequired: true
+});
+
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.component('ValidationProvider', ValidationProvider);
 Vue.component('ValidationObserver', ValidationObserver);
