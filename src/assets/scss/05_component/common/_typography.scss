@@ -67,6 +67,12 @@
     font-size: 0.75em;
 }
 
+.m-small{
+    font-size: 0.75em;
+    font-style: italic;
+    color: $clrP-darkGray;
+}
+
 .m-link-active{
     color: $clrP-black!important;
     position: relative;

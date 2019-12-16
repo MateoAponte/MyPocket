@@ -3,6 +3,7 @@
 $bg-white: #FAFAFA;
 $bg-card: #FFFFFF;
 $bg-light-gray: #ececec;
+$bg-light-blue: #F3F5FD;
 
 $clrP-esmerald: #26C196;
 $clrP-azure: #739AFF;
@@ -17,6 +18,10 @@ $clrS-lower: #FD4D52;
 $clrS-blue: #0facf3;
 $clrS-gray: #ebebe4;
 
+$gradient-hight: linear-gradient(to right top, #ffda56, #ffd75c, #ffd462, #ffd267, #ffcf6d);
+$gradient-medium: linear-gradient(to left bottom, #13db7c, #10cf71, #0bc366, #06b75b);
+$gradient-lower: linear-gradient(to right top, #fd4d52, #ee3f47, #e0303d, #d11e33);
+
 $bdrP-gray: #f5f5f5;
 
 $shadow-gray: 0px 5px 15px #e6e6e6;
@@ -27,12 +32,65 @@ $border-input-gray: 1px solid #cccc;
 
 $transition: all 300ms ease-in;
 
+.home-icon{
+    background-color: #24C1FD !important;
+}
+.energy-icon{
+    background-color: #FFBF53 !important;
+}
+.money-icon{
+    background-color: #12BB85 !important;
+}
+.game-icon{
+    background-color: #FF5154 !important;
+}
+.plane-icon{
+    background-color: #F963A0 !important;
+}
+.food-icon{
+    background-color: #FD7E14 !important;
+}
+.tecnology-icon{
+    background-color: #BE4BDB !important;
+}
+.clothes-icon{
+    background-color: #4C6EF5 !important;
+}
+.item-overflow{ 
+    max-width: 80px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+    overflow: hidden;
+}
+.vertical-center{
+    align-items: center !important;
+}
 .space-around{
-    min-height: 100%;
+    height: 100%;
     display: flex;
     flex: 1;
     flex-flow: column nowrap;
-    justify-content: space-around;
+    justify-content: space-around !important;
+}
+.space-between{
+    justify-content: space-between;
+}
+.min-height{
+    min-height: auto;
+}
+.row{
+    width: 100%;
+    max-width: 100%;
+    max-height: 35px;
+    flex-direction: row;
+    align-items: center;
+}
+.item--unset-flex{
+    display: inline-block !important;
+}
+.max-height-card{
+    max-height: 260px;
 }
 
 .relative{
@@ -41,11 +99,24 @@ $transition: all 300ms ease-in;
 .fixed{
     position: sticky;
     top: 0;
-    background-color: $bg-white;
+    z-index: 3;
+    background-color: #FFFFFF;
 }
 .flex-center{
     display: flex;
     flex: 1;
-    align-items: center;
+    align-items: center !important;
     justify-content: center;
+}
+
+.column-underline{
+    border-bottom: 1px dashed $clrP-darkGray;
+}
+
+.width-100{
+    width: 100%;
+    text-align: center;
+    svg{
+        margin-left: 10px;
+    }
 }
