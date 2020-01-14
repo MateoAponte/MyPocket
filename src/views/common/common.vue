@@ -20,19 +20,19 @@
         <!--<div class="m-container-row">
             <div class="m-container-column">
                 <div class="m-card">
-                    <div class="m-container-item--column">
+                    <div class="container-item__column">
                         <label class="m-label">
                             Nombre:
                         </label>
                         <input type="text" class="custom-form">
                     </div>
-                    <div class="m-container-item--column">
+                    <div class="container-item__column">
                         <label class="m-label">
                             Apellido:
                         </label>
                         <input type="text" class="custom-form">
                     </div>
-                    <div class="m-container-item--column">
+                    <div class="container-item__column">
                         <label class="m-label">
                             Contraseña:
                         </label>
@@ -47,10 +47,10 @@
             </div>
         </div>-->
 
-        <!--<span class="m-container-item--info__item__title">
+        <!--<span class="container-item-info__item__title">
             {{numeral('75.156').format('0.00')}}%
         </span>
-            <span class="m-container-item--info__item__value">
+            <span class="container-item-info__item__value">
         </span>-->        
     </div>
 </template>

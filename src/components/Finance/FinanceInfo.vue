@@ -1,73 +1,73 @@
 <template>
     <div class="m-card">
         <div class="m-card-header">
-            <div class="m-container-item--row">
+            <div class="container-item__row">
                 <label class="m-title">
                     Información
                 </label>
             </div>
         </div>
-        <div class="m-card-body space-around">
-            <div class="m-container-item--row minify-padding">
-                <div class="m-container-item--column--medium simple-column simple-column-left">
+        <div class="m-card-body space-around column">
+            <div class="container-item__row minify-padding">
+                <div class="container-item__column--medium simple-column simple-column-left">
                     <label class="m-title">
                         Items:
                     </label>
                 </div>
-                <div class="m-container-item--column column-underline"></div>
-                <div class="m-container-item--column--medium simple-column simple-column-right">
+                <div class="container-item__column column-underline"></div>
+                <div class="container-item__column--medium simple-column simple-column-right">
                     <label class="m-title">
                         {{numeral(setQuantityItems).format('0')}}
                     </label>
                 </div>
             </div>
-            <div class="m-container-item--row minify-padding">
-                <div class="m-container-item--column--medium simple-column simple-column-left">
+            <div class="container-item__row minify-padding">
+                <div class="container-item__column--medium simple-column simple-column-left">
                     <label class="m-title">
                         Presupuesto:
                     </label>
                 </div>
-                <div class="m-container-item--column column-underline"></div>
-                <div class="m-container-item--column--medium simple-column simple-column-right">
+                <div class="container-item__column column-underline"></div>
+                <div class="container-item__column--medium simple-column simple-column-right">
                     <label class="m-title">
                         {{numeral(setBudget).format('$0,0')}}
                     </label>
                 </div>
             </div>
-            <div class="m-container-item--row minify-padding">
-                <div class="m-container-item--column--medium simple-column simple-column-left">
+            <div class="container-item__row minify-padding">
+                <div class="container-item__column--medium simple-column simple-column-left">
                     <label class="m-title">
                         Descuento:
                     </label>
                 </div>
-                <div class="m-container-item--column column-underline"></div>
-                <div class="m-container-item--column--medium simple-column simple-column-right">
+                <div class="container-item__column column-underline"></div>
+                <div class="container-item__column--medium simple-column simple-column-right">
                     <label class="m-title">
                         {{numeral(setPercentil).format('$0,0')}}
                     </label>
                 </div>
             </div>
-            <div class="m-container-item--row minify-padding">
-                <div class="m-container-item--column--medium simple-column simple-column-left">
+            <div class="container-item__row minify-padding">
+                <div class="container-item__column--medium simple-column simple-column-left">
                     <label class="m-title">
                         Gastos:
                     </label>
                 </div>
-                <div class="m-container-item--column column-underline"></div>
-                <div class="m-container-item--column--medium simple-column simple-column-right">
+                <div class="container-item__column column-underline"></div>
+                <div class="container-item__column--medium simple-column simple-column-right">
                     <label class="m-title">
                         {{numeral(setExpenses).format('$0,0')}}
                     </label>
                 </div>
             </div>
-            <div class="m-container-item--row minify-padding">
-                <div class="m-container-item--column--medium simple-column simple-column-left">
+            <div class="container-item__row minify-padding">
+                <div class="container-item__column--medium simple-column simple-column-left">
                     <label class="m-title">
                         Sobrante:
                     </label>
                 </div>
-                <div class="m-container-item--column column-underline"></div>
-                <div class="m-container-item--column--medium simple-column simple-column-right">
+                <div class="container-item__column column-underline"></div>
+                <div class="container-item__column--medium simple-column simple-column-right">
                     <label class="m-title">
                         {{numeral(setRes).format('$0,0')}}
                     </label>
