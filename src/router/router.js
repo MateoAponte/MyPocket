@@ -2,8 +2,7 @@ import Vue from 'vue';
 import Router from "vue-router";
 import Common from '@Views/common/Common'
 import Finance from '@Views/finance/Finance'
-import Login from '@Views/userAdmin/Login'
-import Registrer from '@Views/userAdmin/Registrer'
+import userAdmin from '@Views/userAdmin/userAdmin'
 import Configuration from '@Views/config/Configuration'
 import Summary from '@Views/summary/Summary'
 
@@ -27,14 +26,9 @@ export default new Router ({
             component: Summary
         },
         {
-            path: '/login',
-            name: 'finance',
-            component: Login
-        },
-        {
-            path: '/registrer',
-            name: 'registrer',
-            component: Registrer
+            path: '/userAdmin',
+            name: 'userAdmin',
+            component: userAdmin
         },
         {
             path: '/configuration',
