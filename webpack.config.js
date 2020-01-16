@@ -28,6 +28,7 @@ module.exports = [
                 '@Assets': path.resolve(__dirname, 'src/assets/'),
                 '@Scripts': path.resolve(__dirname, 'src/scripts/'),
                 '@Styles': path.resolve(__dirname, 'src/assets/scss/'),
+                '@Assets': path.resolve(__dirname, 'src/assets/'),
             },
         },
         module: {
@@ -70,7 +71,7 @@ module.exports = [
                     use: [{
                         loader: 'file-loader',
                         options: {
-                            name: '../img/[name].[ext]?[hash]'
+                            name: './src/assets/img/[name].[ext]?[hash]'
                         }
                     }]
                 },
