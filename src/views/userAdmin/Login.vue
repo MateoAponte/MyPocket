@@ -1,25 +1,39 @@
 <template>
-    <div class="m-general-container">
+    <div class="m-general-container login-container">
         <ValidationObserver class="m-head-container" v-slot="{ handleSubmit }">
-            <form @submit.prevent="handleSubmit(onSubmit)" class="m-head-container-card">
+            <div class="m-head-container-card">
                 <div class="container-item__row--center">
-                    <span class="m-title-big">
-                        LOGIN
+                    <span class="m-title-big form__title">
+                        MyPocket
                     </span>
                 </div>
                 <div class="container-item__row">
-                    <ValidationProvider class="container-item__column" name="nombre" rules="string" v-slot="{ errors }">
+                    <img class="m-img" src="@Assets/img/analitycsFinance.png" alt="">
+                </div>
+                <div class="container-item__row">
+                    <div class="form__item">
+                        <img class="m-img" src="@Assets/img/expensesOnHand.png" alt="">
+                    </div>
+                    <div class="form__item">
+                        <p class="m-title"> Tus gastos , calculos y balances en una simple y practica interfaz </p>
+                    </div>
+                </div>
+            </div>
+            <form @submit.prevent="handleSubmit(onSubmit)" class="m-head-container-card">
+                <div class="container-item__row--center">
+                    <span class="m-title-big">
+                        Login
+                    </span>
+                </div>
+                <div class="container-item__row--center">
+                    <img class="m-form-img" src="@Assets/img/Pocket.png" alt="">
+                </div>
+                <div class="container-item__row">
+                    <ValidationProvider class="container-item__column" name="user" rules="string" v-slot="{ errors }">
                         <label class="m-label">
-                            Nombre:
+                            UserName:
                         </label>
-                        <input type="text" class="custom-form" placeholder="Ingrese su nombre" v-model="loginData.name"/>
-                        <span class="m-error">{{errors[0]}}</span>
-                    </ValidationProvider>
-                    <ValidationProvider class="container-item__column" name="apellido" rules="string" v-slot="{ errors }">
-                        <label class="m-label">
-                            Apellido:
-                        </label>
-                        <input type="text" class="custom-form" placeholder="Ingrese su apellido" v-model="loginData.lastname"/>
+                        <input type="text" class="custom-form" placeholder="Ingrese el usuario" v-model="loginData.user"/>
                         <span class="m-error">{{errors[0]}}</span>
                     </ValidationProvider>
                 </div>
@@ -35,10 +49,12 @@
                 <div class="container-item__row">
                     <button class="m-button m-button-esmerald m-button-long" type="submit">Ingresar</button>
                 </div>
-                <div class="container-item__column">
-                    <span class="m-mini-paragraph">
-                        Si no estas registrado Clickea <router-link to="/">Aquí</router-link>
-                    </span>
+                <div class="container-item__row">
+                    <div class="container-item__column">
+                        <span class="m-label">
+                            No tienes una cuenta? <router-link to="/" class="m-button m-button-esmerald">Aquí</router-link>
+                        </span>
+                    </div>
                 </div>
             </form>
         </ValidationObserver>
@@ -51,8 +67,7 @@ export default {
     data: function(){
         return {
             loginData: {
-                name: '',
-                lastname: '',
+                user: '',
                 password: '',
             }
         }

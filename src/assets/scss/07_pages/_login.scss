@@ -1,0 +1,56 @@
+.login-container{
+    .m-head-container-card{
+        min-width: 500px;
+        border-radius: 0px;
+        align-items: center;
+        justify-content: center;
+    }
+    .m-head-container-card:nth-child(1){
+        background-color: $clrP-azure;
+        color: $clrP-white;
+        max-width: 400px;
+        border-radius: 8px 0 0 8px;
+        .m-title-big{
+            font-size: 40px;
+            font-family: 'Nunito';
+        }
+        .form__title{
+            margin-top: 18px;
+        }
+        .container-item__row:nth-child(2){
+            border-bottom: 2px solid $clrP-white;
+        }
+        .container-item__row{
+            padding: 12px 0px;
+        }
+    }
+    .m-head-container-card:nth-child(2){
+        border-radius: 0 8px 8px 0;
+        position: relative;
+
+        .container-item__row:nth-last-child(1){
+            position: absolute;
+            bottom: 0;
+        }
+    }
+    .container-item__row{
+        justify-content: center;
+
+        .m-img{
+            min-width: 90%;
+            max-height: 270px;
+        }
+
+        .m-form-img{
+            width: 150px;
+            height: 150px;
+        }
+    }
+    .form__item{
+        max-width: 50%;
+        text-align: center;
+        .m-img{
+            min-width: 50%;
+        }
+    }
+}
