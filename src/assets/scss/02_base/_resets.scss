@@ -1,5 +1,10 @@
 @import './base';
 
+body{
+    min-height: 100vh;
+    background-color: $bg-white;
+}
+
 .item-overflow{ 
     max-width: 80px;
     white-space: nowrap;
