@@ -20,9 +20,9 @@
 
 <script>
 import { mapState } from 'vuex';
-import LeftPanel from '@Components/userAdmin/leftPanel';
-import loginPanel from '@Components/userAdmin/loginPanel';
-import registrerPanel from '@Components/userAdmin/registrerPanel';
+import LeftPanel from '@Components/userAdmin/userAdmin/leftPanel';
+import loginPanel from '@Components/userAdmin/userAdmin/loginPanel';
+import registrerPanel from '@Components/userAdmin/userAdmin/registrerPanel';
 export default {
     name: 'userAdmin',
     components: {

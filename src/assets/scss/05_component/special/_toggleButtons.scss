@@ -94,6 +94,6 @@
 
 #button-3 .checkbox:checked ~ .layer
 {
-    background-color: rgba(lighten($clrP-pink, 25%), 20%);
-    border: .5px solid rgba(lighten($clrP-pink, 20%), 20%);
+    background-color: rgba(lighten($clrP-pink, 23%), 20%);
+    border: .5px solid rgba(lighten($clrP-pink, 5%), 10%);
 }
