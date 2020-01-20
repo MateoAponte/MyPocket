@@ -80,7 +80,6 @@ import { mapGetters } from 'vuex';
 export default {
     data: function(){
         return {
-            fontAwesomeIcons: [],
             summaryExpenses: [
 
             ],
@@ -95,16 +94,7 @@ export default {
         ...mapGetters('finance', [
             'getItemsData',
             'getBudgetData'
-        ])
-    },
-    watch: {
-        summaryExpenses(newVal){
-            newVal.forEach(x => {
-                this.totalExpenses += x.totalExpenses;
-            })
-        }
-    },
-    methods: {
+        ]),
         getTraduceData(){
             this.categoryData.categoriesData = [];
 
@@ -134,7 +124,16 @@ export default {
                     }
                 })
             });
-        },
+        }
+    },
+    watch: {
+        summaryExpenses(newVal){
+            newVal.forEach(x => {
+                this.totalExpenses += x.totalExpenses;
+            })
+        }
+    },
+    methods: {
         splitArray(val) {
             return val ? this.categoryData.categoriesData.slice(0, (this.categoryData.categoriesData.length / 2)) 
                     : this.categoryData.categoriesData.slice( (this.categoryData.categoriesData.length / 2), this.categoryData.categoriesData.length)
@@ -147,7 +146,7 @@ export default {
         }
     },
     mounted() {
-        this.getTraduceData();
+        this.getTraduceData;
         this.summaryExpenses = this.categoryData.categoriesData;
     }
 }
