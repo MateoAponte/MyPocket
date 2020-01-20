@@ -10,13 +10,12 @@
  }
  
  label.special-label {
-    width: 100%;
-    min-height: 80px;
+   width: 100%;
+   min-height: 80px;
    display: flex;
    flex: auto;
-   vertical-align: middle;
    align-items: center;
-   justify-content: center;
+   justify-content: space-around;
    text-align: center;
    cursor: pointer;
    background-color: lighten($clrS-gray, 6%);
@@ -25,9 +24,9 @@
    border-radius: 6px;
    transition: color 200ms ease-in, background-color 300ms ease-in, border 300ms ease-in;
    user-select: none;
-  margin-right: 8px;
-  box-shadow: $shadow-gray;
-  border: $border-input-gray;
+   margin-right: 8px;
+   box-shadow: $shadow-gray;
+   border: $border-input-gray;
  }
  
  label.special-label:last-of-type {
@@ -35,13 +34,13 @@
  }
  
  input[type="radio"]:checked + label.special-label {
-   background-color: $clrP-azure;
-   border: 1px solid $clrP-azure;
+   background-color: $clrP-esmerald;
+   border: 1px solid $clrP-esmerald;
    color: $clrP-white;
   }
   
   input[type="radio"]:hover:not(:checked) + label.special-label {
-  background-color: desaturate(lighten($clrP-azure, 10%), 5%);
+  background-color: desaturate(lighten($clrP-esmerald, 10%), 5%);
   color: $clrP-black;
  }
  

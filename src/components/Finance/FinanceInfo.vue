@@ -10,65 +10,65 @@
         <div class="m-card-body space-around column">
             <div class="container-item__row minify-padding">
                 <div class="container-item__column--medium simple-column simple-column-left">
-                    <label class="m-title">
+                    <label class="m-label">
                         Items:
                     </label>
                 </div>
                 <div class="container-item__column column-underline"></div>
                 <div class="container-item__column--medium simple-column simple-column-right">
-                    <label class="m-title">
+                    <label class="m-label">
                         {{numeral(setQuantityItems).format('0')}}
                     </label>
                 </div>
             </div>
             <div class="container-item__row minify-padding">
                 <div class="container-item__column--medium simple-column simple-column-left">
-                    <label class="m-title">
+                    <label class="m-label">
                         Presupuesto:
                     </label>
                 </div>
                 <div class="container-item__column column-underline"></div>
                 <div class="container-item__column--medium simple-column simple-column-right">
-                    <label class="m-title">
+                    <label class="m-label">
                         {{numeral(setBudget).format('$0,0')}}
                     </label>
                 </div>
             </div>
             <div class="container-item__row minify-padding">
                 <div class="container-item__column--medium simple-column simple-column-left">
-                    <label class="m-title">
+                    <label class="m-label">
                         Descuento:
                     </label>
                 </div>
                 <div class="container-item__column column-underline"></div>
                 <div class="container-item__column--medium simple-column simple-column-right">
-                    <label class="m-title">
+                    <label class="m-label">
                         {{numeral(setPercentil).format('$0,0')}}
                     </label>
                 </div>
             </div>
             <div class="container-item__row minify-padding">
                 <div class="container-item__column--medium simple-column simple-column-left">
-                    <label class="m-title">
+                    <label class="m-label">
                         Gastos:
                     </label>
                 </div>
                 <div class="container-item__column column-underline"></div>
                 <div class="container-item__column--medium simple-column simple-column-right">
-                    <label class="m-title">
+                    <label class="m-label">
                         {{numeral(setExpenses).format('$0,0')}}
                     </label>
                 </div>
             </div>
             <div class="container-item__row minify-padding">
                 <div class="container-item__column--medium simple-column simple-column-left">
-                    <label class="m-title">
+                    <label class="m-label">
                         Sobrante:
                     </label>
                 </div>
                 <div class="container-item__column column-underline"></div>
                 <div class="container-item__column--medium simple-column simple-column-right">
-                    <label class="m-title">
+                    <label class="m-label">
                         {{numeral(setRes).format('$0,0')}}
                     </label>
                 </div>

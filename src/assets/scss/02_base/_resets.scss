@@ -62,6 +62,7 @@ body{
 
 .column-underline{
     border-bottom: 1px dashed $clrP-darkGray;
+    margin: 0;
 }
 
 .width-100{
@@ -80,6 +81,9 @@ body{
 }
 .simple-column-left{
     align-items: flex-end;
+}
+.simple-column--underline{
+    border-bottom: 1px solid #cccccc;
 }
 .min-height-toggle{
     max-height: 40px;
