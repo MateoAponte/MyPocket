@@ -3,7 +3,7 @@ import Router from "vue-router";
 import Common from '@Views/common/Common'
 import Finance from '@Views/finance/Finance'
 import userAdmin from '@Views/userAdmin/userAdmin'
-import Configuration from '@Views/config/Configuration'
+import Configuration from '@Views/userAdmin/Configuration'
 import Summary from '@Views/summary/Summary'
 
 Vue.use(Router)

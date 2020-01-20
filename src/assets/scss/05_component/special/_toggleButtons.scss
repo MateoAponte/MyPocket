@@ -1,0 +1,99 @@
+.knobs, .layer{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.checkbox{
+    width: 74px;
+    height: 30px;
+}
+
+.button
+{
+    position: relative;
+    width: 56px;
+    height: 26px;
+    background-color: transparent !important;
+    border: 0px solid transparent !important;
+    cursor: pointer !important;
+    padding: 0 !important;
+    text-align: unset !important;
+    white-space: normal !important;
+}
+
+.button.r, .button.r .layer
+{
+    border-radius: 100px;
+}
+
+.button.b2
+{
+    border-radius: 2px;
+}
+
+.checkbox
+{
+    opacity: 0;
+    cursor: pointer;
+    z-index: 3;
+}
+
+.knobs
+{
+    z-index: 2;
+}
+
+.layer
+{
+    width: 100%;
+    background-color: rgba(lighten($clrP-esmerald, 40%), 20%);
+    border: .5px solid rgba(lighten($clrP-esmerald, 35%), 20%);
+    transition: 0.3s ease all;
+    z-index: 1;
+}
+
+#button-3 .knobs:before
+{
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 17px;
+    height: 18px;
+    color: #fff;
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1;
+    padding: 9px 4px;
+    background-color: $clrP-esmerald;
+    border-radius: 50%;
+    transition: 0.3s ease all, left 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15);
+}
+
+#button-3 .checkbox:active + .knobs:before
+{
+    width: 26px;
+    border-radius: 100px;
+}
+
+#button-3 .checkbox:checked:active + .knobs:before
+{
+    margin-left: -8px;
+}
+
+#button-3 .checkbox:checked + .knobs:before
+{
+    content: '';
+    left: 35px;
+    background-color: $clrP-pink;
+}
+
+#button-3 .checkbox:checked ~ .layer
+{
+    background-color: rgba(lighten($clrP-pink, 25%), 20%);
+    border: .5px solid rgba(lighten($clrP-pink, 20%), 20%);
+}

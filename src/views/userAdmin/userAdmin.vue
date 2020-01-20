@@ -1,16 +1,18 @@
 <template>
-    <div class="m-general-container login-container">
+    <div class="m-general-container form-container login">
         <ValidationObserver class="m-head-container" v-slot="{ handleSubmit }">
             <div class="m-card m-card--expand">
-                <left-panel />
-                <form @submit.prevent="handleSubmit(onSubmit)" class="m-card__section container-item__column relative">
-                    <transition name="fade">
-                        <login-panel v-if="formType === 'login'"/>
-                    </transition>
-                    <transition name="fade">
-                        <registrer-panel v-if="formType === 'registrer'"/>
-                    </transition>
-                </form>
+                <div class="container-item__row">
+                    <left-panel />
+                    <form @submit.prevent="handleSubmit(onSubmit)" class="m-card__section container-item__column">
+                        <transition name="fade">
+                            <login-panel v-if="formType === 'login'"/>
+                        </transition>
+                        <transition name="fade">
+                            <registrer-panel v-if="formType === 'registrer'"/>
+                        </transition>
+                    </form>
+                </div>
             </div>
         </ValidationObserver>
     </div>
@@ -27,11 +29,6 @@ export default {
         LeftPanel,
         loginPanel,
         registrerPanel
-    },
-    data: function(){
-        return {
-            formMode: "login"
-        }
     },
     computed: {
         ...mapState('userAdmin', {

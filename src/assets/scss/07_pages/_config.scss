@@ -1,0 +1,39 @@
+.form-container.config{
+    .m-card--expand{
+        padding: 10px 25px;
+    
+        .container-item__row.special-inputs{
+            align-items: flex-end;
+        }
+        & > .container-item__row:nth-child(1){
+            margin: 15px 0;
+            & > .container-item__column{
+                align-items: center;
+            }
+        }
+        .container-item__row{
+            .container-item__column--medium{
+                padding: 3px 7px;
+                margin-bottom: 8px;
+            }
+        }
+        .container-item__col-row{
+            justify-content: space-between;
+        }
+
+        .container-item__row:nth-child(2){
+            .m-card__section:nth-child(1) {
+                background-color: $clrP-azure;
+                border-radius: 8px;
+                margin: 0 20px 30px 0;
+            }
+        }
+        .container-item__row:nth-last-child(1){
+            .m-card__section:nth-child(2) {
+                background-color: $clrP-azure;
+                border-radius: 8px;
+                margin-left: 30px 0 0 20px;
+            }
+        }   
+    }
+}
