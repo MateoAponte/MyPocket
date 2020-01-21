@@ -69,14 +69,21 @@ router.post('/login', jsonParser, (req, res) => {
 
 router.post('/save', jsonParser, (req, res) => {
     dataUser.itemsData = req.body.itemsData;
-    let user = infoUser.user;
+    let user = req.body.user;
 
     fs.writeFileSync(`./server/api/${user}/data${convertMonth(month)}-${year}.json`, JSON.stringify(dataUser), 'utf-8');
     res.send("your save is Successfull");
 })
 
-router.get('/configuration', (req, res) => {
-    fs.readdir(`./server/api/${user}`, function(err, files){});
+router.post('/configuration', jsonParser, (req, res) => {
+    dataUser.configData = req.body.configData;
+    dataUser.userData = req.body.userData;
+    let user = dataUser.userData.user;
+    fs.readFile(`./server/api/${user}/config.json`, 'utf-8', function(err, data){
+        dataUser = Object.assign(dataUser, JSON.parse(data));
+    })
+    fs.writeFileSync(`./server/api/${user}/config.json`, JSON.stringify(dataUser), 'utf-8');
+    res.send("The config is updated");
 })
 
 module.exports = router;
