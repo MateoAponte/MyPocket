@@ -1,16 +1,12 @@
 const state = {
-    getUserData: {}
+    data: {}
 }
 
-const getters = {
-    getUserData(state){
-        return state.getUserData;
-    }
-}
+const getters = {}
 
 const mutations = {
     setUserData(state, payload){
-        state.userData = payload
+        state.data = payload
     }
 }
 
