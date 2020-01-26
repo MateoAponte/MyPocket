@@ -11,11 +11,13 @@ import moment from 'moment';
 import _ from 'lodash';
 import numeral from 'numeral';
 import is from 'is_js';
+import axios from 'axios';
 
 Vue.set(Vue.prototype, "moment", moment);
 Vue.set(Vue.prototype, "_", _);
 Vue.set(Vue.prototype, "numeral", numeral);
 Vue.set(Vue.prototype, "is", is);
+Vue.set(Vue.prototype, "axios", axios);
 library.add(fas);
 
 const config = {
