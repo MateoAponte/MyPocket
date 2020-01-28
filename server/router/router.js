@@ -71,7 +71,7 @@ router.post('/registrer', jsonParser, (req, res) => {
     let user = infoUser.user;
     if(fs.existsSync(`./server/api/${user}`)){
         dataUser.userData.status = 'Loged';
-        res.send(dataUser);
+        res.json(dataUser);
     } else {
         dataUser.userData.status = 'toLog';
         fs.mkdirSync(`./server/api/${user}`);
@@ -92,17 +92,18 @@ router.post('/login', jsonParser, (req, res) => {
         if(fs.existsSync(`./server/api/${user}/${year}`)){
             fs.readdir(`./server/api/${user}`, function(err, files){
                 files.forEach( x => {
-                    if(fs.existsSync(`./server/api/${user}/${year}/data${convertMonth(month)}-${year}.json`)){
+                    if(fs.existsSync(`./server/api/${user}/${year}/data${convertMonth(month)}-${x == year ? year : null}.json`)){
                         fs.readFile(`./server/api/${user}/${year}/data${convertMonth(month)}-${year}.json`, 'utf-8', function(err, data){
                             dataUser = Object.assign(dataUser, JSON.parse(data));
-                            res.send(dataUser);
+                            res.json(dataUser);
+                            return;
                         });
                     } else {
                         sync(function(){
                             fs.writeFileSync(`./server/api/${user}/${year}/data${convertMonth(month)}-${year}.json`, JSON.stringify( {itemsData: []} ), 'utf-8')
                             fs.readFile(`./server/api/${user}/${year}/data${convertMonth(month)}-${year}.json`, 'utf-8', function(err, data){
                                 dataUser = Object.assign(dataUser, JSON.parse(data));
-                                res.send(dataUser);
+                                res.json(dataUser);
                             })
                         })
                     }
@@ -114,13 +115,13 @@ router.post('/login', jsonParser, (req, res) => {
                 fs.writeFileSync(`./server/api/${user}/${year}/data${convertMonth(month)}-${year}.json`, JSON.stringify( {itemsData: []} ), 'utf-8')
                 fs.readFile(`./server/api/${user}/${year}/data${convertMonth(month)}-${year}.json`, 'utf-8', function(err, data){
                     dataUser = Object.assign(dataUser, JSON.parse(data));
-                    res.send(dataUser);
+                    res.json(dataUser);
                 })
             })
         }
     } else {
         dataUser.userData.status = 'notExist';
-        res.send(dataUser);
+        res.json(dataUser);
     }
 })
 
@@ -129,7 +130,7 @@ router.post('/save', jsonParser, (req, res) => {
     let user = req.body.user;
 
     fs.writeFileSync(`./server/api/${user}/${year}/data${convertMonth(month)}-${year}.json`, JSON.stringify(dataUser), 'utf-8');
-    res.send("your save is Successfull");
+    res.json({ message: "your save is Successfull"});
 })
 
 router.post('/configuration', jsonParser, (req, res) => {
@@ -141,7 +142,7 @@ router.post('/configuration', jsonParser, (req, res) => {
         dataUser = Object.assign(dataUser, JSON.parse(data));
     })
     fs.writeFileSync(`./server/api/${user}/config.json`, JSON.stringify(dataUser), 'utf-8');
-    res.send("The config is updated");
+    res.json({ message:"The config is updated" });
 })
 
 router.post('/summary/historic', jsonParser, (req, res) => {
@@ -173,7 +174,7 @@ router.post('/summary/monthly', jsonParser, (req, res) => {
                 res.send(JSON.parse(data))
             })
         } else {
-            res.send("Inexistente")
+            res.send({ message: "Inexistente"})
         }
     });
 })
