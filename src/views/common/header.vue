@@ -9,10 +9,26 @@
         </div>
         <div class="header-container-column">
             <div class="header-container-column-section">
-                <router-link to="/finance" class="m-link-container" active-class="m-link-active" >Finanzas</router-link>
-                <router-link to="/summary" class="m-link-container" active-class="m-link-active" >Resumen</router-link>
-                <router-link to="/graphics" class="m-link-container" active-class="m-link-active" >Balance</router-link>
-                <router-link to="/graphics" class="m-link-container" active-class="m-link-active" >Configuración</router-link>
+                <router-link to="/finance" class="m-link-container" active-class="m-link-active" >
+                    <span class="m-link">
+                        Finanzas
+                    </span>
+                </router-link>
+                <router-link to="/summary" class="m-link-container" active-class="m-link-active" >
+                    <span class="m-link">
+                        Resumen
+                    </span>
+                </router-link>
+                <router-link to="/graphics" class="m-link-container" active-class="m-link-active" >
+                    <span class="m-link">
+                        Balance
+                    </span>
+                </router-link>
+                <router-link to="/graphics" class="m-link-container" active-class="m-link-active" >
+                    <span class="m-link">
+                        Configuración
+                    </span>
+                </router-link>
             </div>
             <div class="header-container-column-section">                
                 <span class="toogle-activador">

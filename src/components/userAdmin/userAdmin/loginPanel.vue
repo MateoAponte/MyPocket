@@ -56,13 +56,20 @@ export default {
             "updateFormType"
         ]),
         ...mapActions('common', [
-            "updateUserData"
+            "updateUserData",
+            'updateModalData'
         ]),
         onSubmit(){
             axios.post("/login", { userData: this.userData})
                 .then((res) => {
+                    this.updateModalData({
+                        type: "notification",
+                        action: "creado",
+                        subject: "El usuario",
+                        title: "success"
+                    });
                     this.updateUserData(res.data);
-                    this.$router.push('finance')
+                    document.querySelector(".overlay").classList.replace('hide', 'show');
                 })
         }
     },

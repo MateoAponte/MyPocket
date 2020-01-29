@@ -97,5 +97,10 @@ Vue.config.productionTip = false;
 window.app = new Vue({
     router,
     store,
+    methods: {
+        dimissModal(){
+            document.querySelector(".overlay").classList.replace('show', 'hide');
+        }
+    },
     render: h => h(App)
 }).$mount('#app')
