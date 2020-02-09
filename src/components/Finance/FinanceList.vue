@@ -47,12 +47,12 @@
                     </div>
                     <div class="relative container-item__icon__item">
                         <span class="m-paragraph item-overflow">{{data.iconData.category}}</span>
-                        <span class="m-small">{{data.date}}</span>
+                        <span class="m-small">{{moment(data.date).format('ll')}}</span>
                     </div>
                 </div>
                 <div class="container-item-info">
                     <div class="m-container-info__item">
-                        <span class="container-item-info__item__title">
+                        <span class="m-paragraph">
                             {{data.thing}}
                         </span>
                     </div>
@@ -66,7 +66,7 @@
                 </div>
                 <div class="container-item-value">
                     <div class="m-container-value__item">
-                        <span class="container-item-value__title">
+                        <span class="m-paragraph">
                             {{numeral(data.cost).format('$0,0')}}
                         </span>
                         <span class="m-small">({{numeral(setPercent(data.cost)).format("0,0")}}%)</span>

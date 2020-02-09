@@ -65,11 +65,19 @@
     bottom: -15px;
 }
 
+.m-paragraph{
+    font-size: 1em;
+    font-family: 'Questrial';
+    font-weight: 700;
+    color: $clrP-black;
+}
+
 .m-mini-paragraph{
     font-size: 0.75em;
 }
 
 .m-small{
+    font-family: 'Questrial';
     font-size: 0.75em;
     font-style: italic;
     color: $clrP-darkGray;

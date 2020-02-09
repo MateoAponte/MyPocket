@@ -61,6 +61,7 @@ html{
     width: 100%;
     min-height: 100%;
     display: flex;
+    flex: 1;
     flex-flow: column nowrap;
 }
 .item--unset-flex{
