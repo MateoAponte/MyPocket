@@ -113,24 +113,6 @@
             min-width: 78px;
             text-align: center;
         }
-        .priority-high{
-            background-color: #E9F8F3;
-            color: #70CEAA;
-            border-radius: 8px;
-            border: 1px solid rgba(#70CEAA, .4);
-        }
-        .priority-medium{
-            background-color: #fff8d4;
-            color: rgb(250, 215, 91);
-            border-radius: 8px;
-            border: 1px solid rgba(#FFDA56, .4);
-        }
-        .priority-lower{
-            background-color: #FBE9E9;
-            color: #CE8470;
-            border-radius: 8px;
-            border: 1px solid rgba(#E15A5A, .4);
-        }
         &__item{
             display: flex;
             justify-content: center;
@@ -203,5 +185,67 @@
             font-size: 1.1em;
             letter-spacing: 0.3px;
             text-align: center;
+        }
+    }
+
+
+    .priority-high{
+        background-color: #E9F8F3;
+        color: #70CEAA;
+        border-radius: 8px;
+        border: 1px solid rgba(#70CEAA, .4);
+    }
+    .priority-medium{
+        background-color: #fff8d4;
+        color: rgb(250, 215, 91);
+        border-radius: 8px;
+        border: 1px solid rgba(#FFDA56, .4);
+    }
+    .priority-lower{
+        background-color: #FBE9E9;
+        color: #CE8470;
+        border-radius: 8px;
+        border: 1px solid rgba(#E15A5A, .4);
+    }
+
+    .modal{
+        &__body{
+            & > .container-modal__summary{
+                height: 80%;
+                overflow: auto;
+                padding: 0;
+                flex-flow: row wrap;
+                justify-content: space-around;
+
+                .container-item__column{
+                    width: auto;
+                }
+            }
+
+            .container-item__column.container-item__col-row{
+                justify-content: space-around;
+                padding: 0px 85px;
+            }
+            .container-item__row:not(::nth-last-child(1)){
+                border-bottom: 1px solid #cccccc;
+            }
+
+            .card-status{
+                display: flex;
+                flex-flow: column nowrap;
+                justify-content: space-between;
+                padding: 15px 25px;
+                color: $clrP-black !important;
+
+                max-height: 135px;
+                min-height: 135px;
+                max-width: 287px;
+                min-width: 287px;
+
+                .container-item__row, .container-item__column{
+                    padding: 0;
+                    margin: 0;
+                }
+            }
         }
     }

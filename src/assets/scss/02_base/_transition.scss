@@ -1,9 +1,37 @@
 .fade-enter-active, .fade-leave-active {
     transition: all .7s;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+.fade-enter, .fade-leave-to {
     margin-right: 500px;
     position: absolute;
     top: 0;
     opacity: 0;
+}
+
+.slide-enter-active, .slide-leave-active {
+    transition: all .7s;
+}
+.slide-enter, .slide-leave-to {
+    transform: translateY(90px);
+    opacity: 0;
+}
+
+.card-status {
+    transition: all 1s;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.toggleList-enter-active, .toggleList-leave-active {
+    transition: all .7s;
+}
+.toggleList-enter /* .list-leave-active below version 2.1.8 */ {
+    transform: translateY(120px);
+}
+.toggleList-leave-to {
+    opacity: 0;
+    transform: translateY(80px);
+}
+.toggleList-move {
+    transition: transform .7s;
 }

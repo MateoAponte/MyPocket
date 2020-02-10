@@ -5,7 +5,7 @@
                 <label class="m-title">
                     Lista
                 </label>
-                <button class="m-button m-button-azure">Mostrar Todos</button>
+                <button class="m-button m-button-azure" @click="allSummary()">Mostrar Todos</button>
             </div>
         </div>
         <div class="m-card-body max-height-card relative">
@@ -86,7 +86,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 export default {
     name: 'FinanceList',
     computed: {
@@ -99,6 +99,9 @@ export default {
         }
     },
     methods: {
+        ...mapActions('common', [
+            'updateModalData'
+        ]),
         setColorPriority(value) {
             switch (value){
                 case 'Alta':
@@ -111,6 +114,13 @@ export default {
                     return 'priority-lower';
                 break;
             }
+        },
+        allSummary(){
+            this.updateModalData({
+                type: "filter",
+                title: "Filtro por: "
+            });
+            document.querySelector(".overlay").classList.replace('hide', 'show');
         },
         setPercent(value){
             return (value * 100) / this.getBudgetData.budget;

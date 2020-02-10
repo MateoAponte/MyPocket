@@ -1,5 +1,5 @@
 <template>
-    <div class="modal" :style="{width: width}">
+    <div class="modal modal--mini" :style="{width: width}">
         <div class="modal__header">
             <span class="m-title">{{title}}</span>
         </div>
