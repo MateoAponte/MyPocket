@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import HeaderGeneric from '@Views/common/header';
-import FooterGeneric from '@Views/common/footer';
+import HeaderGeneric from '@Components/Common/header';
+import FooterGeneric from '@Components/Common/footer';
 import modalContainer from '@Components/Modals/modalContainer';
 
 export default {

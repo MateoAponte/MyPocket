@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import Router from "vue-router";
-import Common from '@Views/common/Common'
 import Finance from '@Views/finance/Finance'
 import userAdmin from '@Views/userAdmin/userAdmin'
 import Configuration from '@Views/userAdmin/Configuration'
@@ -12,8 +11,8 @@ export default new Router ({
     routes: [
         {
             path: '/',
-            name: 'common',
-            component: Common
+            name: 'userAdmin',
+            component: userAdmin
         },
         {
             path: '/finance',
