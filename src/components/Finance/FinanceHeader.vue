@@ -133,6 +133,7 @@ export default {
         addItem(){
             if(!this.comprobeData){
                 this.updateItemsData(_.cloneDeep(this.itemData))
+                document.querySelector(".m-card-body.max-height-card.relative").scrollTop = 0;
             }
         },
         saveData(e){

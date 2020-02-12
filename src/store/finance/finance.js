@@ -192,8 +192,13 @@ const actions = {
     },
     updateItemsData({ commit, state }, payload){
         let items = state.itemsData;
-        items.push(payload);
-        commit("setItemsData", items)
+        items.unshift(payload);
+        commit("setItemsData", items);
+    },
+    deleteItemsData({commit, state}, payload){
+        let items = state.itemsData;
+        items.splice(payload, 1);
+        commit("setItemsData", items);
     }
 }
 

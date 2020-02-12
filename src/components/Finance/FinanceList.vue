@@ -38,69 +38,75 @@
                     </span>
                 </div>
             </div>
-            <div class="container-item" v-for="(data, index) in reverseArrayData" :key="index">
-                <div class="container-item__icon">
-                    <div class="relative container-item__icon__item long-icon">
-                        <span class="icons-category">
-                            <font-awesome-icon :icon="data.iconData.name" :class="data.iconData.class"/>
-                        </span>
+            <transition-group name="table" tag="div" class="table-body">
+                <div class="container-item" v-for="(data, index) in getItemsData" :key="data">
+                    <div class="container-item__icon">
+                        <div class="relative container-item__icon__item long-icon">
+                            <span class="icons-category">
+                                <font-awesome-icon :icon="data.iconData.name" :class="data.iconData.class"/>
+                            </span>
+                        </div>
+                        <div class="relative container-item__icon__item">
+                            <span class="m-paragraph item-overflow">{{data.iconData.category}}</span>
+                            <span class="m-small">{{moment(data.date).format('ll')}}</span>
+                        </div>
                     </div>
-                    <div class="relative container-item__icon__item">
-                        <span class="m-paragraph item-overflow">{{data.iconData.category}}</span>
-                        <span class="m-small">{{moment(data.date).format('ll')}}</span>
+                    <div class="container-item-info">
+                        <div class="m-container-info__item">
+                            <span class="m-paragraph">
+                                {{data.thing}}
+                            </span>
+                        </div>
                     </div>
-                </div>
-                <div class="container-item-info">
-                    <div class="m-container-info__item">
-                        <span class="m-paragraph">
-                            {{data.thing}}
-                        </span>
+                    <div class="container-item-status">
+                        <div class="m-container-status__item">
+                            <div class="container-item-status__value" :class="setColorPriority(data.priority)">
+                                {{data.priority}}
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="container-item-status">
-                    <div class="m-container-status__item">
-                        <div class="container-item-status__value" :class="setColorPriority(data.priority)">
-                            {{data.priority}}
+                    <div class="container-item-value">
+                        <div class="m-container-value__item">
+                            <span class="m-paragraph">
+                                {{numeral(data.cost).format('$0,0')}}
+                            </span>
+                            <span class="m-small">({{numeral(setPercent(data.cost)).format("0.00")}}%)</span>
+                        </div>
+                    </div>
+                    <div class="container-item-actions">
+                        <div class="container-item-actions--column">
+                            <font-awesome-icon icon="trash" @click="deleteItemsData(index)"/>
+                        </div>
+                        <div class="container-item-actions--column">
+                            <font-awesome-icon icon="check-circle" @click="checkItem(index)"/>
                         </div>
                     </div>
                 </div>
-                <div class="container-item-value">
-                    <div class="m-container-value__item">
-                        <span class="m-paragraph">
-                            {{numeral(data.cost).format('$0,0')}}
-                        </span>
-                        <span class="m-small">({{numeral(setPercent(data.cost)).format("0,0")}}%)</span>
-                    </div>
-                </div>
-                <div class="container-item-actions">
-                    <div class="container-item-actions--column">
-                        <font-awesome-icon icon="trash" />
-                    </div>
-                    <div class="container-item-actions--column">
-                        <font-awesome-icon icon="check-circle" />
-                    </div>
-                </div>
-            </div>
+            </transition-group>
         </div>
     </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import { mapActions, mapGetters, mapState } from 'vuex';
 export default {
     name: 'FinanceList',
     computed: {
-            ...mapGetters('finance', [
-                'getItemsData',
-                'getBudgetData'
-            ]),
+        ...mapGetters('finance', [
+            'getItemsData',
+            'getBudgetData'
+        ]),
         reverseArrayData(){
             return this.getItemsData.reverse();
         }
     },
     methods: {
         ...mapActions('common', [
-            'updateModalData'
+            'updateModalData',
+        ]),
+        ...mapActions('finance', [
+            'updateItemsData',
+            'deleteItemsData'
         ]),
         setColorPriority(value) {
             switch (value){

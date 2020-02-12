@@ -35,3 +35,11 @@
 .toggleList-move {
     transition: transform .7s;
 }
+
+.table-enter-active, .table-leave-active {
+    transition: all .7s;
+}
+.table-leave-to, .table-enter {
+    opacity: 0;
+    transform: translateX(120px);
+}

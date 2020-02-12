@@ -20,18 +20,18 @@
                                                 <div class="container-item__row vertical-center">
                                                     <span class="m-title-big">
                                                         <div class="icons-category--medium flex-center">                                                
-                                                            <font-awesome-icon :icon="array.iconName" :class="array.iconClass"/>
-                                                            <span class="m-value-paragraph">{{array.categoryName}}</span>
+                                                            <font-awesome-icon :icon="array.iconData.name" :class="array.iconData.class"/>
+                                                            <span class="m-value-paragraph">{{array.iconData.category}}</span>
                                                         </div>
                                                     </span>
-                                                    <span class="m-small">${{numeral(array.totalExpenses).format('0,0')}} COP</span>
+                                                    <span class="m-small">${{numeral(array.cost).format('0,0')}} COP</span>
                                                 </div>
                                             </div>
                                             <div class="m-card-body">
                                                 <div class="container-item__row minify-padding">
                                                     <div class="indicator-container">
-                                                        <div class="indicator--dynamic" :class="array.iconClass" :style="{width: numeral(setPercent(array.totalExpenses)).format('0.0').concat('%')}">
-                                                            <span class="indicator--value m-label" :style="{color: setColor(setPercent(array.totalExpenses))}">{{numeral(setPercent(array.totalExpenses)).format('0.0')}}%</span>
+                                                        <div class="indicator--dynamic" :class="array.iconData.class" :style="{width: numeral(setPercent(array.cost)).format('0.0').concat('%')}">
+                                                            <span class="indicator--value m-label" :style="{color: setColor(setPercent(array.cost))}">{{numeral(setPercent(array.cost)).format('0.0')}}%</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -46,18 +46,18 @@
                                                 <div class="container-item__row vertical-center">
                                                     <span class="m-title-big">
                                                         <div class="icons-category--medium flex-center">                                                
-                                                            <font-awesome-icon :icon="array.iconName" :class="array.iconClass"/>
-                                                            <span class="m-value-paragraph">{{array.categoryName}}</span>
+                                                            <font-awesome-icon :icon="array.iconData.name" :class="array.iconData.class"/>
+                                                            <span class="m-value-paragraph">{{array.iconData.category}}</span>
                                                         </div>
                                                     </span>
-                                                    <span class="m-small">${{numeral(array.totalExpenses).format('0,0')}} COP</span>
+                                                    <span class="m-small">${{numeral(array.cost).format('0,0')}} COP</span>
                                                 </div>
                                             </div>
                                             <div class="m-card-body">
                                                 <div class="container-item__row minify-padding">
                                                     <div class="indicator-container">
-                                                        <div class="indicator--dynamic" :class="array.iconClass" :style="{width: numeral(setPercent(array.totalExpenses)).format('0.0').concat('%')}">
-                                                            <span class="indicator--value m-label" :style="{color: setColor(setPercent(array.totalExpenses))}">{{numeral(setPercent(array.totalExpenses)).format('0.0')}}%</span>
+                                                        <div class="indicator--dynamic" :class="array.iconData.class" :style="{width: numeral(setPercent(array.cost)).format('0.0').concat('%')}">
+                                                            <span class="indicator--value m-label" :style="{color: setColor(setPercent(array.cost))}">{{numeral(setPercent(array.cost)).format('0.0')}}%</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -83,10 +83,7 @@ export default {
             summaryExpenses: [
 
             ],
-            categoryData : {
-                activeCategories: [],
-                categoriesData: []
-            },
+            categoriesData: [],
             totalExpenses: 0
         }
     },
@@ -96,47 +93,33 @@ export default {
             'getBudgetData'
         ]),
         getTraduceData(){
-            this.categoryData.categoriesData = [];
+            var result = this.getItemsData.reduce(function(acc, val){
+            var o = acc.filter(function(obj){
+                    return obj.iconData.category == val.iconData.category;
+                }).pop() || {...val, cost:0};
+                
+                o.cost += parseInt(val.cost);
+                acc.push(o);
+                return acc;
+            },[]);
 
-            this.getItemsData.forEach(x => {
-                if(!this.categoryData.activeCategories.includes(x.iconData.category)){
-                    this.categoryData.activeCategories.push(x.iconData.category);
-                }
+            var finalresult = result.filter(function(itm, i, a) {
+                return i == a.indexOf(itm);
             });
-
-            this.categoryData.activeCategories.forEach(x => {
-                this.categoryData.categoriesData.push({categoryName: x});
-            });
-
-            this.getItemsData.forEach( x => {
-                this.categoryData.categoriesData.forEach(z => {
-                    z.totalExpenses = 0;
-                    z.iconName = '';
-                });
-            });
-
-            this.categoryData.activeCategories.forEach( (x, index) => {
-                this.getItemsData.forEach(z => {
-                    if(z.iconData.category == x){
-                        this.categoryData.categoriesData[index].iconName = z.iconData.name;
-                        this.categoryData.categoriesData[index].iconClass = z.iconData.class;
-                        this.categoryData.categoriesData[index].totalExpenses += parseInt(z.cost);
-                    }
-                })
-            });
+            this.categoriesData = finalresult;
         }
     },
     watch: {
         summaryExpenses(newVal){
             newVal.forEach(x => {
-                this.totalExpenses += x.totalExpenses;
+                this.totalExpenses += x.cost;
             })
         }
     },
     methods: {
         splitArray(val) {
-            return val ? this.categoryData.categoriesData.slice(0, (this.categoryData.categoriesData.length / 2)) 
-                    : this.categoryData.categoriesData.slice( (this.categoryData.categoriesData.length / 2), this.categoryData.categoriesData.length)
+            return val ? this.categoriesData.slice(0, (this.categoriesData.length / 2)) 
+                    : this.categoriesData.slice( (this.categoriesData.length / 2), this.categoriesData.length)
         },
         setPercent(value){
             return (value * 100) / this.totalExpenses;
@@ -147,7 +130,7 @@ export default {
     },
     mounted() {
         this.getTraduceData;
-        this.summaryExpenses = this.categoryData.categoriesData;
+        this.summaryExpenses = this.categoriesData;
     }
 }
 </script>
