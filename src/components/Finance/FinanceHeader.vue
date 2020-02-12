@@ -58,12 +58,12 @@
                     <div name="categorias"
                                         class="container-item__column icons-container--toggle item--unset-flex"
                                         :class="toogleClass">
-                        <div class="container-item__col-row space-around" v-for="(iconSections, i) in getIconData" :key="i">
+                        <div class="container-item__col-row space-around" v-for="(iconSections, i) in getIconSections" :key="i">
                             <div class="container-item__column simple-column" v-for="(icon, index) in iconSections" :key="index">
                                 <div class="radio-button icons-category"><!-- .tooltip -->
-                                    <input :id="'icon' + (index + i)" class="categories-radio" name="category" type="radio" :value="icon" v-model="itemData.iconData" />
-                                    <label :for="'icon' + (index + i)">
-                                        <font-awesome-icon :icon="icon.name" :class="icon.class" />
+                                    <input :id="'icon' + icon.name + (index + i)" class="categories-radio" name="category" type="radio" :value="icon" v-model="itemData.iconData" />
+                                    <label :for="'icon' + icon.name + (index + i)" >
+                                        <font-awesome-icon :icon="icon.name" :style="{ backgroundColor:icon.class }"/>
                                     </label>
                                     <!--<div class="top">
                                         {{icon.category}}
@@ -116,6 +116,9 @@ export default {
         },
         iconRotate(){
             return this.toggleIcon ? "icon--rotate-180" : "icon--rotate-0";
+        },
+        getIconSections(){
+            return _.chunk(_.cloneDeep(this.getIconData), 4);
         }
     },
     methods: {

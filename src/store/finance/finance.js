@@ -1,51 +1,47 @@
 const state = {
     userData: {},
-    iconsData: {
-        iconSection1: [
-            {
-                category: 'Casa',
-                name: 'home',
-                class: 'home-icon'
-            },
-            {
-                category: 'Servicios',
-                name: 'lightbulb',
-                class: 'energy-icon'
-            },
-            {
-                category: 'Banco & Transacciones',
-                name: 'money-bill-wave',
-                class: 'money-icon'
-            },
-            {
-                category: 'Comida',
-                name: 'utensils',
-                class: 'food-icon'
-            }
-        ],
-        iconSection2: [
-            {
-                category: 'Tecnología',
-                name: 'mobile-alt',
-                class: 'tecnology-icon'
-            },
-            {
-                category: 'Viajes',
-                name: 'plane',
-                class: 'plane-icon'
-            },
-            {
-                category: 'Entretenimiento',
-                name: 'gamepad',
-                class: 'game-icon'
-            },
-            {
-                category: 'Moda',
-                name: 'tshirt',
-                class: 'clothes-icon'
-            }
-        ]
-    },
+    iconsData: [
+        {
+            category: 'Casa',
+            name: 'home',
+            class: '#24C1FD'
+        },
+        {
+            category: 'Servicios',
+            name: 'lightbulb',
+            class: '#FFBF53'
+        },
+        {
+            category: 'Banco & Transacciones',
+            name: 'money-bill-wave',
+            class: '#12BB85'
+        },
+        {
+            category: 'Comida',
+            name: 'utensils',
+            class: '#FD7E14'
+        },
+        {
+            category: 'Tecnología',
+            name: 'mobile-alt',
+            class: '#BE4BDB'
+        },
+        {
+            category: 'Viajes',
+            name: 'plane',
+            class: '#F963A0'
+        },
+        {
+            category: 'Entretenimiento',
+            name: 'gamepad',
+            class: '#FF5154'
+        },
+        {
+            category: 'Moda',
+            name: 'tshirt',
+            class: '#4C6EF5'
+        }
+    ],
     budgetData: {
         budget: 1900000,
         expenses: 0,
@@ -60,7 +56,7 @@ const state = {
             "iconData": {
                 "category": 'Tecnología',
                 "name": 'mobile-alt',
-                "class": 'tecnology-icon'
+                "class": '#BE4BDB'
             }
         }, {
             "thing": "Celular",
@@ -70,7 +66,7 @@ const state = {
             "iconData": {
                 "category": 'Banco & Transacciones',
                 "name": 'money-bill-wave',
-                "class": 'money-icon'
+                "class": '#12BB85'
             }
         }, {
             "thing": "Bicicleta",
@@ -80,7 +76,7 @@ const state = {
             "iconData": {
                 "category": 'Banco & Transacciones',
                 "name": 'money-bill-wave',
-                "class": 'money-icon'
+                "class": '#12BB85'
             }
         }, {
             "thing": "Comida",
@@ -90,7 +86,7 @@ const state = {
             "iconData": {
                 "category": 'Comida',
                 "name": 'utensils',
-                "class": 'food-icon'
+                "class": '#FD7E14'
             }
         }, {
             "thing": "Transporte",
@@ -100,7 +96,7 @@ const state = {
             "iconData": {
                 "category": 'Viajes',
                 "name": 'plane',
-                "class": 'plane-icon'
+                "class": '#F963A0'
             }
         }, {
             "thing": "Canastas",
@@ -110,7 +106,7 @@ const state = {
             "iconData": {
                 "category": 'Comida',
                 "name": 'utensils',
-                "class": 'food-icon'
+                "class": '#FD7E14'
             }
         }, {
             "thing": "Instituto",
@@ -120,7 +116,7 @@ const state = {
             "iconData": {
                 "category": 'Banco & Transacciones',
                 "name": 'money-bill-wave',
-                "class": 'money-icon'
+                "class": '#12BB85'
             }
         }, {
             "thing": "Otros",
@@ -130,7 +126,7 @@ const state = {
             "iconData": {
                 "category": 'Comida',
                 "name": 'utensils',
-                "class": 'food-icon'
+                "class": '#FD7E14'
             }
         }, {
             "thing": "Audifonos (Balaca)",
@@ -140,7 +136,7 @@ const state = {
             "iconData": {
                 "category": 'Tecnología',
                 "name": 'mobile-alt',
-                "class": 'tecnology-icon'
+                "class": '#BE4BDB'
             }
         }, {
             "thing": "Audifonos (Balaca)",
@@ -150,7 +146,7 @@ const state = {
             "iconData": {
                 "category": 'Moda',
                 "name": 'tshirt',
-                "class": 'clothes-icon'
+                "class": '#4C6EF5'
             }
         }
     ]

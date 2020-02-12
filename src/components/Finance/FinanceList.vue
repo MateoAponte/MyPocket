@@ -43,7 +43,7 @@
                     <div class="container-item__icon">
                         <div class="relative container-item__icon__item long-icon">
                             <span class="icons-category">
-                                <font-awesome-icon :icon="data.iconData.name" :class="data.iconData.class"/>
+                                <font-awesome-icon :icon="data.iconData.name" :style="{ backgroundColor:data.iconData.class }"/>
                             </span>
                         </div>
                         <div class="relative container-item__icon__item">

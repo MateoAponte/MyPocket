@@ -20,7 +20,7 @@
                                                 <div class="container-item__row vertical-center">
                                                     <span class="m-title-big">
                                                         <div class="icons-category--medium flex-center">                                                
-                                                            <font-awesome-icon :icon="array.iconData.name" :class="array.iconData.class"/>
+                                                            <font-awesome-icon :icon="array.iconData.name" :style="{ backgroundColor: array.iconData.class }"/>
                                                             <span class="m-value-paragraph">{{array.iconData.category}}</span>
                                                         </div>
                                                     </span>
@@ -30,7 +30,7 @@
                                             <div class="m-card-body">
                                                 <div class="container-item__row minify-padding">
                                                     <div class="indicator-container">
-                                                        <div class="indicator--dynamic" :class="array.iconData.class" :style="{width: numeral(setPercent(array.cost)).format('0.0').concat('%')}">
+                                                        <div class="indicator--dynamic" :style="{width: numeral(setPercent(array.cost)).format('0.0').concat('%'), backgroundColor: array.iconData.class }">
                                                             <span class="indicator--value m-label" :style="{color: setColor(setPercent(array.cost))}">{{numeral(setPercent(array.cost)).format('0.0')}}%</span>
                                                         </div>
                                                     </div>
@@ -46,7 +46,7 @@
                                                 <div class="container-item__row vertical-center">
                                                     <span class="m-title-big">
                                                         <div class="icons-category--medium flex-center">                                                
-                                                            <font-awesome-icon :icon="array.iconData.name" :class="array.iconData.class"/>
+                                                            <font-awesome-icon :icon="array.iconData.name" :style="{ backgroundColor: array.iconData.class}"/>
                                                             <span class="m-value-paragraph">{{array.iconData.category}}</span>
                                                         </div>
                                                     </span>
@@ -56,7 +56,7 @@
                                             <div class="m-card-body">
                                                 <div class="container-item__row minify-padding">
                                                     <div class="indicator-container">
-                                                        <div class="indicator--dynamic" :class="array.iconData.class" :style="{width: numeral(setPercent(array.cost)).format('0.0').concat('%')}">
+                                                        <div class="indicator--dynamic" :style="{width: numeral(setPercent(array.cost)).format('0.0').concat('%'), backgroundColor: array.iconData.class }">
                                                             <span class="indicator--value m-label" :style="{color: setColor(setPercent(array.cost))}">{{numeral(setPercent(array.cost)).format('0.0')}}%</span>
                                                         </div>
                                                     </div>
