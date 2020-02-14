@@ -39,7 +39,7 @@
                 </div>
             </div>
             <transition-group name="table" tag="div" class="table-body">
-                <div class="container-item" v-for="(data, index) in getItemsData" :key="data">
+                <div class="container-item" v-for="(data, index) in arrayData" :key="data">
                     <div class="container-item__icon">
                         <div class="relative container-item__icon__item long-icon">
                             <span class="icons-category">
@@ -75,10 +75,10 @@
                     </div>
                     <div class="container-item-actions">
                         <div class="container-item-actions--column">
-                            <font-awesome-icon icon="trash" @click="deleteItemsData(index)"/>
+                            <font-awesome-icon icon="trash" @click="deleteItems(index)"/>
                         </div>
                         <div class="container-item-actions--column">
-                            <font-awesome-icon icon="check-circle" @click="checkItem(index)"/>
+                            <font-awesome-icon icon="check-circle" @click="checkedItems(index)"/>
                         </div>
                     </div>
                 </div>
@@ -91,14 +91,16 @@
 import { mapActions, mapGetters, mapState } from 'vuex';
 export default {
     name: 'FinanceList',
+    data: function(){
+        return{
+            arrayData: []
+        }
+    },
     computed: {
         ...mapGetters('finance', [
             'getItemsData',
             'getBudgetData'
         ]),
-        reverseArrayData(){
-            return this.getItemsData.reverse();
-        }
     },
     methods: {
         ...mapActions('common', [
@@ -106,7 +108,8 @@ export default {
         ]),
         ...mapActions('finance', [
             'updateItemsData',
-            'deleteItemsData'
+            'deleteItemsData',
+            'checkedItemsData'
         ]),
         setColorPriority(value) {
             switch (value){
@@ -119,6 +122,9 @@ export default {
                 case 'Baja':
                     return 'priority-lower';
                 break;
+                case 'Check':
+                    return 'priority-checked';
+                break;
             }
         },
         allSummary(){
@@ -130,7 +136,18 @@ export default {
         },
         setPercent(value){
             return (value * 100) / this.getBudgetData.budget;
+        },
+        deleteItems(i){
+            this.deleteItemsData(i);
+            this.arrayData.splice(i, 1);
+        },
+        checkedItems(i){
+            this.checkedItemsData(i);
+            this.arrayData[i].priority = "Check";
         }
+    },
+    mounted(){
+        this.arrayData = _.cloneDeep(this.getItemsData);
     }
 }
 </script>

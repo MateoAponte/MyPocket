@@ -52,7 +52,7 @@ const state = {
             "thing": "Universidad",
             "cost": "500000",
             "priority": "Alta",
-            "date": "2019/11/27",
+            "date": "2019/11/25",
             "iconData": {
                 "category": 'Tecnología',
                 "name": 'mobile-alt',
@@ -62,7 +62,7 @@ const state = {
             "thing": "Celular",
             "cost": "250000",
             "priority": "Alta",
-            "date": "2019/11/27",
+            "date": "2019/11/25",
             "iconData": {
                 "category": 'Banco & Transacciones',
                 "name": 'money-bill-wave',
@@ -72,7 +72,7 @@ const state = {
             "thing": "Bicicleta",
             "cost": "167000",
             "priority": "Alta",
-            "date": "2019/11/27",
+            "date": "2019/11/25",
             "iconData": {
                 "category": 'Banco & Transacciones',
                 "name": 'money-bill-wave',
@@ -82,7 +82,7 @@ const state = {
             "thing": "Comida",
             "cost": "100000",
             "priority": "Media",
-            "date": "2019/11/27",
+            "date": "2019/11/26",
             "iconData": {
                 "category": 'Comida',
                 "name": 'utensils',
@@ -92,7 +92,7 @@ const state = {
             "thing": "Transporte",
             "cost": "80000",
             "priority": "Media",
-            "date": "2019/11/27",
+            "date": "2019/11/26",
             "iconData": {
                 "category": 'Viajes',
                 "name": 'plane',
@@ -102,7 +102,7 @@ const state = {
             "thing": "Canastas",
             "cost": "300000",
             "priority": "Alta",
-            "date": "2019/11/27",
+            "date": "2019/11/26",
             "iconData": {
                 "category": 'Comida',
                 "name": 'utensils',
@@ -112,7 +112,7 @@ const state = {
             "thing": "Instituto",
             "cost": "150000",
             "priority": "Alta",
-            "date": "2019/11/27",
+            "date": "2019/11/26",
             "iconData": {
                 "category": 'Banco & Transacciones',
                 "name": 'money-bill-wave',
@@ -163,7 +163,7 @@ const getters = {
         return state.budgetData;
     },
     getItemsData(state) {
-        return state.itemsData;
+        return _.cloneDeep(state.itemsData);
     }
 }
 
@@ -187,15 +187,20 @@ const actions = {
         commit("setExpensesData", payload)
     },
     updateItemsData({ commit, state }, payload){
-        let items = state.itemsData;
+        let items = _.cloneDeep(state.itemsData);
         items.unshift(payload);
         commit("setItemsData", items);
     },
     deleteItemsData({commit, state}, payload){
-        let items = state.itemsData;
+        let items = _.cloneDeep(state.itemsData);
         items.splice(payload, 1);
         commit("setItemsData", items);
-    }
+    },
+    checkedItemsData({commit, state}, payload){
+        let items = _.cloneDeep(state.itemsData);
+        items[payload].priority = "Check";
+        commit("setItemsData", items);
+    },
 }
 
 export default {

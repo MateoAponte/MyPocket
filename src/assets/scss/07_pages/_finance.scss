@@ -206,8 +206,8 @@
 }
 
 .priority-medium {
-    background-color: #fff8d4;
-    color: rgb(250, 215, 91);
+    background-color: #FFF4D6;
+    color: #F9D552;
     border-radius: 8px;
     border: 1px solid rgba(#FFDA56, .4);
 }
@@ -217,6 +217,13 @@
     color: #CE8470;
     border-radius: 8px;
     border: 1px solid rgba(#E15A5A, .4);
+}
+
+.priority-checked {
+    background-color: #8FD9B7;
+    color: #545454;
+    border-radius: 8px;
+    border: 1px solid #4CB995;
 }
 
 .modal {

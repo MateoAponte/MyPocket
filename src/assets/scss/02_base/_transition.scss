@@ -43,3 +43,6 @@
     opacity: 0;
     transform: translateX(120px);
 }
+.table-move {
+    transition: transform .7s;
+}

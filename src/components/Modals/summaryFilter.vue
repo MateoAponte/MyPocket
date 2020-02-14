@@ -11,6 +11,7 @@
                         <option value="priority">Prioridad</option>
                         <option value="date">Fecha</option>
                         <option value="cost">Costos</option>
+                        <option value="status">Estado</option>
                     </select>
                 </div>
                 <div v-if="filterOptions == 'priority'" class="container-item__column container-item__col-row">
@@ -61,6 +62,20 @@
                         </div>
                     </div>
                 </div>
+                <div v-if="filterOptions == 'status'" class="container-item__column container-item__col-row">
+                    <div class="container-item__column">
+                        <div class="radio-button">
+                            <input id="uncheck" type="radio" value="Uncheck" v-model="filterData"/>
+                            <label for="uncheck" class="radio-label">Uncheck</label>
+                        </div>
+                    </div>
+                    <div class="container-item__column">
+                        <div class="radio-button">
+                            <input id="check" type="radio" value="Check" v-model="filterData"/>
+                            <label for="check" class="radio-label">Finalizar</label>
+                        </div>
+                    </div>
+                </div>
             </div>
             <transition-group class="container-item__row container-modal__summary" name="toggleList" tag="div">
                 <div v-for="(data, index) in filteredData" :key="data" class="container-item__column">
@@ -97,7 +112,7 @@
                         <div class="container-item__row">
                             <div class="container-item__column">
                                 <span class="icons-category">
-                                    <font-awesome-icon :icon="data.iconData.name" :class="data.iconData.class"/>
+                                    <font-awesome-icon :icon="data.iconData.name" :style="{backgroundColor: data.iconData.class}"/>
                                 </span>
                             </div>
                             <div class="container-item__column">
@@ -122,6 +137,7 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
 export default {
     name: "summary-filter",
     props: {
@@ -149,18 +165,6 @@ export default {
     data: function(){
         return{
             filterOptions: "",
-            arrayData: [
-                {"thing":"Universidad","cost":"500000","priority":"Alta","date":"2019/11/25","iconData":{"category":"Tecnología","name":"mobile-alt","class":"tecnology-icon"}},
-                {"thing":"Celular","cost":"250000","priority":"Alta","date":"2019/11/25","iconData":{"category":"Banco & Transacciones","name":"money-bill-wave","class":"money-icon"}},
-                {"thing":"Bicicleta","cost":"167000","priority":"Alta","date":"2019/11/25","iconData":{"category":"Banco & Transacciones","name":"money-bill-wave","class":"money-icon"}},
-                {"thing":"Comida","cost":"100000","priority":"Media","date":"2019/11/26","iconData":{"category":"Comida","name":"utensils","class":"food-icon"}},
-                {"thing":"Transporte","cost":"80000","priority":"Media","date":"2019/11/26","iconData":{"category":"Viajes","name":"plane","class":"plane-icon"}},
-                {"thing":"Canastas","cost":"300000","priority":"Alta","date":"2019/11/26","iconData":{"category":"Comida","name":"utensils","class":"food-icon"}},
-                {"thing":"Instituto","cost":"150000","priority":"Alta","date":"2019/11/26","iconData":{"category":"Banco & Transacciones","name":"money-bill-wave","class":"money-icon"}},
-                {"thing":"Otros","cost":"50000","priority":"Baja","date":"2019/11/27","iconData":{"category":"Comida","name":"utensils","class":"food-icon"}},
-                {"thing":"Audifonos (Balaca)","cost":"80000","priority":"Media","date":"2019/11/27","iconData":{"category":"Tecnología","name":"mobile-alt","class":"tecnology-icon"}},
-                {"thing":"Audifonos (Balaca)","cost":"80000","priority":"Media","date":"2019/11/27","iconData":{"category":"Moda","name":"tshirt","class":"clothes-icon"}}
-            ],
             arrayFiltered: [],
             filterData: ""
         }
@@ -179,6 +183,9 @@ export default {
         }
     },
     computed: {
+        ...mapGetters('finance', [
+            'getItemsData'
+        ]),
         filteredData: {
             set(value){
                 this.getFilterArray(value);
@@ -186,9 +193,16 @@ export default {
             get(){
                 return this.arrayFiltered;
             }
+        },
+        returnArrayData(){
+            return this.getItemsData;
         }
     },
     methods: {
+        ...mapActions('finance', [
+            'deleteItemsData',
+            'checkedItemsData'
+        ]),
         setColorPriority(value) {
             switch (value){
                 case 'Alta':
@@ -200,18 +214,21 @@ export default {
                 case 'Baja':
                     return 'priority-lower';
                 break;
+                case 'Check':
+                    return 'priority-checked';
+                break;
             }
         },
         getFilterArray(val){
             switch (val){
                 case "Alta":
-                    this.newFilterArray( "priority", "Alta", "Media", "Baja" );
+                    this.newFilterArray( "priority", "Alta", "Media", "Baja", "Check" );
                 break;
                 case "Baja":
-                    this.newFilterArray( "priority", "Baja", "Media", "Alta" );
+                    this.newFilterArray( "priority", "Baja", "Media", "Alta", "Check" );
                 break;
                 case "Media":
-                    this.newFilterArray( "priority", "Media", "Baja", "Alta" );
+                    this.newFilterArray( "priority", "Media", "Baja", "Alta", "Check" );
                 break;
                 case "Recent":
                     this.newFilterArray( "date", "Recent" );
@@ -225,36 +242,48 @@ export default {
                 case "Bajo":
                     this.newFilterArray( "cost", "Bajo" );
                 break;
+                case "Check":
+                    this.newFilterArray( "priority",  "Check", "Alta", "Media", "Baja");
+                break;
+                case "Uncheck":
+                    this.newFilterArray( "priority", "Alta", "Media", "Baja", "Check");
+                break;
             }
         },
-        newFilterArray(key, param1, param2, param3){
+        newFilterArray(key, param1, param2, param3, param4){
             if(key === "priority"){
-                let firtsArr, secondArr, thirdArr;
-                (param1) && (firtsArr = this.arrayData.filter(x => x[`${key}`] == param1));
-                (param2) && (secondArr = this.arrayData.filter(x => x[`${key}`] == param2));
-                (param3) && (thirdArr = this.arrayData.filter(x => x[`${key}`] == param3));
-                this.arrayFiltered = [...firtsArr, ...secondArr, ...thirdArr];
+                let firtsArr, secondArr, thirdArr, fourArr;
+                (param1 == "Check") && (fourArr = this.returnArrayData.filter(x => x[`${key}`] == param1));
+                (param1) && (firtsArr = this.returnArrayData.filter(x => x[`${key}`] == param1));
+                (param2) && (secondArr = this.returnArrayData.filter(x => x[`${key}`] == param2));
+                (param3) && (thirdArr = this.returnArrayData.filter(x => x[`${key}`] == param3));
+                (param4 == "Check") && (fourArr = this.returnArrayData.filter(x => x[`${key}`] == param4));
+                this.arrayFiltered = [...firtsArr, ...secondArr, ...thirdArr, ...fourArr];
             } else if(key == "date"){
-                let sortedArray = () => this.arrayData.sort(function compare(a, b) {
+                let sortedArray = () => this.returnArrayData.sort((a, b) => {
                     var dateA = new Date(a.date);
                     var dateB = new Date(b.date);
                     return dateA - dateB;
                 });
                 param1 == "Older" ? this.arrayFiltered = sortedArray() : this.arrayFiltered = sortedArray().reverse();
             } else if (key == "cost") {
-                let sortedArray = () => this.arrayData.sort(function compare(a, b) {
+                let sortedArray = () => this.returnArrayData.sort((a, b) => {
                     return a.cost - b.cost;
                 });
                 param1 == "Bajo" ? this.arrayFiltered = sortedArray() : this.arrayFiltered = sortedArray().reverse();
             }
         },
         unshiftArray(index){
-            this.arrayData.splice(index, 1);
+            this.deleteItemsData(index);
             this.arrayFiltered.splice(index, 1);
+        },
+        checkArray(index){
+            this.checkedItemsData(index);
+            this.arrayFiltered[index].priority = "Check";
         }
     },
     mounted(){
-        this.arrayFiltered = _.cloneDeep(this.arrayData);
+        this.arrayFiltered = _.cloneDeep(this.returnArrayData);
     }
 }
 </script>
