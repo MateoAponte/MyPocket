@@ -1,0 +1,54 @@
+.icons-container{
+    & > .container-item__row:nth-child(1){
+        font-family: "Nunito";
+        font-size: 1em;
+
+        & > .container-item__column:nth-child(1){
+            align-self: flex-start;
+            width: 70%;
+
+            & > .container-item__row:nth-child(2){
+                flex-wrap: wrap;
+                justify-content: center;
+                max-height: 416px;
+                overflow: auto;
+                .container-item__column{
+                    width: auto;
+                }
+            }
+
+            .search-icons__input{
+                .custom-form{
+                    height: 40px;
+                    border-radius: 40px;
+                    font-size: 2.2em;
+                    font-family: "Questrial";
+                    padding: 3px 20px;
+                    color: $clrP-darkGray;
+                }
+            }
+            .search-icons__icon{
+                display: flex;
+                align-items: center;
+                position: absolute;
+                right: 26px;
+                height: 32px;
+                padding: 5px 20px;
+                color: $clrP-darkGray;
+                border-left: $border-input-gray;
+                svg{
+                    font-size: 1.3em;
+                }
+            }
+
+            & > .container-item__row:nth-child(1    ){
+                padding: 20px;
+                border-bottom: 1px solid #cccccc;
+            }
+        }
+        & > .container-item__column:nth-child(2){
+            border-left: 1px solid #cccccc;
+            width: 30%;
+        }
+    }
+}

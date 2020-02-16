@@ -5,6 +5,7 @@ import store from '@Store/store';
 import { ValidationProvider, ValidationObserver, validate, extend, configure } from 'vee-validate';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
+import { fab } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 import moment from 'moment';
@@ -18,7 +19,7 @@ Vue.set(Vue.prototype, "_", _);
 Vue.set(Vue.prototype, "numeral", numeral);
 Vue.set(Vue.prototype, "is", is);
 Vue.set(Vue.prototype, "axios", axios);
-library.add(fas);
+library.add(fas, fab);
 
 const config = {
     classes: {

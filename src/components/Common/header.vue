@@ -19,9 +19,9 @@
                         Resumen
                     </span>
                 </router-link>
-                <router-link to="/graphics" class="m-link-container" active-class="m-link-active" >
+                <router-link to="/icons" class="m-link-container" active-class="m-link-active" >
                     <span class="m-link">
-                        Balance
+                        Iconos
                     </span>
                 </router-link>
                 <router-link to="/configuration" class="m-link-container" active-class="m-link-active" >

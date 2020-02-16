@@ -52,6 +52,10 @@
     text-align: center;
     color: $clrP-azure;
     cursor: pointer;
+
+    &--special{
+        width: 100%;
+    }
 }
 
 .m-error{
