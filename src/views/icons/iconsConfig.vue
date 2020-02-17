@@ -26,6 +26,7 @@
                                         </div> 
                                         <div class="container-item__column" v-if="copyIconsArr.length <= 0">
                                             <span class="m-title-big">No se encontraron resultados...</span>
+                                            <img src="@Assets/img/search_engine.svg" alt="" height="350">
                                         </div>
                                     </div>
                                     <div class="container-item__column">
