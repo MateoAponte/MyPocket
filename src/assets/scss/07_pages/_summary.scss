@@ -1,5 +1,92 @@
-.summary-container .container-item__row{
-    .container-item__column:nth-child(2){
-        border-left: 1px solid #cccccc;
+.summary-container{
+    & > .m-container-row:nth-child(1){
+        position: relative;
+        z-index: 2;
+        .m-card > .m-card-body{
+            .container-item__column:nth-child(2){
+                border-left: 1px solid #cccccc;
+            }
+
+            .m-card{
+                cursor: pointer;
+            }
+        }
+    }
+
+    & > .m-container-row:nth-child(2){
+        position: relative;
+        top: -18px;
+
+        .m-dropdown-icon{
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: -18px;
+            width: 40px;
+            margin: auto;
+            cursor: pointer;
+            z-index: 4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 100%;
+            padding: 6px 9px;
+            background-color: $bg-white;
+            box-shadow: 0px 5px 15px #cacaca;
+
+            svg{
+                font-size: 1.7em;
+                color: $clrP-black;
+            }
+        }
+
+        .m-card{
+            width: 45%;
+            margin: auto;
+
+            &-body > .container-item__column{
+                .container-item__row{
+                    margin: 0;
+                    & > .container-item__column{
+                        margin: 0;
+                        padding: 0;
+                    }
+                }
+                .m-card--unic{
+                    width: 100%;
+                    border-radius: 30px;
+                    min-height: 120px;
+                    height: 120px;
+                    margin: 7px 0px;
+                    display: flex;
+                    flex-flow: row nowrap;
+                    align-items: center;
+                    justify-content: space-between;
+    
+                    .m-card__icon{
+                        width: 75%;
+                        height: 100%;
+                        border-radius: 27px 0 0 27px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-around;
+                        
+                        svg{
+                            color: $clrP-black;
+                            font-size: 1.7em;
+                        }
+                    }
+                    .m-card__content{
+                        width: 25%;
+                        height: 100%;
+                        border-radius: 0 27px 27px 0;
+                        padding: 10px 30px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                }
+            }
+        }
     }
 }

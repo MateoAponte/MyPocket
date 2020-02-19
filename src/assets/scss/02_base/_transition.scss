@@ -16,6 +16,13 @@
     opacity: 0;
 }
 
+.slide-down-enter-active, .slide-down-leave-active {
+    transition: all .7s;
+}
+.slide-down-enter, .slide-down-leave-to {
+    transform: translateY(-110%);
+}
+
 .card-status {
     transition: all 1s;
     display: inline-block;
@@ -42,6 +49,7 @@
 .table-leave-to, .table-enter {
     opacity: 0;
     transform: translateX(120px);
+    background-color: inherit;
 }
 .table-move {
     transition: transform .7s;

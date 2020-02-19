@@ -1,6 +1,6 @@
 <template>
     <div class="m-general-container">
-        <div class="m-container">
+        <div class="m-container summary-container">
             <div class="m-container-row">
                 <div class="m-container-column">
                     <div class="m-card">
@@ -11,11 +11,11 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="m-card-body summary-container">
+                        <div class="m-card-body">
                             <div class="container-item__row flex-center">
                                 <div class="container-item__column">
                                     <div v-for="(array, index) in splitArray(true)" :key="index" class="container-item__row minify-padding">
-                                        <div class="m-card">
+                                        <div class="m-card" @click="showSummaryCategory(array)">
                                             <div class="m-card-header min-height">
                                                 <div class="container-item__row vertical-center">
                                                     <span class="m-title-big">
@@ -41,7 +41,7 @@
                                 </div>
                                 <div class="container-item__column">
                                     <div v-for="(array, index) in splitArray(false)" :key="index" class="container-item__row minify-padding">
-                                        <div class="m-card">
+                                        <div class="m-card"  @click="showSummaryCategory(array)">
                                             <div class="m-card-header min-height">
                                                 <div class="container-item__row vertical-center">
                                                     <span class="m-title-big">
@@ -70,6 +70,51 @@
                     </div>
                 </div>
             </div>
+            <div class="m-container-row" v-if="selectedArray.iconData">
+                <span class="m-dropdown-icon">
+                    <font-awesome-icon icon="chevron-circle-up" @click="dropdownToggle = !dropdownToggle" :style="{ transform: dropdownToggle ? 'rotate(180deg)' : 'rotate(360deg)' }"/>
+                </span>
+                <transition name="slide-down"> 
+                    <div class="m-card" v-if="dropdownToggle">
+                        <div class="m-card-body">
+                            <div class="container-item__row flex-center">
+                                <div class="container-item__column simple-column-right">
+                                    <span class="m-title-big">
+                                        Gastos:
+                                    </span>
+                                </div>
+                                <div class="container-item__column simple-column-left">
+                                    <span class="m-label">
+                                        {{selectedArray.iconData.category}}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="container-item__column">
+                                <div class="container-item__row flex-center" v-for="(arr, index) in selectedArray.categoryData" :key="index">
+                                    <div class="container-item__column">
+                                        <div class="m-card--unic" :style="{ border: '1.5px solid ' + hex2rgba(arr.iconData.class, 0.55) }">
+                                            <div class="m-card__icon" :style="{ backgroundColor: hex2rgba(arr.iconData.class, 0.4) }">
+                                                <font-awesome-icon :icon="arr.iconData.name" :style="{ color: hex2rgba(arr.iconData.class, 0.9) }"/>
+                                                <span class="m-title-big" :style="{ color: hex2rgba(arr.iconData.class, 0.9) }">
+                                                    {{arr.thing}}
+                                                </span>
+                                                <span class="m-value-light" :style="{ color: hex2rgba(arr.iconData.class, 0.9) }">
+                                                    {{moment(arr.date).format('ll')}}
+                                                </span>
+                                            </div>
+                                            <div class="m-card__content" :style="{ backgroundColor: hex2rgba(arr.iconData.class, 0.15) }">
+                                                <span class="m-paragraph">
+                                                    {{numeral(arr.cost).format("$0,0")}}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </transition>
+            </div>
         </div>
     </div>
 </template>
@@ -80,11 +125,11 @@ import { mapGetters } from 'vuex';
 export default {
     data: function(){
         return {
-            summaryExpenses: [
-
-            ],
+            summaryExpenses: [],
             categoriesData: [],
-            totalExpenses: 0
+            totalExpenses: 0,
+            selectedArray: [],
+            dropdownToggle: false
         }
     },
     computed: {
@@ -106,6 +151,12 @@ export default {
             var finalresult = result.filter(function(itm, i, a) {
                 return i == a.indexOf(itm);
             });
+
+            finalresult.map(x => {
+                x.categoryData = this.getItemsData.filter(y => {
+                    return  x.iconData.category == y.iconData.category;
+                })
+            })
             this.categoriesData = finalresult;
         }
     },
@@ -126,6 +177,17 @@ export default {
         },
         setColor(value){
             return app.numeral(value).format('0,0') <= 10 ? '#545454' : '#FAFAFA'
+        },
+        showSummaryCategory(array){
+            this.selectedArray = array;
+            setTimeout(() => {
+                this.dropdownToggle = true;
+            }, 10)
+        },
+        hex2rgba(str, alpha) {
+            var num = parseInt(str.slice(1), 16); // Convert to a number
+            var arrRgb = [num >> 16 & 255, num >> 8 & 255, num & 255, num >> 24 & 255];
+            return `rgba(${arrRgb[0]},${arrRgb[1]},${arrRgb[2]},${alpha})`;
         }
     },
     mounted() {
