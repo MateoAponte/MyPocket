@@ -80,7 +80,7 @@
                             <div class="container-item__row flex-center">
                                 <div class="container-item__column simple-column-right">
                                     <span class="m-title-big">
-                                        Gastos:
+                                        Categoría:
                                     </span>
                                 </div>
                                 <div class="container-item__column simple-column-left">
@@ -90,25 +90,47 @@
                                 </div>
                             </div>
                             <div class="container-item__column">
-                                <div class="container-item__row flex-center" v-for="(arr, index) in selectedArray.categoryData" :key="index">
-                                    <div class="container-item__column">
-                                        <div class="m-card--unic" :style="{ border: '1.5px solid ' + hex2rgba(arr.iconData.class, 0.55) }">
-                                            <div class="m-card__icon" :style="{ backgroundColor: hex2rgba(arr.iconData.class, 0.4) }">
-                                                <font-awesome-icon :icon="arr.iconData.name" :style="{ color: hex2rgba(arr.iconData.class, 0.9) }"/>
-                                                <span class="m-title-big" :style="{ color: hex2rgba(arr.iconData.class, 0.9) }">
-                                                    {{arr.thing}}
-                                                </span>
-                                                <span class="m-value-light" :style="{ color: hex2rgba(arr.iconData.class, 0.9) }">
-                                                    {{moment(arr.date).format('ll')}}
-                                                </span>
-                                            </div>
-                                            <div class="m-card__content" :style="{ backgroundColor: hex2rgba(arr.iconData.class, 0.15) }">
-                                                <span class="m-paragraph">
-                                                    {{numeral(arr.cost).format("$0,0")}}
-                                                </span>
+                                <div class="container-item__row flex-center">
+                                    <div class="container-item__column" v-for="(arr, index) in selectedArray.categoryData" :key="index">
+                                        <div class="m-card minify-padding" >
+                                            <div class="m-card-body">
+                                                <div class="m-card__icon" >
+                                                    <font-awesome-icon :icon="arr.iconData.name" :style="{ color: hex2rgba(arr.iconData.class, 0.75)  }"/>
+                                                </div>
+                                                <div class="m-card__content">
+                                                    <div class="m-card__content-info">
+                                                        <div class="m-card__content-label">
+                                                            <span class="m-label" >
+                                                                {{arr.thing}}
+                                                            </span>
+                                                        </div>
+                                                        <div class="m-card__content-label">
+                                                            <span class="m-small" >
+                                                                {{moment(arr.date).format('ll')}}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="m-card__content-expense">
+                                                        <span class="m-label">
+                                                            {{numeral(arr.cost).format("$0,0")}}
+                                                        </span>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="container-item__row flex-center">
+                                <div class="container-item__column simple-column-right">
+                                    <span class="m-label">
+                                        Total:
+                                    </span>
+                                </div>
+                                <div class="container-item__column simple-column-left">
+                                    <span class="m-label">
+                                        {{numeral(selectedArray.cost).format('$0,0')}}
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -128,7 +150,7 @@ export default {
             summaryExpenses: [],
             categoriesData: [],
             totalExpenses: 0,
-            selectedArray: [],
+            selectedArray: {},
             dropdownToggle: false
         }
     },

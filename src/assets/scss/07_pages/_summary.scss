@@ -46,44 +46,46 @@
 
             &-body > .container-item__column{
                 .container-item__row{
+                    flex-wrap: wrap;
+                    justify-content: flex-start;
                     margin: 0;
                     & > .container-item__column{
+                        width: 50%;
                         margin: 0;
                         padding: 0;
                     }
                 }
-                .m-card--unic{
-                    width: 100%;
-                    border-radius: 30px;
-                    min-height: 120px;
-                    height: 120px;
-                    margin: 7px 0px;
-                    display: flex;
-                    flex-flow: row nowrap;
-                    align-items: center;
-                    justify-content: space-between;
-    
-                    .m-card__icon{
-                        width: 75%;
-                        height: 100%;
-                        border-radius: 27px 0 0 27px;
+
+                .m-card{
+                    width: 95%;
+                    margin: 7px 0;
+
+                    &-body{
                         display: flex;
+                        justify-content: space-between;
                         align-items: center;
-                        justify-content: space-around;
-                        
-                        svg{
-                            color: $clrP-black;
-                            font-size: 1.7em;
+                        flex-flow: row nowrap;
+
+                        .m-card__icon{
+                            svg{
+                                font-size: 1.5em;
+                            }
                         }
-                    }
-                    .m-card__content{
-                        width: 25%;
-                        height: 100%;
-                        border-radius: 0 27px 27px 0;
-                        padding: 10px 30px;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
+                        .m-card__content > div{
+                            margin: 7px 0;
+                        }
+                        .m-card__content{
+                            width: 73%;
+                            &-info{
+                                width: 100%;
+                            }
+                            &-label{
+                                max-width: 60%;
+                                text-overflow: ellipsis;
+                                white-space: nowrap;
+                                overflow: hidden;
+                            }
+                        }
                     }
                 }
             }
