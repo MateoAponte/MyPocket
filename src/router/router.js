@@ -5,6 +5,7 @@ import userAdmin from '@Views/userAdmin/userAdmin'
 import Configuration from '@Views/userAdmin/Configuration'
 import Summary from '@Views/summary/Summary'
 import iconsConfig from '@Views/icons/iconsConfig'
+import GenericReport from '@Views/report/generic/genericReport'
 
 Vue.use(Router)
 
@@ -31,14 +32,14 @@ export default new Router ({
             component: iconsConfig
         },
         {
-            path: '/userAdmin',
-            name: 'userAdmin',
-            component: userAdmin
-        },
-        {
             path: '/configuration',
             name: 'configuration',
             component: Configuration
+        },
+        {
+            path: '/genericReport',
+            name: 'genericReport',
+            component: GenericReport
         }
     ]
 })

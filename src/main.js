@@ -14,6 +14,10 @@ import numeral from 'numeral';
 import is from 'is_js';
 import axios from 'axios';
 
+import ColorPicker from '@Components/common/colorPicker';
+import PieChart from '@Components/common/amCharts/pieChart';
+
+
 Vue.set(Vue.prototype, "moment", moment);
 Vue.set(Vue.prototype, "_", _);
 Vue.set(Vue.prototype, "numeral", numeral);
@@ -91,6 +95,8 @@ extend('category', {
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.component('ValidationProvider', ValidationProvider);
 Vue.component('ValidationObserver', ValidationObserver);
+Vue.component('ColorPicker', ColorPicker);
+Vue.component('PieChart', PieChart);
 
 window.eventBus = new Vue();
 Vue.config.productionTip = false;
