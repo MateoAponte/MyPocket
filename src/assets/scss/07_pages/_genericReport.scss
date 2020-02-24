@@ -1,0 +1,8 @@
+.generic-report-container{
+    .m-card .m-card-body .container-item__row:nth-child(1) .container-item__column{
+        & > div{    
+            min-height: 360px;
+            width: 100%;
+        }
+    } 
+}

@@ -88,15 +88,11 @@
 </template>
 
 <script>
-import ColorPicker from '@Components/common/colorPicker';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 
 export default {
     name: "icons-config",
-    components: {
-        ColorPicker
-    },
     data() {
         return{
             iconsArr: [],

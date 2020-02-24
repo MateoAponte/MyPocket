@@ -29,6 +29,11 @@
                         Configuración
                     </span>
                 </router-link>
+                <router-link to="/genericReport" class="m-link-container" active-class="m-link-active" >
+                    <span class="m-link">
+                        Reporte
+                    </span>
+                </router-link>
             </div>
             <div class="header-container-column-section">                
                 <span class="toogle-activador">
