@@ -21,6 +21,10 @@ export default {
                 []
             }
         },
+        type: {
+            type: String,
+            default: "chart"
+        },
         label: {
             type: String,
             default: ""
@@ -34,7 +38,18 @@ export default {
             default: 20
         }
     },
+    watch: {
+        data(newVal){
+            if(this.type === "watcher"){
+                this.destroy();
+            }
+        }
+    },
     methods: {
+        destroy(){
+            this.chart.dispose();
+            this._init();
+        },
         _init(){
             this.chart = am4core.create(this.$el, am4charts.PieChart);
 
@@ -57,16 +72,16 @@ export default {
             pieSeries.slices.template.strokeWidth = 2;
             pieSeries.slices.template.strokeOpacity = 1;
 
-            let loop = () => {
-            //chart.allLabels[0].text = currentYear;
-                for(var i = 0; i < this.data.length; i++) {
-                    this.chart.data[i].size = this.data[i].size;
-                }
-                this.chart.invalidateRawData();
-                this.chart.setTimeout( loop, 4000 );
-            }
+            // let loop = () => {
+            // //chart.allLabels[0].text = currentYear;
+            //     for(var i = 0; i < this.data.length; i++) {
+            //         this.chart.data[i].size = this.data[i].size;
+            //     }
+            //     this.chart.invalidateRawData();
+            //     this.chart.setTimeout( loop, 4000 );
+            // }
 
-            loop();
+            // loop();
 
         },
         am4themes_myTheme(target) {
