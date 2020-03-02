@@ -80,6 +80,7 @@
     width: 75px;
     height: 80px;
     margin: 15px 37px;
+    position: relative;
     display: flex;
     flex-flow: row wrap;
     align-items: center;
@@ -102,6 +103,15 @@
         svg{
             font-size: 27px;
         }
+    }
+
+    &--color{
+        position: absolute;
+        right: 3px;
+        top: 3px;
+        width: 13px;
+        height: 13px;
+        border-radius: 2px;
     }
 
     &--title{

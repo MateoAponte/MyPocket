@@ -41,9 +41,16 @@
                 }
             }
 
-            & > .container-item__row:nth-child(1    ){
+            & > .container-item__row.search-icons__input{
                 padding: 20px;
                 border-bottom: 1px solid #cccccc;
+            }
+            & > .container-item__row.custom-icons{
+                .container-item__column{
+                    width: auto;
+                }
+                padding-top: 40px;
+                flex-wrap: wrap;
             }
         }
         & > .container-item__column:nth-child(2){

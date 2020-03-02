@@ -10,6 +10,8 @@
     @include FlexBox(column);
     justify-content: flex-start;
     align-items: flex-start;
+    position: relative;
+    z-index: 2;
 
     &-header{
         width: 100%;

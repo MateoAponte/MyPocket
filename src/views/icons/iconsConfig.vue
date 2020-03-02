@@ -3,10 +3,22 @@
         <div class="m-container">
             <div class="m-container-row">
                 <div class="m-container-column">
+                    <div class="m-container-tabs">
+                        <div class="m-container-tabs__tab" @click="toggle = true" :class="toggle ? 'active-tab' : ''">
+                            <span class="m-label">
+                                Lista
+                            </span>
+                        </div>
+                        <div class="m-container-tabs__tab" @click="toggle = false" :class="toggle ? '' : 'active-tab'">
+                            <span class="m-label">
+                                Personalizados
+                            </span>
+                        </div>
+                    </div>
                     <div class="m-card">
                         <div class="m-card-body icons-container">
                             <div class="container-item__row">
-                                <div class="container-item__column">
+                                <div class="container-item__column" v-if="toggle">
                                     <div class="container-item__row search-icons__input">
                                         <input type="text" class="custom-form" v-model="filterValue">
                                         <span class="search-icons__icon">
@@ -31,6 +43,21 @@
                                     </div>
                                     <div class="container-item__column">
                                         <span class="m-link m-link--special" v-if="copyIconsArr.length >= 15 && copyIconsArr.length != (totalData.length - 1)" @click="addIcons()">Cargar mas Iconos...</span>
+                                    </div>
+                                </div>
+                                <div class="container-item__column" v-else>
+                                    <div class="container-item__row custom-icons">
+                                        <div class="container-item__column" v-for="(icon, index) in getIconData" :key="index">
+                                            <div class="icons-category__block" @click="selectIcon(icon, icon.class)">
+                                                <div class="icons-category__block--color" :style="{backgroundColor: icon.class}"></div>
+                                                <div class="icons-category__block--item">
+                                                    <font-awesome-icon :icon="[icon.prefix, icon.iconName]"/>
+                                                </div>
+                                                <div class="icons-category__block--title">
+                                                    <span class="m-paragraph">{{icon.iconName}}</span>
+                                                </div>
+                                            </div>
+                                        </div> 
                                     </div>
                                 </div>
                                 <div class="container-item__column">
@@ -90,6 +117,7 @@
 <script>
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { fab } from '@fortawesome/free-brands-svg-icons';
+import { mapGetters } from 'vuex';
 
 export default {
     name: "icons-config",
@@ -105,7 +133,8 @@ export default {
                 class: "#739AFF"
             },
             stepCharge: 15,
-            filterValue: ""
+            filterValue: "",
+            toggle: true
         }
     },
     watch: {
@@ -131,8 +160,20 @@ export default {
             this.copyIconsArr.push(...Object.values(_.cloneDeep(this.totalData)).splice(1,this.stepCharge));
         }
     },
+    computed: {
+        ...mapGetters('finance', [
+            "getIconData"
+        ])
+    },
     methods: {
-        selectIcon(icon){
+        selectIcon(icon, className){
+            if(className){
+                this.iconsSelect.class = icon.class;
+                this.iconsSelect.category = icon.category;
+            } else {
+                this.iconsSelect.class = "#739AFF";
+                this.iconsSelect.category = "";
+            }
             this.iconsSelect.name = icon.iconName;
             this.iconsSelect.prefix = icon.prefix;
         },

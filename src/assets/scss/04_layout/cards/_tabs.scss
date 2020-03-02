@@ -1,0 +1,23 @@
+.m-container-tabs{
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;    
+    padding: 0 15px;
+    
+    &__tab{
+        padding: 10px 17px ;
+        position: relative;
+        top: 1px;
+        margin: 0 5px;
+        border-radius: 16px 16px 0 0;
+        background-color: #e9e8e8;
+        color: $clrP-black;
+        box-shadow: $shadow-gray;
+        z-index: 1;
+        cursor: pointer;
+    }
+    &__tab.active-tab{
+        background-color: $bg-card;
+    }
+}
