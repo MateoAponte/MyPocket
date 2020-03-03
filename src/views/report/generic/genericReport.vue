@@ -13,7 +13,7 @@
                                     (Año actual)
                                 </span>
                             </div>
-                            <div class="container-item__row">
+                            <div class="container-item__row report__tabs">
                                 <div class="container-item__column" v-for="(itemNav, index) in navItemsArr" :key="index"
                                     @click="iterateYear(getTranslateItemsNav(itemNav, 'step'), itemNav, $event, index)"
                                     :childNode="index"
@@ -25,7 +25,7 @@
                         <div class="m-card-body">
                             <div class="container-item__row flex-center">
                                 <div class="container-item__column">
-                                    <pie-chart :data="categoriesData" label="Value" ref="pie-chart" type="watcher"></pie-chart>
+                                    <pie-chart :data="categoriesData" label="Value" ref="pie-chart" type="watcher" @updateChart="toggleClass(elementTarget.event, elementTarget)"></pie-chart>
                                 </div>
                             </div>
                             <div class="container-item__row">
@@ -137,7 +137,7 @@ import { keys } from '@amcharts/amcharts4/.internal/core/utils/Object';
                 dateCategories: [],
                 mainDateCategories: [],
                 navItemsArr: [],
-                elementTarget: {}
+                eventData: {}
             }
         },
         watch: {
@@ -550,17 +550,22 @@ import { keys } from '@amcharts/amcharts4/.internal/core/utils/Object';
             });
         },
         toggleClass(evt, step){
-            let parent = evt.target.parentElement;
-            let children = parent.childNodes;
-            children.forEach( (x,i) => {
-                x.classList.remove("active-link");
-            });
-            children[step].classList.add("active-link");
-            this.elementTarget = evt.target;
+            if(evt){ 
+                let parent = evt.target.parentElement;
+                let children = parent.childNodes;
+                children.forEach( (x,i) => {
+                    x.classList.remove("active-link");
+                });
+                children.forEach(x => {
+                    if(x.innerHTML == evt.target.innerHTML){
+                        x.classList.add("active-link");
+                    }
+                })
+            }
         },
         iterateYear(index, arr, evt, step) {
             if(evt){
-                this.toggleClass(evt, step);
+                this.eventData = evt.target;
             }
             this.getYear(index);
             this.getTraduceData(index, arr);
@@ -640,6 +645,32 @@ import { keys } from '@amcharts/amcharts4/.internal/core/utils/Object';
     },
     mounted(){
         this.firtsItemTab();
+        let _self = this;
+
+        let reportTabs = document.querySelector(".report__tabs");
+        if(window.addEventListener) {
+        // Normal browsers
+            reportTabs.addEventListener('DOMSubtreeModified', contentChanged, false);
+        } else
+        if(window.attachEvent) {
+            // IE
+            reportTabs.attachEvent('DOMSubtreeModified', contentChanged);
+        }
+
+        function contentChanged() {
+            let children = reportTabs.childNodes;
+            children.forEach( (x,i) => {
+                x.classList.remove("active-link");
+                if(children.length >= 3 && i == 1){
+                    console.log("3 Tabs", children.length)
+                    x.classList.add("active-link");
+                } else {
+                    if(x.innerHTML === _self.eventData.innerHTML && children.length == 2){
+                        x.classList.add("active-link");
+                    }
+                }
+            });
+        }
     }
 }
 </script>
