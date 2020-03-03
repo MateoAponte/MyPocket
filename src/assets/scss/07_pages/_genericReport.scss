@@ -9,7 +9,7 @@
                 font-weight: bold;
                 align-items: center;
                 width: 100%;
-                background-color: $clrP-azure;
+                background-color: lighten($clrP-azure, 7.5%);
                 cursor: pointer;
             }
             .container-item__column:not(:nth-child(1)){
@@ -25,6 +25,6 @@
     } 
 
     .active-link{
-        background-color: lighten($clrP-azure, 7.5%) !important;
+        background-color: $clrP-azure !important;
     }
 }

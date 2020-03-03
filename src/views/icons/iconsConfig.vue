@@ -5,13 +5,15 @@
                 <div class="m-container-column">
                     <div class="m-container-tabs">
                         <div class="m-container-tabs__tab" @click="toggle = true" :class="toggle ? 'active-tab' : ''">
+                            <font-awesome-icon icon="list" />
                             <span class="m-label">
-                                Lista
+                                Listas
                             </span>
                         </div>
                         <div class="m-container-tabs__tab" @click="toggle = false" :class="toggle ? '' : 'active-tab'">
+                            <font-awesome-icon icon="user-edit" />
                             <span class="m-label">
-                                Personalizados
+                                Propios
                             </span>
                         </div>
                     </div>
@@ -76,7 +78,7 @@
                                             <label class="m-label">
                                                 Categoria:
                                             </label>
-                                            <input type="text" class="custom-form" placeholder="Escriba la categoría" v-model="iconsSelect.category"/>
+                                            <input type="text" class="custom-form" placeholder="Escriba la categoría" :disabled="avaible" v-model="iconsSelect.category"/>
                                         </div>
                                     </div>
                                     <div class="container-item__row minify-padding">
@@ -87,7 +89,7 @@
                                         </div>
                                         <div name="prioridad" rules="text" class="container-item__column container-item__col-row minify-padding">
                                             <div class="container-item__column">
-                                                <color-picker v-model="iconsSelect.class"></color-picker>
+                                                <color-picker v-model="iconsSelect.class" :disabled="avaible"></color-picker>
                                             </div>
                                         </div>
                                     </div>
@@ -100,8 +102,15 @@
                                         </div>
                                     </div>
                                     <div class="container-item__row minify-padding">
-                                        <div class="container-item__column">
+                                        <div class="container-item__column" v-if="toggle">
                                             <button class="m-button m-button-esmerald m-button-long">Guardar</button>
+                                        </div>
+                                        <div class="container-item__column" v-if="!toggle">
+                                            <button class="m-button m-button-pink m-button-long" @click="cancelToggle()">Cancelar</button>
+                                        </div>
+                                        <div class="container-item__column" v-if="!toggle">
+                                            <button class="m-button m-button-esmerald m-button-long" @click="avaible = false" v-if="avaible">Editar</button>
+                                            <button class="m-button m-button-esmerald m-button-long" v-else>Confirmar</button>
                                         </div>
                                     </div>
                                 </div>
@@ -134,10 +143,20 @@ export default {
             },
             stepCharge: 15,
             filterValue: "",
-            toggle: true
+            toggle: true,
+            avaible: false
         }
     },
     watch: {
+        toggle(newVal){
+            if(!newVal){
+                this.avaible = true;
+                this.selectIcon(this.getIconData[0], this.getIconData[0].class);
+            }
+            if(newVal){
+                this.selectIcon(this.copyIconsArr[0]);
+            }
+        },
         stepCharge(){
             this.copyIconsArr = [];
             this.copyIconsArr.push(...Object.values(_.cloneDeep(this.totalData)).splice(1,this.stepCharge));
@@ -166,6 +185,10 @@ export default {
         ])
     },
     methods: {
+        cancelToggle(){
+            this.toggle = true;
+            this.avaible = false;
+        },
         selectIcon(icon, className){
             if(className){
                 this.iconsSelect.class = icon.class;
