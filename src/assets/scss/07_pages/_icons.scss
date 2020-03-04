@@ -58,4 +58,10 @@
             width: 30%;
         }
     }
+
+    & > .container-item__row{
+        .container-item__row:nth-last-child(1) .container-item__row:nth-last-child(1){
+            justify-content: space-between;
+        }
+    }
 }

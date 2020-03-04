@@ -50,13 +50,17 @@
                                 <div class="container-item__column" v-else>
                                     <div class="container-item__row custom-icons">
                                         <div class="container-item__column" v-for="(icon, index) in getIconData" :key="index">
-                                            <div class="icons-category__block" @click="selectIcon(icon, icon.class)">
+                                            <div class="icons-category__block tooltip" @click="selectIcon(icon, icon.class)">
                                                 <div class="icons-category__block--color" :style="{backgroundColor: icon.class}"></div>
                                                 <div class="icons-category__block--item">
                                                     <font-awesome-icon :icon="[icon.prefix, icon.iconName]"/>
                                                 </div>
                                                 <div class="icons-category__block--title">
                                                     <span class="m-paragraph">{{icon.iconName}}</span>
+                                                </div>
+                                                <div class="top">
+                                                    {{icon.category}}
+                                                    <i></i>
                                                 </div>
                                             </div>
                                         </div> 
@@ -106,11 +110,11 @@
                                             <button class="m-button m-button-esmerald m-button-long">Guardar</button>
                                         </div>
                                         <div class="container-item__column" v-if="!toggle">
-                                            <button class="m-button m-button-pink m-button-long" @click="cancelToggle()">Cancelar</button>
-                                        </div>
-                                        <div class="container-item__column" v-if="!toggle">
                                             <button class="m-button m-button-esmerald m-button-long" @click="avaible = false" v-if="avaible">Editar</button>
-                                            <button class="m-button m-button-esmerald m-button-long" v-else>Confirmar</button>
+                                        </div>
+                                        <div class="container-item__row" v-if="!toggle && !avaible">
+                                            <button class="m-button m-button-pink m-button-long" @click="cancelToggle()">Cancelar</button>
+                                            <button class="m-button m-button-esmerald m-button-long">Confirmar</button>
                                         </div>
                                     </div>
                                 </div>
