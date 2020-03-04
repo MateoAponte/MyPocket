@@ -40,8 +40,7 @@
                     <div class="toggle-button-cover">
                         <div class="button-cover">
                             <div class="button r" id="button-3">
-                                <input type="checkbox" value="on" class="checkbox" v-model="showPassword"
-                                    :checked="showPassword == 'on'">
+                                <input type="checkbox" class="checkbox" v-model="showPassword" />
                                 <div class="knobs"></div>
                                 <div class="layer"></div>
                             </div>
@@ -53,7 +52,7 @@
                 <div class="container-item__row">
                     <div class="container-item__column">
                         <label class="m-label">
-                            Contraseña Actual:
+                            Nueva contraseña:
                         </label>
                         <input type="password" class="custom-form" placeholder="Ingrese su contraseña" />
                     </div>
@@ -83,7 +82,7 @@
         name: "downSection",
         data: function () {
             return {
-                showPassword: "off"
+                showPassword: true
             }
         }
     }

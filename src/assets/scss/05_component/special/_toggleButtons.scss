@@ -7,8 +7,8 @@
 }
 
 .checkbox{
-    width: 74px;
-    height: 30px;
+    width: 56px;
+    height: 26px;
 }
 
 .button
@@ -36,6 +36,7 @@
 
 .checkbox
 {
+    position: relative;
     opacity: 0;
     cursor: pointer;
     z-index: 3;
