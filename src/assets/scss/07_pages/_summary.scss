@@ -43,6 +43,7 @@
         .m-card{
             width: 45%;
             margin: auto;
+            z-index: 1;
 
             &-body > .container-item__column{
                 .container-item__row{
