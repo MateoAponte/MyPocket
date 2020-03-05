@@ -63,7 +63,7 @@
                                 <div class="radio-button icons-category"><!-- .tooltip -->
                                     <input :id="'icon' + icon.name + (index + i)" class="categories-radio" name="category" type="radio" :value="icon" v-model="itemData.iconData" />
                                     <label :for="'icon' + icon.name + (index + i)" >
-                                        <font-awesome-icon :icon="icon.name" :style="{ backgroundColor:icon.class }"/>
+                                        <font-awesome-icon :icon="icon.iconName" :style="{ backgroundColor:icon.class }"/>
                                     </label>
                                     <!--<div class="top">
                                         {{icon.category}}
