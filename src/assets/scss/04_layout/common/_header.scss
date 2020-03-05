@@ -22,10 +22,12 @@
         justify-content: flex-start;
 
         .m-link-container{
+            min-width: 80px;
             height: 100%;
             margin: 0 15px;
             display: flex;
             align-items: center;
+            justify-content: center;
             color: $clrP-black;
         }
 
