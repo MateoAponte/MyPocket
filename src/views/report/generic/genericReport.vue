@@ -13,14 +13,9 @@
                                     (Año actual)
                                 </span>
                             </div>
-                            <div class="container-item__row report__tabs">
-                                <div class="container-item__column" v-for="(itemNav, index) in navItemsArr" :key="index"
-                                    @click="iterateYear(getTranslateItemsNav(itemNav, 'step'), itemNav, $event, index)"
-                                    :childNode="index"
-                                >
-                                    {{getTranslateItemsNav(itemNav, "date")}}
-                                </div>
-                            </div>
+                            
+                            <report-tabs ref="reportTabs" />
+
                         </div>
                         <div class="m-card-body">
                             <div class="container-item__row flex-center">
@@ -34,87 +29,11 @@
                                 </span>
                             </div>
                             <div class="container-item__row">
-                                <div class="container-item__column">
-                                    <div class="m-card">
-                                        <div class="m-card-header">
-                                            <div class="container-item__row">
-                                                <span class="m-title-big">
-                                                    Resumen:
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="m-card-body">
-                                            <div class="container-item__row">
-                                                <div class="container-item__column">
-                                                    <span class="m-label">
-                                                        Total de Gastos:
-                                                    </span>
-                                                    <span class="m-small">(Total de la cantidad de los gastos)</span>
-                                                </div>
-                                                <div class="container-item__column">
-                                                    <span class="m-label">
-                                                        {{numeral(getTotalExpenses ? getTotalExpenses : "-").format('$0,0')}}
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div class="container-item__row">
-                                                <div class="container-item__column">
-                                                    <span class="m-label">
-                                                        Mes mayor:
-                                                    </span>
-                                                    <span class="m-small">(Mes de mas alto flujo)</span>
-                                                </div>
-                                                <div class="container-item__column">
-                                                    <span class="m-label">
-                                                        {{moment(getHigherMonth ? getHigherCategory : "-").format('ll')}}
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="container-item__column">
-                                    <div class="m-card">
-                                        <div class="m-card-header">
-                                            <div class="container-item__row">
-                                                <span class="m-title-big">
-                                                    Promedio:
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="m-card-body">
-                                            <div class="container-item__row">
-                                                <div class="container-item__column">
-                                                    <span class="m-label">
-                                                        Categoría mas común:
-                                                    </span>
-                                                    <span class="m-small">(Cantidad de veces que se repite)</span>
-                                                </div>
-                                                <div class="container-item__column">
-                                                    <span class="m-label">
-                                                        {{getHigherCategory ? getHigherCategory.category : "-"}}
-                                                        <span class="m-small">
-                                                            ({{numeral(getHigherCategory ? getHigherCategory.price : 0).format('$0,0')}})
-                                                        </span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div class="container-item__row">
-                                                <div class="container-item__column">
-                                                    <span class="m-label">
-                                                        Gasto de categoría:
-                                                    </span>
-                                                    <span class="m-small">(Promedio por mes)</span>
-                                                </div>
-                                                <div class="container-item__column">
-                                                    <span class="m-label">
-                                                        {{numeral(getExpenseCategory ? getExpenseCategory : 0).format('$0,0')}}
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                
+                                <report-summary-left-card />
+
+                                <report-summary-right-card />
+
                             </div>
                         </div>
                     </div>
@@ -126,17 +45,21 @@
 
 <script>
     import {
-        mapGetters
+        mapGetters, mapActions, mapState
     } from 'vuex';
-import { keys } from '@amcharts/amcharts4/.internal/core/utils/Object';
+    import reportTabs from '@Components/report/generic/reportTabs';
+    import reportSummaryRightCard from '@Components/report/generic/reportSummaryRightCard';
+    import reportSummaryLeftCard from '@Components/report/generic/reportSummaryLeftCard';
+
     export default {
         name: "generic-report",
+        components: {
+            reportTabs,
+            reportSummaryRightCard,
+            reportSummaryLeftCard
+        },
         data: function () {
             return {
-                categoriesData: [],
-                dateCategories: [],
-                mainDateCategories: [],
-                navItemsArr: [],
                 eventData: {}
             }
         },
@@ -146,234 +69,16 @@ import { keys } from '@amcharts/amcharts4/.internal/core/utils/Object';
             }
         },
         computed: {
-            ...mapGetters('finance', [
-                'getItemsData',
-                'getBudgetData'
-            ]),
-            getIterateDataDate() {
-                let repeatData = [];
-                repeatData.push({
-                        "thing": "Universidad",
-                        "cost": "500000",
-                        "priority": "Alta",
-                        "date": "2020/02/25",
-                        "iconData": {
-                            "category": 'Tecnología',
-                            "name": 'mobile-alt',
-                            "class": '#BE4BDB'
-                        }
-                    }, {
-                        "thing": "Celular",
-                        "cost": "250000",
-                        "priority": "Alta",
-                        "date": "2020/02/25",
-                        "iconData": {
-                            "category": 'Banco & Transacciones',
-                            "name": 'money-bill-wave',
-                            "class": '#12BB85'
-                        }
-                    }, {
-                        "thing": "Bicicleta",
-                        "cost": "167000",
-                        "priority": "Alta",
-                        "date": "2020/02/25",
-                        "iconData": {
-                            "category": 'Banco & Transacciones',
-                            "name": 'money-bill-wave',
-                            "class": '#12BB85'
-                        }
-                    }, {
-                        "thing": "Comida",
-                        "cost": "100000",
-                        "priority": "Media",
-                        "date": "2020/02/26",
-                        "iconData": {
-                            "category": 'Comida',
-                            "name": 'utensils',
-                            "class": '#FD7E14'
-                        }
-                    }, {
-                        "thing": "Transporte",
-                        "cost": "80000",
-                        "priority": "Media",
-                        "date": "2020/02/26",
-                        "iconData": {
-                            "category": 'Viajes',
-                            "name": 'plane',
-                            "class": '#F963A0'
-                        }
-                    }, {
-                        "thing": "Canastas",
-                        "cost": "300000",
-                        "priority": "Alta",
-                        "date": "2020/02/26",
-                        "iconData": {
-                            "category": 'Comida',
-                            "name": 'utensils',
-                            "class": '#FD7E14'
-                        }
-                    }, {
-                        "thing": "Instituto",
-                        "cost": "150000",
-                        "priority": "Alta",
-                        "date": "2020/02/26",
-                        "iconData": {
-                            "category": 'Banco & Transacciones',
-                            "name": 'money-bill-wave',
-                            "class": '#12BB85'
-                        }
-                    }, {
-                    "thing": "Otros",
-                    "cost": "50000",
-                    "priority": "Baja",
-                    "date": "2020/02/27",
-                    "iconData": {
-                        "category": 'Comida',
-                        "name": 'utensils',
-                        "class": '#FD7E14'
-                    }
-                }, {
-                    "thing": "Audifonos (Balaca)",
-                    "cost": "80000",
-                    "priority": "Media",
-                    "date": "2020/02/27",
-                    "iconData": {
-                        "category": 'Tecnología',
-                        "name": 'mobile-alt',
-                        "class": '#BE4BDB'
-                    }
-                }, {
-                    "thing": "Audifonos (Balaca)",
-                    "cost": "80000",
-                    "priority": "Media",
-                    "date": "2020/02/27",
-                    "iconData": {
-                        "category": 'Moda',
-                        "name": 'tshirt',
-                        "class": '#4C6EF5'
-                    }
-                }, {
-                    "thing": "Universidad",
-                    "cost": "500000",
-                    "priority": "Alta",
-                    "date": "2020/03/25",
-                    "iconData": {
-                        "category": "Tecnología",
-                        "name": "mobile-alt",
-                        "class": "#BE4BDB"
-                    }
-                }, {
-                    "thing": "Universidad",
-                    "cost": "500000",
-                    "priority": "Alta",
-                    "date": "2020/03/25",
-                    "iconData": {
-                        "category": "Juegos",
-                        "name": "mobile-alt",
-                        "class": "#BE4BDB"
-                    }
-                }, {
-                    "thing": "Universidad",
-                    "cost": "500000",
-                    "priority": "Alta",
-                    "date": "2020/03/25",
-                    "iconData": {
-                        "category": "Moda",
-                        "name": "mobile-alt",
-                        "class": "#BE4BDB"
-                    }
-                }, {
-                    "thing": "Universidad",
-                    "cost": "500000",
-                    "priority": "Alta",
-                    "date": "2020/03/25",
-                    "iconData": {
-                        "category": "Tecnología",
-                        "name": "mobile-alt",
-                        "class": "#BE4BDB"
-                    }
-                }, {
-                    "thing": "Universidad",
-                    "cost": "500000",
-                    "priority": "Alta",
-                    "date": "2020/04/25",
-                    "iconData": {
-                        "category": "Tecnología",
-                        "name": "mobile-alt",
-                        "class": "#BE4BDB"
-                    }
-                }, {
-                    "thing": "Universidad",
-                    "cost": "500000",
-                    "priority": "Alta",
-                    "date": "2020/04/25",
-                    "iconData": {
-                        "category": "Moda",
-                        "name": "mobile-alt",
-                        "class": "#BE4BDB"
-                    }
-                }, {
-                    "thing": "Universidad",
-                    "cost": "500000",
-                    "priority": "Alta",
-                    "date": "2020/04/25",
-                    "iconData": {
-                        "category": "Juegos",
-                        "name": "mobile-alt",
-                        "class": "#BE4BDB"
-                    }
-                }, {
-                    "thing": "Universidad",
-                    "cost": "500000",
-                    "priority": "Alta",
-                    "date": "2020/04/25",
-                    "iconData": {
-                        "category": "Tecnología",
-                        "name": "mobile-alt",
-                        "class": "#BE4BDB"
-                    }
-                }, {
-                    "thing": "Universidad",
-                    "cost": "500000",
-                    "priority": "Alta",
-                    "date": "2020/04/25",
-                    "iconData": {
-                        "category": "Moda",
-                        "name": "mobile-alt",
-                        "class": "#BE4BDB"
-                    }
-                }, {
-                    "thing": "Universidad",
-                    "cost": "500000",
-                    "priority": "Alta",
-                    "date": "2020/04/25",
-                    "iconData": {
-                        "category": "Juegos",
-                        "name": "mobile-alt",
-                        "class": "#BE4BDB"
-                    }
-                }, {
-                    "thing": "Universidad",
-                    "cost": "500000",
-                    "priority": "Alta",
-                    "date": "2020/04/25",
-                    "iconData": {
-                        "category": "Tecnología",
-                        "name": "mobile-alt",
-                        "class": "#BE4BDB"
-                    }
-                }, {
-                    "thing": "Universidad",
-                    "cost": "500000",
-                    "priority": "Alta",
-                    "date": "2020/04/25",
-                    "iconData": {
-                        "category": "Moda",
-                        "name": "mobile-alt",
-                        "class": "#BE4BDB"
-                    }
-                },
-            )
+            ...mapState('generic', {
+                'categoriesData': (state) => (state.categoriesData),
+                'mainDateCategories': (state) => (state.mainDateCategories),
+                'navItemsArr': (state) => (state.navItemsArr),
+                'dateCategories': (state) => (state.dateCategories),
+                'itemsData': (state) => (state.itemsData),
+                'budgetData': (state) => (state.budgetData),
+            }),
+        getIterateDataDate() {
+            let repeatData = _.cloneDeep(this.itemsData);
             let newArrDate = [];
             repeatData.forEach(x => {
                 let newFormat = [];
@@ -391,164 +96,17 @@ import { keys } from '@amcharts/amcharts4/.internal/core/utils/Object';
                     newArrDate.map(z => z[dateMonthly] ? z[dateMonthly].push(...data) : "")
                 }
             });
-            this.dateCategories = newArrDate;
+            this.updateDateCategories(newArrDate);
         },
-        getHigherCategory() {
-            let arr = _.cloneDeep(this.mainDateCategories);
-            let subArr = [];
-            let counter = {};
-            arr.forEach(x => {
-                subArr = x[Object.keys(x)[0]]
-                subArr.forEach(function (z) {
-                    counter[z.iconData.category] = (counter[z.iconData.category] || 0) + 1;
-                });
-            });
-            if (this.verifyArrLength(Object.keys(counter))) {
-                let category = Object.keys(counter).reduce(function (a, b) {
-                    return counter[a] > counter[b] ? a : b;
-                });
-                arr.forEach(x => {
-                    subArr = x[Object.keys(x)[0]];
-                    subArr.forEach(function (z) {
-                        counter[z.iconData.category] = (counter[z.iconData.category] || 0) + parseInt(z
-                            .cost);
-                    });
-                });
-                if (this.verifyArrLength(Object.values(counter))) {
-                    let price = Object.values(counter).sort(function (a, b) {
-                        if (a < b) return -1;
-                        if (b < a) return 1;
-                        return 0;
-                    });
-                    return {
-                        category: category,
-                        price: price.reverse()[0]
-                    }
-                }
-            }
-        },
-        getExpenseCategory() {
-            let arr = _.cloneDeep(this.mainDateCategories);
-            let subArr = [];
-            let counter = {};
-            arr.forEach(x => {
-                subArr = x[Object.keys(x)[0]]
-                subArr.forEach(function (z) {
-                    counter[z.iconData.category] = (counter[z.iconData.category] || 0) + parseInt(z
-                        .cost);
-                });
-            });
-            if (this.verifyArrLength(Object.values(counter))) {
-                let cost = Object.values(counter).reduce((a, b) => {
-                    return parseInt(a) + parseInt(b)
-                });
-                return (cost / arr.length);
-            }
-        },
-        getTotalExpenses() {
-            let arr = _.cloneDeep(this.mainDateCategories);
-            let subArr = [];
-            let counter = {};
-            arr.forEach(x => {
-                subArr = x[Object.keys(x)[0]];
-                subArr.forEach(function (z) {
-                    counter[z.iconData.category] = (counter[z.iconData.category] || 0) + parseInt(z
-                        .cost);
-                });
-            });
-            if (this.verifyArrLength(Object.values(counter))) {
-                return Object.values(counter).reduce((a, b) => {
-                    return parseInt(a) + parseInt(b)
-                });
-            }
-        },
-        getHigherMonth() {
-            let arr = _.cloneDeep(this.mainDateCategories);
-            let subArr = [];
-            let counter = {};
-
-            arr.forEach(x => {
-                subArr = x[Object.keys(x)[0]]
-                subArr.forEach(function (z, i) {
-                    if (i == 0) {
-                        counter[Object.keys(x)[0]] = 0;
-                    }
-                    counter[Object.keys(x)[0]] += parseInt(z.cost);
-                });
-            });
-            if (this.verifyArrLength(Object.values(counter))) {
-                let price = Object.values(counter).sort(function (a, b) {
-                    if (a < b) return -1;
-                    if (b < a) return 1;
-                    return 0;
-                })[0];
-                let date = Object.keys(counter).filter(function (a) {
-                    return counter[a] == price;
-                });
-                return date[0];
-            }
-        }
     },
     methods: {
-        firtsItemTab(){
-            let tabs = document.querySelectorAll(".generic-report-container > .m-container-row .m-card .m-card-header .container-item__row  .container-item__column");
-            tabs[0].classList.add("active-link");
-        },
-        getTranslateItemsNav(fragmentDate, type) {
-            let keys = Object.keys(fragmentDate)[0];
-            let date = this.moment(keys).format('ll');
-            let split = keys.split("/");
-            return type == "date" ? date.replace(/(\s[0-9]\,)+/, "") : split[1];
-        },
-        getTraduceData(index, item) {
-            this.categoriesData = [];
-            let arr = [];
-            
-            if(!item){
-                arr = _.cloneDeep(this.navItemsArr).filter(x => {
-                    let key = [];
-                    key = Object.keys(x)[0].split("/");
-                    return Object.keys(x)[0] === `${key[0]}/${new Date().getMonth()}`;
-                });
-                arr = arr[0][`${new Date().getFullYear()}/${new Date().getMonth()}`];
-            } else {
-                arr = _.cloneDeep(this.navItemsArr).filter(x => {
-                    let key = [];
-                    key = Object.keys(x)[0].split("/");
-                    return Object.keys(x)[0] === `${key[0]}/${index}`;
-                });
-                arr = arr[0][Object.keys(item)[0]];
-            }
-
-            var result = arr.reduce(function (acc, val) {
-                var o = acc.filter(function (obj) {
-                    return obj.iconData.category == val.iconData.category;
-                }).pop() || {
-                    ...val,
-                    cost: 0
-                };
-
-                o.cost += parseInt(val.cost);
-                acc.push(o);
-                return acc;
-            }, []);
-
-            var finalresult = result.filter(function (itm, i, a) {
-                return i == a.indexOf(itm);
-            });
-            finalresult.map(x => {
-                x.categoryData = arr.filter(y => {
-                    return x.iconData.category == y.iconData.category;
-                })
-            })
-            finalresult.forEach(obj => {
-                this.categoriesData.push({
-                    category: obj.iconData.category,
-                    cost: obj.cost,
-                    date: obj.date
-                })
-            });
-        },
+        ...mapActions('generic', [
+            "updateCategoriesData",
+            "updateMainDateCategories",
+            "updateNavItemsArr",
+            "updateDateCategories",
+            "updateEventData"
+        ]),
         toggleClass(evt, step){
             if(evt){ 
                 let parent = evt.target.parentElement;
@@ -563,13 +121,6 @@ import { keys } from '@amcharts/amcharts4/.internal/core/utils/Object';
                 })
             }
         },
-        iterateYear(index, arr, evt, step) {
-            if(evt){
-                this.eventData = evt.target;
-            }
-            this.getYear(index);
-            this.getTraduceData(index, arr);
-        },
         getMainDateArr(arr) {
             let newArr = [];
             arr.forEach(x => {
@@ -579,38 +130,10 @@ import { keys } from '@amcharts/amcharts4/.internal/core/utils/Object';
             });
             return arr;
         },
-        verifyArrDate(arr, date) {
-            if (!arr.find(x => Object.keys(x)[0] == date)) {
-                return arr
-            }
-        },
-        verifyArrLength(arr) {
-            if (arr.length > 0) {
-                return true;
-            }
-        },
-        getNavItemsArr(mainArr, year, month) {
-            let hollowArr = [];
-            mainArr.forEach(x => {
-                if (x[`${year}/${month - 1}`]) {
-                    this.verifyArrDate(hollowArr, `${year}/${month - 1}`).push({
-                        [`${year}/${month - 1}`]: x[`${year}/${month - 1}`]
-                    });
-                } else if (x[`${year}/${month}`]) {
-                    this.verifyArrDate(hollowArr, `${year}/${month}`).push({
-                        [`${year}/${month}`]: x[`${year}/${month}`]
-                    });
-                } else if (x[`${year}/${month + 1}`]) {
-                    this.verifyArrDate(hollowArr, `${year}/${month + 1}`).push({
-                        [`${year}/${month + 1}`]: x[`${year}/${month + 1}`]
-                    });
-                }
-            });
-            return hollowArr;
-        },
         transformData(arr) {
             let dataSplit = (val) => val.split('/');
-            arr.sort(function (a, b) {
+            let arrSort = _.cloneDeep(arr);
+            arrSort.sort(function (a, b) {
                 let num1 = dataSplit(Object.keys(a)[0])[0] + dataSplit(Object.keys(a)[0])[1];
                 let num2 = dataSplit(Object.keys(b)[0])[0] + dataSplit(Object.keys(b)[0])[1];
 
@@ -618,59 +141,16 @@ import { keys } from '@amcharts/amcharts4/.internal/core/utils/Object';
                 if (num2 < num1) return 1;
                 return 0;
             });
-            return arr;
-        },
-        getYear(i) {
-            let year = new Date().getFullYear();
-            let keysDate = [];
-            this.mainDateCategories.forEach(x => {
-                keysDate.push(...Object.keys(x))
-            });
-            
-            let date = keysDate.filter(x => x == `${year}/${i}`);
-            date = date.join('').split('/');
-            this.navItemsArr = this.getNavItemsArr(this.mainDateCategories, parseInt(date[0]), parseInt(date[1]));
-            this.navItemsArr = this.transformData(this.navItemsArr);
+            return arrSort;
         }
     },
     beforeMount() {
-        let date = new Date();
-        let month = date.getMonth();
-        let year = date.getFullYear();
-
         this.getIterateDataDate;
-        this.mainDateCategories = this.getMainDateArr(this.dateCategories);
-        this.mainDateCategories = this.transformData(this.mainDateCategories);
-        this.iterateYear(month);
+        this.updateMainDateCategories(this.getMainDateArr(this.dateCategories));
+        this.updateMainDateCategories(this.transformData(this.mainDateCategories));
     },
     mounted(){
-        this.firtsItemTab();
-        let _self = this;
-
-        let reportTabs = document.querySelector(".report__tabs");
-        if(window.addEventListener) {
-        // Normal browsers
-            reportTabs.addEventListener('DOMSubtreeModified', contentChanged, false);
-        } else
-        if(window.attachEvent) {
-            // IE
-            reportTabs.attachEvent('DOMSubtreeModified', contentChanged);
-        }
-
-        function contentChanged() {
-            let children = reportTabs.childNodes;
-            children.forEach( (x,i) => {
-                x.classList.remove("active-link");
-                if(children.length >= 3 && i == 1){
-                    console.log("3 Tabs", children.length)
-                    x.classList.add("active-link");
-                } else {
-                    if(x.innerHTML === _self.eventData.innerHTML && children.length == 2){
-                        x.classList.add("active-link");
-                    }
-                }
-            });
-        }
+        this.$refs.reportTabs.iterateYear(this.$refs.reportTabs.getTranslateItemsNav(this.navItemsArr[0], 'step'), this.navItemsArr[0], "", 0)
     }
 }
 </script>

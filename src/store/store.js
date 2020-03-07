@@ -3,6 +3,7 @@ import finance from '@Store/finance/finance';
 import userAdmin from '@Store/userAdmin/userAdmin';
 import summary from '@Store/summary/Summary';
 import icons from '@Store/icons/icons';
+import generic from '@Store/report/generic/generic';
 
 import Vue from 'vue';
 import Vuex from 'vuex';
@@ -15,6 +16,7 @@ export default new Vuex.Store({
         finance,
         userAdmin,
         summary,
-        icons
+        icons,
+        generic
     }
 })

@@ -1,6 +1,6 @@
 <template>
     <div class="container-item__column" >
-        <div class="container-item__row flex-wrap custom-icons" style="flex-wrap: wrap; justify-content: center; max-height: 416px; min-width: 450px; overflow: auto; ">
+        <div class="container-item__row flex-wrap custom-icons" style="flex-wrap: wrap; justify-content: center; max-height: 416px; min-width: 750px; overflow: auto; ">
             <div class="container-item__column" v-for="(icon, index) in iconsData" :key="index" style="width: auto">
                 <list-icons-icon :icon="icon" :index="index" type="custom" />
             </div> 
