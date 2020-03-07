@@ -38,7 +38,7 @@
             <div class="header-container-column-section">                
                 <span class="toogle-activador">
                     <div class="header-info-container">
-                        <div class="relative flex-center" v-if="userData">
+                        <div class="relative flex-center" v-if="personalData">
                             <font-awesome-icon class="special-icon" id="father-cog-icon" icon="user-circle" />
                             <div id="cog-icon" class="toogle-header-container" style="display: none">
                                 <router-link to="/configuration" class="header-row-link-section">
@@ -73,9 +73,9 @@
                                 </router-link>
                             </div>
                         </div>
-                        <div v-if="userData" class="header-info-container--title">
-                            <span class="m-label">{{userData.name}}</span>
-                            <span class="m-label">{{userData.lastname}}</span>
+                        <div v-if="personalData" class="header-info-container--title">
+                            <span class="m-label">{{personalData.userData.name}}</span>
+                            <span class="m-label">{{personalData.userData.lastname}}</span>
                         </div>
                     </div>
                 </span>
@@ -90,12 +90,29 @@ export default {
     name: 'HeaderGeneric',
     data: function(){
         return {
-            toogle: true
+            toggle: true,
         }
     },
     computed: {
         ...mapState('common', {
-            "userData": (state) => (state.data.userData)
+            "personalData": (state) => (state.personalData)
+        })
+    },
+    mounted() {
+        let userIcon = document.querySelector("#father-cog-icon");
+        let options = document.querySelector(".toogle-header-container");
+        document.addEventListener("click", (evt) => {
+            if(evt.target === userIcon){
+                options.style.display = "block";
+            } else {
+                userIcon.childNodes.forEach(x => {
+                    if(evt.target === x){
+                        options.style.display = "block";
+                    } else {
+                        options.style.display = "none"; 
+                    }
+                })
+            }
         })
     }
 }

@@ -1,104 +1,7 @@
 const state = {
-    iconsData: [
-        {
-            category: 'Casa',
-            iconName: 'home',
-            class: '#24C1FD',
-            prefix: "fas"
-        },
-        {
-            category: 'Servicios',
-            iconName: 'lightbulb',
-            class: '#FFBF53',
-            prefix: "fas"
-        },
-        {
-            category: 'Banco & Transacciones',
-            iconName: 'money-bill-wave',
-            class: '#12BB85',
-            prefix: "fas"
-        },
-        {
-            category: 'Comida',
-            iconName: 'utensils',
-            class: '#FD7E14',
-            prefix: "fas"
-        },
-        {
-            category: 'Tecnología',
-            iconName: 'mobile-alt',
-            class: '#BE4BDB',
-            prefix: "fas"
-        },
-        {
-            category: 'Viajes',
-            iconName: 'plane',
-            class: '#F963A0',
-            prefix: "fas"
-        },
-        {
-            category: 'Entretenimiento',
-            iconName: 'gamepad',
-            class: '#FF5154',
-            prefix: "fas"
-        },
-        {
-            category: 'Moda',
-            iconName: 'tshirt',
-            class: '#4C6EF5',
-            prefix: "fas"
-        },
-        {
-            category: 'Casa',
-            iconName: 'home',
-            class: '#24C1FD',
-            prefix: "fas"
-        },
-        {
-            category: 'Servicios',
-            iconName: 'lightbulb',
-            class: '#FFBF53',
-            prefix: "fas"
-        },
-        {
-            category: 'Banco & Transacciones',
-            iconName: 'money-bill-wave',
-            class: '#12BB85',
-            prefix: "fas"
-        },
-        {
-            category: 'Comida',
-            iconName: 'utensils',
-            class: '#FD7E14',
-            prefix: "fas"
-        },
-        {
-            category: 'Tecnología',
-            iconName: 'mobile-alt',
-            class: '#BE4BDB',
-            prefix: "fas"
-        },
-        {
-            category: 'Viajes',
-            iconName: 'plane',
-            class: '#F963A0',
-            prefix: "fas"
-        },
-        {
-            category: 'Entretenimiento',
-            iconName: 'gamepad',
-            class: '#FF5154',
-            prefix: "fas"
-        },
-        {
-            category: 'Moda',
-            iconName: 'tshirt',
-            class: '#4C6EF5',
-            prefix: "fas"
-        }
-    ],
     iconsArray: [],
     previewIcon: {
+        category:"",
         class: "#739AFF"
     },
     renderIcons: [],
@@ -115,9 +18,6 @@ const getters = {
 }
 
 const mutations = {
-    setIconsData(state, payload){
-        state.iconsData = payload
-    },
     setPreviewIcon(state, payload){
         state.previewIcon = payload
     },

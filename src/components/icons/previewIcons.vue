@@ -6,13 +6,13 @@
                 <div class="radio-button icons-category icons-category--bigger">
                     <input id="icon" class="categories-radio" name="category" type="radio" disabled/>
                     <label for="icon" >
-                        <font-awesome-icon :icon="[previewIcon.prefix, previewIcon.iconName]" :style=" {backgroundColor: previewIcon.class} "/>
+                        <font-awesome-icon :icon="[previewIcon.prefix ? previewIcon.prefix : 'fas', previewIcon.iconName ? previewIcon.iconName : 'search']" :style=" {backgroundColor: previewIcon.class} "/>
                     </label>
                 </div>
             </div>
         </div>
         <div class="container-item__row minify-padding">
-             <ValidationProvider class="container-item__column" name="categoría" rules="string"  v-slot="{ errors }">
+             <ValidationProvider name="categoría" rules="string"  v-slot="{ errors }" class="container-item__column" >
                 <label class="m-label">
                     Categoria:
                 </label>
@@ -70,6 +70,9 @@ export default {
             "previewIcon": (state) => (state.previewIcon),
             "toggle": (state) => (state.toggle),
             "avalible": (state) => (state.avalible)
+        }),
+        ...mapState('common', {
+            "iconsData": (state) => (state.iconsData),
         })
     },
     methods: {
@@ -80,8 +83,10 @@ export default {
         ...mapActions('icons', [
             'updateAvalible',
             'updateToggle',
-            'updateIconsData',
             'updateIcon'
+        ]),
+        ...mapActions('common', [
+            'updateIconsData'
         ]),
         onSubmit(){
 

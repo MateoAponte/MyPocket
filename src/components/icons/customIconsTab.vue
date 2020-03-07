@@ -18,7 +18,7 @@ export default {
         listIconsIcon
     },
     computed: {
-        ...mapState('icons', {
+        ...mapState('common', {
             "iconsData": (state) => (state.iconsData)
         })
     }

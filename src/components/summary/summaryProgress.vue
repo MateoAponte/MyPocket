@@ -32,13 +32,36 @@ export default {
             'selectedArray': (state) => state.selectedArray,
             'dropDownToggle': (state) => state.dropDownToggle
         }),
-        ...mapGetters('summary', [
-            'getSummaryData',
-        ]),
+        ...mapState('common', {
+            "itemsData": (state) => (state.itemsData)
+        }),
         getNewTotalExpenses(){
             this.getSummaryData.forEach(x => {
                 this.totalExpenses += x.cost;
             })
+        },
+        getSummaryData(){
+            let summaryData = _.cloneDeep(this.itemsData);
+            let result = summaryData.reduce((acc, val) => {
+                let o = acc.filter((obj) => {
+                        return obj.iconData.category == val.iconData.category;
+                    }).pop() || {...val, cost:0};
+                    
+                    o.cost += parseInt(val.cost);
+                    acc.push(o);
+                    return acc;
+                },[]);
+
+                let finalresult = result.filter((itm, i, a) => {
+                    return i == a.indexOf(itm);
+                });
+
+                finalresult.map(x => {
+                    x.categoryData = summaryData.filter(y => {
+                        return  x.iconData.category == y.iconData.category;
+                    })
+                })
+            return finalresult;
         }
     },
     methods: {

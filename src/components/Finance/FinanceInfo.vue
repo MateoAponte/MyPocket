@@ -55,7 +55,7 @@
                 </div>
                 <div class="container-item__column column-underline"></div>
                 <div class="container-item__column--medium simple-column simple-column-right">
-                    <label class="m-label">
+                    <label class="m-label" :style="{ color: setExpenses > budgetData.budget ? '#FB7185' : '#545454'}">
                         {{numeral(setExpenses).format('$0,0')}}
                     </label>
                 </div>
@@ -68,7 +68,7 @@
                 </div>
                 <div class="container-item__column column-underline"></div>
                 <div class="container-item__column--medium simple-column simple-column-right">
-                    <label class="m-label">
+                    <label class="m-label" :style="{ color: setRes < 0 ? '#FB7185' : '#545454' }">
                         {{numeral(setRes).format('$0,0')}}
                     </label>
                 </div>
@@ -78,32 +78,32 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapState } from 'vuex';
 export default {
     name: 'FinanceInfo',
     computed: {
-        ...mapGetters('finance', [
-            'getItemsData',
-            'getBudgetData'
-        ]),
+        ...mapState('common', {
+            'itemsData': (state) => (state.itemsData),
+            'budgetData': (state) => (state.personalData.budgetData)
+        }),
         setExpenses(){
-            this.getBudgetData.expenses = 0;
-            this.getItemsData.forEach( x => {
-                this.getBudgetData.expenses += parseInt(x.cost);
+            this.budgetData.expenses = 0;
+            this.itemsData.forEach( x => {
+                this.budgetData.expenses += parseInt(x.cost);
             } );
-            return this.getBudgetData.expenses;
+            return this.budgetData.expenses;
         },
         setBudget(){
-            return this.getBudgetData.budget;
+            return this.budgetData.budget;
         },
         setPercentil(){
-            return this.getBudgetData.budget * (this.getBudgetData.percentil / 100);
+            return this.budgetData.budget * (this.budgetData.percentil / 100);
         },
         setRes(){
             return this.setBudget - this.setExpenses;
         },
         setQuantityItems(){
-            return this.getItemsData.length - 1;
+            return this.itemsData.length - 1;
         }
     }
 }

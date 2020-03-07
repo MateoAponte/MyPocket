@@ -6,7 +6,7 @@
                     <label class="m-label">
                         Correo:
                     </label>
-                    <input type="password" class="custom-form" placeholder="Ingrese su contraseña" />
+                    <input type="text" class="custom-form" placeholder="Ingrese su contraseña" v-model="personalData.userData.email" />
                 </div>
             </div>
             <div class="container-item__row">
@@ -18,13 +18,13 @@
                     </div>
                     <div class="container-item__column">
                         <div class="radio-button">
-                            <input id="hight" name="prority" type="radio" value="Alta" />
+                            <input id="hight" name="prority" type="radio" value="monthly" v-model="personalData.userData.entryCost" />
                             <label for="hight" class="radio-label">Mensual</label>
                         </div>
                     </div>
                     <div class="container-item__column">
                         <div class="radio-button">
-                            <input id="medium" name="prority" type="radio" value="Media" />
+                            <input id="medium" name="prority" type="radio" value="biweekly" v-model="personalData.userData.entryCost" />
                             <label for="medium" class="radio-label">Quincenal</label>
                         </div>
                     </div>
@@ -54,19 +54,19 @@
                         <label class="m-label">
                             Nueva contraseña:
                         </label>
-                        <input type="password" class="custom-form" placeholder="Ingrese su contraseña" />
+                        <input type="password" class="custom-form" placeholder="Ingrese su contraseña" v-model="password" />
                     </div>
                     <div class="container-item__column">
                         <label class="m-label">
                             Confirmación:
                         </label>
                         <input type="password" class="custom-form"
-                            placeholder="Ingrese la confirmación de su contraseña" />
+                            placeholder="Ingrese la confirmación de su contraseña" v-model="confirmPassword" />
                     </div>
                 </div>
             </transition>
             <div class="container-item__row">
-                <button class="m-button m-button-esmerald m-button-long">Guardar</button>
+                <button class="m-button m-button-esmerald m-button-long" @click="saveUserData()" >Guardar</button>
             </div>
         </div>
         <div class="m-card__section container-item__column">
@@ -78,11 +78,27 @@
 </template>
 
 <script>
+    import { mapState, mapActions } from 'vuex';
     export default {
         name: "downSection",
         data: function () {
             return {
-                showPassword: true
+                showPassword: true,
+                password: "",
+                confirmPassword: ""
+            }
+        },
+        computed: {
+            ...mapState('common', {
+                "personalData": (state) => (state.personalData)
+            }),
+        },
+        methods: {
+            ...mapActions('common', [
+                'updatePersonalData'
+            ]),
+            saveUserData(){
+                this.updatePersonalData(this.personalData);
             }
         }
     }

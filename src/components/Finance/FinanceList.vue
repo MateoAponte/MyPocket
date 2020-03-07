@@ -43,7 +43,7 @@
                     <div class="container-item__icon">
                         <div class="relative container-item__icon__item long-icon">
                             <span class="icons-category">
-                                <font-awesome-icon :icon="data.iconData.name" :style="{ backgroundColor:data.iconData.class }"/>
+                                <font-awesome-icon :icon="data.iconData.iconName" :style="{ backgroundColor:data.iconData.class }"/>
                             </span>
                         </div>
                         <div class="relative container-item__icon__item">
@@ -96,11 +96,18 @@ export default {
             arrayData: []
         }
     },
+    watch: {
+        itemsData(newVal){
+            this.arrayData = newVal;
+        }
+    },
     computed: {
-        ...mapGetters('finance', [
-            'getItemsData',
-            'getBudgetData'
-        ]),
+        ...mapState('common', {
+            "itemsData": (state) => (state.itemsData),
+        }),
+        ...mapState('finance', {
+            "budgetData": (state) => (state.budgetData),
+        })
     },
     methods: {
         ...mapActions('common', [
@@ -135,7 +142,7 @@ export default {
             document.querySelector(".overlay").classList.replace('hide', 'show');
         },
         setPercent(value){
-            return (value * 100) / this.getBudgetData.budget;
+            return (value * 100) / this.budgetData.budget;
         },
         deleteItems(i){
             this.deleteItemsData(i);
@@ -147,7 +154,7 @@ export default {
         }
     },
     mounted(){
-        this.arrayData = _.cloneDeep(this.getItemsData);
+        this.arrayData = _.cloneDeep(this.itemsData);
     }
 }
 </script>

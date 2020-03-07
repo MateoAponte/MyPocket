@@ -133,14 +133,20 @@
             @include FlexBox(row);
 
             &--title{
-                display: flex;
-                flex-flow: column wrap;
-                flex: 1;
-                align-items: center;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                flex-wrap: nowrap;
+                overflow: hidden;
+                flex-flow: row;
                 width: 100%;
-                height: auto;
+                max-width: 125px;
                 font-size: 16px;
                 margin: 0 8px;
+            }
+
+            .relative.flex-center{
+                position: relative;
+                z-index: 3;
             }
         }
         

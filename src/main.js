@@ -83,9 +83,10 @@ extend('radio', {
 
 extend('category', {
     validate(value){
+        console.log(value);
         return {
             required: true,
-            valid: value.name != null || value.name != undefined
+            valid: value.iconName || value === {}
         }
     },
     message: "* Debe seleccionar una categoría",

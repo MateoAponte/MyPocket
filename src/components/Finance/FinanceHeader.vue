@@ -51,7 +51,7 @@
                         Categoría:
                     </label>
                     <span v-if="itemData.iconData.category" class="m-small width-100">
-                        ({{itemData.iconData.category}})<font-awesome-icon :icon="itemData.iconData.name"/>
+                        ({{itemData.iconData.category}})<font-awesome-icon :icon="itemData.iconData.iconName"/>
                     </span>
                 </div>
                 <ValidationProvider class="relative" v-slot="{ errors }" rules="category">
@@ -61,8 +61,8 @@
                         <div class="container-item__col-row space-around" v-for="(iconSections, i) in getIconSections" :key="i">
                             <div class="container-item__column simple-column" v-for="(icon, index) in iconSections" :key="index">
                                 <div class="radio-button icons-category"><!-- .tooltip -->
-                                    <input :id="'icon' + icon.name + (index + i)" class="categories-radio" name="category" type="radio" :value="icon" v-model="itemData.iconData" />
-                                    <label :for="'icon' + icon.name + (index + i)" >
+                                    <input :id="'icon' + icon.iconName + (index + i)" class="categories-radio" name="category" type="radio" :value="icon" v-model="itemData.iconData" />
+                                    <label :for="'icon' + icon.iconName + (index + i)" >
                                         <font-awesome-icon :icon="icon.iconName" :style="{ backgroundColor:icon.class }"/>
                                     </label>
                                     <!--<div class="top">
@@ -81,14 +81,14 @@
             </div>
             <div class="container-item__row">
                 <button class="m-button m-button-esmerald m-button-flex" type="submit">Guardar <font-awesome-icon icon="save" /></button>
-                <button class="m-button m-button-azure m-button-flex" type="submit" @click="addItem">Agregar <font-awesome-icon icon="plus" /></button>
+                <button class="m-button m-button-azure m-button-flex" type="submit" @click="addItem()">Agregar <font-awesome-icon icon="plus" /></button>
             </div>
         </form>
     </ValidationObserver>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 export default {
     name: 'FinanceHeader',
     data: function() {
@@ -104,12 +104,12 @@ export default {
         }
     },
     computed: {
-        ...mapGetters('finance', [
-            'getIconData'
-        ]),
+        ...mapState('common', {
+            'iconsData': (state) => (state.iconsData)
+        }),
         comprobeData(){
             let data = this.itemData;
-            return data.thing && data.cost && data.priority && data.iconData.name ? false : true
+            return data.thing && data.cost && data.priority && data.iconData.iconName ? false : true
         },
         toogleClass(){
             return this.toggleIcon ? "max-height-toggle" : "min-height-toggle";
@@ -118,11 +118,11 @@ export default {
             return this.toggleIcon ? "icon--rotate-180" : "icon--rotate-0";
         },
         getIconSections(){
-            return _.chunk(_.cloneDeep(this.getIconData), 4);
+            return _.chunk(_.cloneDeep(this.iconsData), 4);
         }
     },
     methods: {
-        ...mapActions('finance', [
+        ...mapActions('common', [
             'updateItemsData'
         ]),
         onSubmit(){

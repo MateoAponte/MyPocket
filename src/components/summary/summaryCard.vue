@@ -4,7 +4,7 @@
             <div class="container-item__row vertical-center">
                 <span class="m-title-big">
                     <div class="icons-category--medium flex-center">
-                        <font-awesome-icon :icon="data.iconData.name"
+                        <font-awesome-icon :icon="data.iconData.iconName"
                             :style="{ backgroundColor: data.iconData.class}" />
                         <span class="m-value-paragraph">{{data.iconData.category}}</span>
                     </div>
@@ -24,31 +24,29 @@
             </div>
         </div>
     </div>
-    <div v-else>
-        <div class="m-card minify-padding">
-            <div class="m-card-body">
-                <div class="m-card__icon">
-                    <font-awesome-icon :icon="data.iconData.name"
-                        :style="{ color: hex2rgba(data.iconData.class, 0.75)  }" />
-                </div>
-                <div class="m-card__content">
-                    <div class="m-card__content-info">
-                        <div class="m-card__content-label">
-                            <span class="m-label">
-                                {{data.thing}}
-                            </span>
-                        </div>
-                        <div class="m-card__content-label">
-                            <span class="m-small">
-                                {{moment(data.date).format('ll')}}
-                            </span>
-                        </div>
-                    </div>
-                    <div class="m-card__content-expense">
+    <div class="m-card minify-padding" v-else>
+        <div class="m-card-body">
+            <div class="m-card__icon">
+                <font-awesome-icon :icon="data.iconData.iconName"
+                    :style="{ color: hex2rgba(data.iconData.class, 0.75)  }" />
+            </div>
+            <div class="m-card__content">
+                <div class="m-card__content-info">
+                    <div class="m-card__content-label">
                         <span class="m-label">
-                            {{numeral(data.cost).format("$0,0")}}
+                            {{data.thing}}
                         </span>
                     </div>
+                    <div class="m-card__content-label">
+                        <span class="m-small">
+                            {{moment(data.date).format('ll')}}
+                        </span>
+                    </div>
+                </div>
+                <div class="m-card__content-expense">
+                    <span class="m-label">
+                        {{numeral(data.cost).format("$0,0")}}
+                    </span>
                 </div>
             </div>
         </div>
