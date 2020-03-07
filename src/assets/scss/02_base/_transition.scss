@@ -8,6 +8,15 @@
     opacity: 0;
 }
 
+.fade-card-enter-active, .fade-card-leave-active {
+    transition: all .7s;
+}
+.fade-card-enter, .fade-card-leave-to {
+    position: absolute;
+    transform: translateX(-500px);
+    opacity: 0;
+}
+
 .slide-enter-active, .slide-leave-active {
     transition: all .7s;
 }

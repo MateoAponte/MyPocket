@@ -40,6 +40,10 @@ export default {
         onSave: {
             type: Boolean,
             default: true
+        },
+        disabled: {
+            type: Boolean,
+            default: true
         }
     },
     data() {
@@ -50,6 +54,9 @@ export default {
     watch: {
         value(newVal){
             this.setValue(newVal);
+        },
+        disabled(newVal){
+            !newVal ? this.picker.enable() : this.picker.disable();
         }
     },
     computed: {
@@ -78,7 +85,9 @@ export default {
                     save: 'Guardar',  // Default for save button
                     clear: 'Limpiar', // Default for clear button
                     cancel: 'Cancelar' // Default for cancel button
-                }
+                },
+
+                disabled: _self.disabled
             });
 
             if(!this.onSave){                

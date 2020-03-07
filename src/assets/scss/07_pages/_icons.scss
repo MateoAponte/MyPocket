@@ -4,6 +4,7 @@
         font-size: 1em;
 
         & > .container-item__column:nth-child(1){
+            min-width: 500px;
             align-self: flex-start;
             width: 70%;
 

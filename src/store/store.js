@@ -2,6 +2,7 @@ import common from '@Store/common/common';
 import finance from '@Store/finance/finance';
 import userAdmin from '@Store/userAdmin/userAdmin';
 import summary from '@Store/summary/Summary';
+import icons from '@Store/icons/icons';
 
 import Vue from 'vue';
 import Vuex from 'vuex';
@@ -13,6 +14,7 @@ export default new Vuex.Store({
         common,
         finance,
         userAdmin,
-        summary
+        summary,
+        icons
     }
 })
