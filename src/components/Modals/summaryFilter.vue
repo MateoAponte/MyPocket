@@ -112,7 +112,7 @@
                         <div class="container-item__row">
                             <div class="container-item__column">
                                 <span class="icons-category">
-                                    <font-awesome-icon :icon="data.iconData.name" :style="{backgroundColor: data.iconData.class}"/>
+                                    <font-awesome-icon :icon="data.iconData.iconName" :style="{backgroundColor: data.iconData.class}"/>
                                 </span>
                             </div>
                             <div class="container-item__column">
@@ -137,7 +137,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 export default {
     name: "summary-filter",
     props: {
@@ -175,16 +175,11 @@ export default {
         },
         filterOptions(){
             this.filterData = "";
-        },
-        arrayFiltered(newVal){
-            newVal.forEach(x => {
-                x.id =  _.random(0, 1000)
-            });
         }
     },
     computed: {
-        ...mapGetters('finance', [
-            'getItemsData'
+        ...mapState('common', [
+            'itemsData'
         ]),
         filteredData: {
             set(value){
@@ -195,7 +190,7 @@ export default {
             }
         },
         returnArrayData(){
-            return this.getItemsData;
+            return this.itemsData;
         }
     },
     methods: {
