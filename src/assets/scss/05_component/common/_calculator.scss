@@ -2,7 +2,7 @@
     width: 285px;
     height: 455px;
     padding: 10px 6px;
-    background-color: $clrP-white;
+    background-color: $bg-light-gray;
     box-shadow: $shadow-gray;
     border-radius: 8px;
     box-sizing: border-box;
@@ -50,6 +50,9 @@
             font-size: 2em;
             color: darken($clrP-azure, 8%);
             text-align: right;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
         }
     }
 
@@ -73,6 +76,7 @@
             background-color: rgba($clrP-azure, 0.15);
             box-shadow: $shadow-gray;
             border: none;
+            outline: none;
             
             &:hover{
                 background-color: rgba($clrP-azure, 0.3);

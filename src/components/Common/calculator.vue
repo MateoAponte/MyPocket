@@ -6,32 +6,32 @@
         </div>
         <div class="calculator-display">
             <div class="calculator-display__acum">
-                255 + 355 - 45
+                {{amount}}
             </div>
             <div class="calculator-display__total">
-                1294
+                {{display}}
             </div>
         </div>
         <div class="calculator-options">
-            <button class="calculator__buttons calculator__buttons--background">CE</button>
-            <button class="calculator__buttons calculator__buttons--background">C</button>
-            <button class="calculator__buttons calculator__buttons--background">←</button>
-            <button class="calculator__buttons calculator__buttons--background">/</button>
-            <button class="calculator__buttons">7</button>
-            <button class="calculator__buttons">8</button>
-            <button class="calculator__buttons">9</button>
-            <button class="calculator__buttons calculator__buttons--background">*</button>
-            <button class="calculator__buttons">4</button>
-            <button class="calculator__buttons">5</button>
-            <button class="calculator__buttons">6</button>
-            <button class="calculator__buttons calculator__buttons--background">+</button>
-            <button class="calculator__buttons">1</button>
-            <button class="calculator__buttons">2</button>
-            <button class="calculator__buttons">3</button>
-            <button class="calculator__buttons calculator__buttons--background">-</button>
-            <button class="calculator__buttons calculator__buttons--big">0</button>
-            <button class="calculator__buttons">.</button>
-            <button class="calculator__buttons calculator__buttons--background">=</button>
+            <button class="calculator__buttons calculator__buttons--background" @click="clearAll()">CE</button>
+            <button class="calculator__buttons calculator__buttons--background" @click="clearDisplay()">C</button>
+            <button class="calculator__buttons calculator__buttons--background" @click="clearStep()">←</button>
+            <button class="calculator__buttons calculator__buttons--background" @click="executeOperation('/')">/</button>
+            <button class="calculator__buttons" @click="keyPress(7)">7</button>
+            <button class="calculator__buttons" @click="keyPress(8)">8</button>
+            <button class="calculator__buttons" @click="keyPress(9)">9</button>
+            <button class="calculator__buttons calculator__buttons--background" @click="executeOperation('*')">*</button>
+            <button class="calculator__buttons" @click="keyPress(4)">4</button>
+            <button class="calculator__buttons" @click="keyPress(5)">5</button>
+            <button class="calculator__buttons" @click="keyPress(6)">6</button>
+            <button class="calculator__buttons calculator__buttons--background" @click="executeOperation('+')">+</button>
+            <button class="calculator__buttons" @click="keyPress(1)">1</button>
+            <button class="calculator__buttons" @click="keyPress(2)">2</button>
+            <button class="calculator__buttons" @click="keyPress(3)">3</button>
+            <button class="calculator__buttons calculator__buttons--background" @click="executeOperation('-')">-</button>
+            <button class="calculator__buttons calculator__buttons--big" @click="keyPress(0)">0</button>
+            <button class="calculator__buttons" @click="keyPress('.')">.</button>
+            <button class="calculator__buttons calculator__buttons--background" @click="keyTotal()">=</button>
         </div>
     </div>
 </template>
@@ -40,6 +40,113 @@
 import { mapActions } from 'vuex';
     export default {
         name: "calculator",
+        data: function(){
+            return {
+                amount: "",
+                acum: 0,
+                amount: '',
+                display: 0,
+                step: 0
+            }
+        },
+        methods: {
+            ...mapActions('common', [
+                "updateCalculator"
+            ]),
+            closeCalculator(){
+                this.updateCalculator(false);
+            },
+            keyPress(val){
+                if(val === '.'){
+                    if(!this.display.toString().match(/\./g)){
+                        this.display += val;
+                        this.step++;
+                    }
+                } else {
+                    if(this.step === 0){
+                        this.display = val.toString();
+                        this.step++;
+                    } else {
+                        this.display += val.toString();
+                    }
+                }
+            },
+            executeOperation(operator){
+                let mathExp = /(\*|\+|\-|\/)/g;
+                this.amount += this.display + ` ${operator} `;
+                let operation = '+';
+                if(this.amount.match(mathExp).length > 1){ 
+                    operation = this.amount.match(mathExp)[this.amount.match(mathExp).length - 2];
+                } else {
+                    operation = this.amount.match(mathExp)[this.amount.match(mathExp).length - 1];
+                }
+                switch(operation){
+                    case '+':
+                        this.acum = parseFloat(this.display) + parseFloat(this.acum);
+                    break;
+                    case '-':
+                        this.acum = parseFloat(this.acum) - parseFloat(this.display);
+                    break;
+                    case '*':
+                        this.acum = parseFloat(this.display) * (this.acum == 0 ? 1 : parseFloat(this.acum));
+                    break;
+                    case '/':
+                        this.acum =  parseFloat(this.acum) / (this.acum == 0 ? 1 : parseFloat(this.acum));
+                    break;
+                }
+                this.display = this.acum;
+                this.step = 0;
+            },
+            keyTotal(){
+                let mathExp = /(\*|\+|\-|\/)/g;
+                let operation = this.amount.match(mathExp)[this.amount.match(mathExp).length - 1]
+                switch(operation){
+                    case '+':
+                        this.acum = parseFloat(this.display) + parseFloat(this.acum);
+                    break;
+                    case '-':
+                        this.acum = parseFloat(this.acum) - parseFloat(this.display);
+                    break;
+                    case '*':
+                        this.acum = parseFloat(this.display) * parseFloat(this.acum);
+                    break;
+                    case '/':
+                        this.acum =  parseFloat(this.acum) / parseFloat(this.display);
+                    break;
+                }
+                if(this.step === 0){
+                    let amount = _.cloneDeep(this.amount)
+                    amount = amount.split(mathExp);
+                    amount[amount.length - 1] = this.display;
+                    this.acum = parseFloat(amount[amount.length - 1]) + parseFloat(amount[amount.length - 3]);
+                    this.amount = amount.join("");
+                } else {
+                    this.amount += this.display;
+                }
+                this.display = this.acum;
+                this.step = 0;
+            },
+            clearAll(){
+                this.display = 0;
+                this.acum = 0;
+                this.amount = '';
+                this.step = 0;
+            },
+            clearDisplay(){
+                this.display = 0;
+                this.step = 0;
+            },
+            clearStep(){
+                if(this.display.length > 1){
+                    this.display = this.display.toString().split("");
+                    this.display.pop();
+                    this.display = this.display.join("");
+                } else {
+                    this.display = 0;
+                    this.step = 0;
+                }
+            }
+        },
         mounted(){
             dragElement(document.querySelector("#calculator"));
             function dragElement(elmnt) {
@@ -75,14 +182,6 @@ import { mapActions } from 'vuex';
                     document.onmouseup = null;
                     document.onmousemove = null;
                 }
-            }
-        },
-        methods: {
-            ...mapActions('common', [
-                "updateCalculator"
-            ]),
-            closeCalculator(){
-                this.updateCalculator(false);
             }
         }
     }
