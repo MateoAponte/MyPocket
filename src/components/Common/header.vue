@@ -41,7 +41,7 @@
                         <div class="relative flex-center" v-if="personalData">
                             <font-awesome-icon class="special-icon" id="father-cog-icon" icon="user-circle" />
                             <div id="cog-icon" class="toogle-header-container" style="display: none">
-                                <router-link to="/configuration" class="header-row-link-section">
+                                <div class="header-row-link-section" @click="showCalculator()">
                                     <div class="toogle-header-container-row">
                                         <div class="toogle-header-container-column">
                                             <font-awesome-icon icon="calculator" />
@@ -50,7 +50,7 @@
                                             <span class="m-mini-paragraph">Calculadora</span>
                                         </div>
                                     </div>
-                                </router-link>
+                                </div>
                                 <router-link to="/configuration" class="header-row-link-section">
                                     <div class="toogle-header-container-row">
                                         <div class="toogle-header-container-column">
@@ -85,7 +85,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 export default {
     name: 'HeaderGeneric',
     data: function(){
@@ -114,6 +114,14 @@ export default {
                 })
             }
         })
+    },
+    methods: {
+        ...mapActions('common', [
+            "updateCalculator"
+        ]),
+        showCalculator(){
+            this.updateCalculator(true)
+        }
     }
 }
 </script>

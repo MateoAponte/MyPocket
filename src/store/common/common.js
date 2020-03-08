@@ -1,5 +1,6 @@
 const state = {
     data: {},
+    calculator: false,
     modalData: {
         type: "",
         action: "",
@@ -178,6 +179,9 @@ const state = {
 const getters = {}
 
 const mutations = {
+    setCalculator(state, payload){
+        state.calculator = payload;
+    },
     setUserData(state, payload){
         state.data = payload;
     },
@@ -196,6 +200,9 @@ const mutations = {
 }
 
 const actions = {
+    updateCalculator({ commit }, payload){
+        commit("setCalculator", payload);
+    },
     updateUserData({ commit }, payload){
         commit('setUserData', payload);
     },

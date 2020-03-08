@@ -1,6 +1,9 @@
 <template>
-    <div class='app' @click="toogleHeader">
+    <div class='app'>
         <header-generic/>
+        <transition name="slide">
+            <calculator v-if="calculator" />
+        </transition>
         <router-view />
         <footer-generic />
 
@@ -12,30 +15,26 @@
 import HeaderGeneric from '@Components/Common/header';
 import FooterGeneric from '@Components/Common/footer';
 import modalContainer from '@Components/Modals/modalContainer';
+import calculator from '@Components/Common/calculator';
+import { mapState } from 'vuex';
 
 export default {
     components: {
         HeaderGeneric,
         FooterGeneric,
-        modalContainer
+        modalContainer,
+        calculator
     },
     data: function(){
         return {
             toogle: false
         }
     },
-    methods: {
-        toogleHeader(e) {
-            // this.toogle = !this.toogle;
-            // let cogIcon = document.querySelector("#cog-icon");
-            // let path = document.querySelector("#father-cog-icon").children[0];
-            // if(e.target.id !== 'father-cog-icon' && e.target !== path){
-            //     cogIcon.style.display = 'none';
-            // } else {
-            //     this.toogle ? cogIcon.style.display = 'block' : cogIcon.style.display = 'none';
-            // }
-        }
-    }
+    computed: {
+        ...mapState('common', {
+            "calculator": (state) => (state.calculator)
+        })
+    },
 }
 </script>
 

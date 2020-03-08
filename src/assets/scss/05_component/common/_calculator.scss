@@ -1,0 +1,99 @@
+.calculator-container{
+    width: 285px;
+    height: 455px;
+    padding: 10px 6px;
+    background-color: $clrP-white;
+    box-shadow: $shadow-gray;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-family: "Nunito";
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    z-index: 11;
+
+    .calculator-controls{
+        width: 100%;
+        height: 15px;
+        font-size: 1em;
+        color: $clrP-black;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 15px;
+
+        #calculatorMove{
+            cursor: move;
+        }
+        #calculatorClose{
+            cursor: pointer;
+        }
+    }
+
+    .calculator-display{
+        width: 100%;
+        margin: 5px 0;
+        padding: 6px;
+        height: 70px;
+        border-bottom: $border-input-gray;
+
+        .calculator-display__acum{
+            width: 100%;
+            height: 20px;
+            font-size: 0.9em;
+            color: #C9C9C9;
+            text-align: right;
+        }
+        .calculator-display__total{
+            width: 100%;
+            height: 40px;
+            font-size: 2em;
+            color: darken($clrP-azure, 8%);
+            text-align: right;
+        }
+    }
+
+    .calculator-options{
+        width: 100%;
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+        justify-content: center;
+        .calculator__buttons{
+            margin: 3px;
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1em;
+            color: $clrP-black;
+            background-color: rgba($clrP-azure, 0.15);
+            box-shadow: $shadow-gray;
+            border: none;
+            
+            &:hover{
+                background-color: rgba($clrP-azure, 0.3);
+            }
+            &:focus{
+                box-shadow: 0px 15px 18px 0px rgba($clrP-azure, 0.3 ) inset;
+            }
+        }
+        .calculator__buttons--background{
+            color: $clrP-azure;
+            background-color: rgba($clrP-azure, 0.35);
+            
+            &:hover{
+                background-color: rgba($clrP-azure, 0.5);
+            }
+            &:focus{
+                box-shadow: 0px 15px 18px 0px rgba($clrP-azure, 0.35) inset;
+            }
+        }
+        .calculator__buttons--big{
+            width: 120px;
+        }
+    }
+}
