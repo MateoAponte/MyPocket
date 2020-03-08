@@ -11,7 +11,7 @@
             <div class="m-card-body">
                 <report-summary-section title="Categoría mas común:" 
                                         description="(Cantidad de veces que se repite)" 
-                                        :data="numeral(getHigherCategory ? getHigherCategory.price : 0).format('$0,0')"
+                                        :data="getHigherCategory ? getHigherCategory : '' "
                 />
                 <report-summary-section title="Gasto de categoría:" 
                                         description="(Promedio por mes)" 

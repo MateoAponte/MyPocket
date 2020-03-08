@@ -15,7 +15,7 @@
                 />
                 <report-summary-section title="Mes mayor:" 
                                         description="(Mes de mas alto flujo)" 
-                                        :data="moment(getHigherMonth ? getHigherCategory : '-').format('ll')"
+                                        :data="moment(getHigherMonth ? getHigherMonth : '-').format('ll')"
                 />
             </div>
         </div>

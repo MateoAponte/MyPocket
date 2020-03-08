@@ -8,7 +8,8 @@
         </div>
         <div class="container-item__column">
             <span class="m-label">
-                {{data}}
+                {{!data.category ? data : data.category}}
+                <span class="m-small" v-if="data.category" >( {{numeral(data.price).format('$0,0')}} )</span>
             </span>
         </div>
     </div>
@@ -27,7 +28,6 @@ export default {
             default: "-"
         },
         data: {
-            type: String,
             default: "-"
         }
     }
