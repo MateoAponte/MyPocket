@@ -44,9 +44,9 @@ import { mapActions } from 'vuex';
             return {
                 amount: "",
                 acum: 0,
-                amount: '',
                 display: 0,
-                step: 0
+                step: 0,
+                getTotal: false 
             }
         },
         methods: {
@@ -57,6 +57,12 @@ import { mapActions } from 'vuex';
                 this.updateCalculator(false);
             },
             keyPress(val){
+                if(this.getTotal === true){
+                    this.amount = '';
+                    this.acum = 0;
+                    this.getTotal = false;
+                    this.display = val.toString();
+                }
                 if(val === '.'){
                     if(!this.display.toString().match(/\./g)){
                         this.display += val;
@@ -68,31 +74,42 @@ import { mapActions } from 'vuex';
                         this.step++;
                     } else {
                         this.display += val.toString();
+                        this.step++;
                     }
                 }
             },
             executeOperation(operator){
                 let mathExp = /(\*|\+|\-|\/)/g;
-                this.amount += this.display + ` ${operator} `;
+                this.getTotal === true ? this.amount += ` ${operator} ` : this.amount += this.display + ` ${operator} `;
+                this.getTotal === true && (this.getTotal = false);
+                // this.step === 1 ? (this.amount += this.display + ` ${operator} `) : (this.amount += ` ${operator} `);
                 let operation = '+';
-                if(this.amount.match(mathExp).length > 1){ 
-                    operation = this.amount.match(mathExp)[this.amount.match(mathExp).length - 2];
-                } else {
-                    operation = this.amount.match(mathExp)[this.amount.match(mathExp).length - 1];
-                }
-                switch(operation){
-                    case '+':
-                        this.acum = parseFloat(this.display) + parseFloat(this.acum);
-                    break;
-                    case '-':
-                        this.acum = parseFloat(this.acum) - parseFloat(this.display);
-                    break;
-                    case '*':
-                        this.acum = parseFloat(this.display) * (this.acum == 0 ? 1 : parseFloat(this.acum));
-                    break;
-                    case '/':
-                        this.acum =  parseFloat(this.acum) / (this.acum == 0 ? 1 : parseFloat(this.acum));
-                    break;
+                this.amount.match(mathExp).length > 1 
+                            ? operation = this.amount.match(mathExp)[this.amount.match(mathExp).length - 2]
+                            : operation = this.amount.match(mathExp)[this.amount.match(mathExp).length - 1];
+                if(this.step === 1){
+                    switch(operation){
+                        case '+':
+                            this.acum = parseFloat(this.display) + parseFloat(this.acum);
+                        break;
+                        case '-':
+                            if(this.acum <= 0 ){
+                                this.acum = parseFloat(this.display);
+                            } else {
+                                this.acum = parseFloat(this.acum) - parseFloat(this.display);
+                            }
+                        break;
+                        case '*':
+                            if(this.acum <= 0 ){
+                                this.acum = parseFloat(this.display);
+                            } else {
+                                this.acum = parseFloat(this.acum) * parseFloat(this.display);
+                            }
+                        break;
+                        case '/':
+                            this.acum =  parseFloat(this.acum) / (this.display == 0 ? 1 : parseFloat(this.display));
+                        break;
+                    }
                 }
                 this.display = this.acum;
                 this.step = 0;
@@ -111,7 +128,7 @@ import { mapActions } from 'vuex';
                         this.acum = parseFloat(this.display) * parseFloat(this.acum);
                     break;
                     case '/':
-                        this.acum =  parseFloat(this.acum) / parseFloat(this.display);
+                        this.acum =  parseFloat(this.acum) / (this.display == 0 ? 1 : parseFloat(this.display));
                     break;
                 }
                 if(this.step === 0){
@@ -123,6 +140,7 @@ import { mapActions } from 'vuex';
                 } else {
                     this.amount += this.display;
                 }
+                this.getTotal = true;
                 this.display = this.acum;
                 this.step = 0;
             },

@@ -2,7 +2,7 @@
     width: 285px;
     height: 455px;
     padding: 10px 6px;
-    background-color: $bg-light-gray;
+    background-color: lighten($bg-light-gray, 5%);
     box-shadow: $shadow-gray;
     border-radius: 8px;
     box-sizing: border-box;
@@ -43,6 +43,9 @@
             font-size: 0.9em;
             color: #C9C9C9;
             text-align: right;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
         }
         .calculator-display__total{
             width: 100%;
