@@ -16,6 +16,7 @@ import axios from 'axios';
 
 import ColorPicker from '@Components/common/colorPicker';
 import PieChart from '@Components/common/amCharts/pieChart';
+import xAxisChart from '@Components/common/amCharts/xAxisChart';
 
 
 Vue.set(Vue.prototype, "moment", moment);
@@ -98,6 +99,7 @@ Vue.component('ValidationProvider', ValidationProvider);
 Vue.component('ValidationObserver', ValidationObserver);
 Vue.component('ColorPicker', ColorPicker);
 Vue.component('PieChart', PieChart);
+Vue.component('xAxisChart', xAxisChart);
 
 window.eventBus = new Vue();
 Vue.config.productionTip = false;

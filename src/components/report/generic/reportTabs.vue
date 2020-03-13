@@ -20,14 +20,16 @@ export default {
         })
     },
     methods: {
-        firtsItemTab(){
-            let tabs = document.querySelectorAll(".generic-report-container > .m-container-row .m-card .m-card-header .container-item__row  .container-item__column");
-            tabs[0].classList.add("active-link");
-        },
         ...mapActions('generic',[
             'updateCategoriesData',
-            'updateNavItemsArr'
+            'updateNavItemsArr',
+            'updateSelectedData'
         ]),
+        firtsItemTab(){
+            let tabs = document.querySelectorAll(".generic-report-container > .m-container-row .m-card .m-card-header .container-item__row  .container-item__column");
+            this.updateSelectedData(...Object.values(this.navItemsArr[0]));
+            tabs[0].classList.add("active-link");
+        },
         getTranslateItemsNav(fragmentDate, type) {
             let keys = Object.keys(fragmentDate)[0];
             let date = this.moment(keys).format('ll');
@@ -157,9 +159,11 @@ export default {
                     x.classList.remove("active-link");
                     if(children.length >= 3 && i == 1){
                         x.classList.add("active-link");
+                        _self.updateSelectedData(...Object.values(_self.navItemsArr[i]));
                     } else {
                         if(x.innerHTML === _self.eventData.innerHTML && children.length == 2){
                             x.classList.add("active-link");
+                            _self.updateSelectedData(...Object.values(_self.navItemsArr[i]));
                         }
                     }
                 });

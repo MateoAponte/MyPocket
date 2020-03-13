@@ -20,13 +20,35 @@
                         <div class="m-card-body">
                             <div class="container-item__row flex-center">
                                 <div class="container-item__column">
-                                    <pie-chart :data="categoriesData" label="Value" ref="pie-chart" type="watcher" @updateChart="toggleClass(elementTarget.event, elementTarget)"></pie-chart>
+                                    <pie-chart v-if="itemData === 'generic'" :data="categoriesData" label="Value" ref="pie-chart" type="watcher" @updateChart="toggleClass(elementTarget.event, elementTarget)"></pie-chart>
+                                    <x-axis-chart v-else :data="xChartData" ref="x-axis-chart"></x-axis-chart>
                                 </div>
                             </div>
                             <div class="container-item__row">
                                 <span class="m-title-big">
                                     Resumen Anual:
                                 </span>
+                            </div>
+                            <div class="container-item__row">
+                                <div class="container-item__column--medium">
+                                    <label class="m-label">
+                                        Prioridad:
+                                    </label>
+                                </div>
+                                <div class="container-item__column container-item__col-row">
+                                    <div class="container-item__column">
+                                        <div class="radio-button">
+                                            <input id="generic" name="typeChart" type="radio" value="generic" v-model="itemData" />
+                                            <label for="generic" class="radio-label">Generico</label>
+                                        </div>
+                                    </div>
+                                    <div class="container-item__column">
+                                        <div class="radio-button">
+                                            <input id="detailed" name="typeChart" type="radio" value="detailed" v-model="itemData" />
+                                            <label for="detailed" class="radio-label">Detallado</label>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="container-item__row">
                                 
@@ -60,12 +82,23 @@
         },
         data: function () {
             return {
-                eventData: {}
+                eventData: {},
+                itemData: 'generic',
+                xChartData: []
             }
         },
         watch: {
             categoriesData(){
-                this.$refs['pie-chart'].destroy()
+                this.$refs['pie-chart'] ? this.$refs['pie-chart'].destroy() : setTimeout(() => {
+                    this.$refs['x-axis-chart'].destroy()
+                }, 500);
+            },
+            selectedData(){
+                let narr = [];
+                this.getSortSelectedData.forEach(y => {
+                    narr.push({ date: app.moment(y.date).format("MM-DD"), value: parseInt(y.cost), thing: y.thing })
+                });
+                this.xChartData = narr;
             }
         },
         computed: {
@@ -76,7 +109,19 @@
                 'dateCategories': (state) => (state.dateCategories),
                 'itemsData': (state) => (state.itemsData),
                 'budgetData': (state) => (state.budgetData),
+                'selectedData': (state) => (state.selectedData)
             }),
+            ...mapGetters('generic', [
+                'getSortSelectedData'
+            ]),
+            newKeysData: (val) => {
+            let narr = [];
+            val.forEach(y => {
+                narr.map(x => { 
+                   return { date: y.date, value: y.cost, thing: y.thing }
+                })
+            })
+        },
         getIterateDataDate() {
             let repeatData = _.cloneDeep(this.itemsData);
             let newArrDate = [];

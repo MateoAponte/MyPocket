@@ -1,6 +1,6 @@
 const state = {
     data: {},
-    calculator: true,
+    calculator: false,
     modalData: {
         type: "",
         action: "",

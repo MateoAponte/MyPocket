@@ -3,6 +3,7 @@ const state = {
     mainDateCategories: [],
     navItemsArr: [],
     dateCategories: [],
+    selectedData: [],
     eventData: {},
     budgetData: {
         budget: 1900000,
@@ -14,7 +15,7 @@ const state = {
             "thing": "Universidad",
             "cost": "500000",
             "priority": "Alta",
-            "date": "2019/11/25",
+            "date": "2019/11/02",
             "iconData": {
                 "category": 'Tecnología',
                 "name": 'mobile-alt',
@@ -24,7 +25,7 @@ const state = {
             "thing": "Celular",
             "cost": "250000",
             "priority": "Alta",
-            "date": "2019/11/25",
+            "date": "2019/11/05",
             "iconData": {
                 "category": 'Banco & Transacciones',
                 "name": 'money-bill-wave',
@@ -34,7 +35,7 @@ const state = {
             "thing": "Bicicleta",
             "cost": "167000",
             "priority": "Alta",
-            "date": "2019/11/25",
+            "date": "2019/11/10",
             "iconData": {
                 "category": 'Banco & Transacciones',
                 "name": 'money-bill-wave',
@@ -44,7 +45,7 @@ const state = {
             "thing": "Comida",
             "cost": "100000",
             "priority": "Media",
-            "date": "2019/11/26",
+            "date": "2019/11/14",
             "iconData": {
                 "category": 'Comida',
                 "name": 'utensils',
@@ -54,7 +55,7 @@ const state = {
             "thing": "Transporte",
             "cost": "80000",
             "priority": "Media",
-            "date": "2019/11/26",
+            "date": "2019/11/16",
             "iconData": {
                 "category": 'Viajes',
                 "name": 'plane',
@@ -64,7 +65,7 @@ const state = {
             "thing": "Canastas",
             "cost": "300000",
             "priority": "Alta",
-            "date": "2019/11/26",
+            "date": "2019/11/18",
             "iconData": {
                 "category": 'Comida',
                 "name": 'utensils',
@@ -74,7 +75,7 @@ const state = {
             "thing": "Instituto",
             "cost": "150000",
             "priority": "Alta",
-            "date": "2019/11/26",
+            "date": "2019/11/01",
             "iconData": {
                 "category": 'Banco & Transacciones',
                 "name": 'money-bill-wave',
@@ -94,7 +95,7 @@ const state = {
             "thing": "Audifonos (Balaca)",
             "cost": "80000",
             "priority": "Media",
-            "date": "2019/11/27",
+            "date": "2019/11/31",
             "iconData": {
                 "category": 'Tecnología',
                 "name": 'mobile-alt',
@@ -104,7 +105,7 @@ const state = {
             "thing": "Audifonos (Balaca)",
             "cost": "80000",
             "priority": "Media",
-            "date": "2019/11/27",
+            "date": "2019/11/30",
             "iconData": {
                 "category": 'Moda',
                 "name": 'tshirt',
@@ -115,7 +116,7 @@ const state = {
             "thing": "Universidad",
             "cost": "500000",
             "priority": "Alta",
-            "date": "2020/02/25",
+            "date": "2020/02/05",
             "iconData": {
                 "category": 'Tecnología',
                 "name": 'mobile-alt',
@@ -125,7 +126,7 @@ const state = {
             "thing": "Celular",
             "cost": "250000",
             "priority": "Alta",
-            "date": "2020/02/25",
+            "date": "2020/02/06",
             "iconData": {
                 "category": 'Banco & Transacciones',
                 "name": 'money-bill-wave',
@@ -135,7 +136,7 @@ const state = {
             "thing": "Bicicleta",
             "cost": "167000",
             "priority": "Alta",
-            "date": "2020/02/25",
+            "date": "2020/02/08",
             "iconData": {
                 "category": 'Banco & Transacciones',
                 "name": 'money-bill-wave',
@@ -145,7 +146,7 @@ const state = {
             "thing": "Comida",
             "cost": "100000",
             "priority": "Media",
-            "date": "2020/02/26",
+            "date": "2020/02/09",
             "iconData": {
                 "category": 'Comida',
                 "name": 'utensils',
@@ -155,7 +156,7 @@ const state = {
             "thing": "Transporte",
             "cost": "80000",
             "priority": "Media",
-            "date": "2020/02/26",
+            "date-": "2020/02/11",
             "iconData": {
                 "category": 'Viajes',
                 "name": 'plane',
@@ -165,7 +166,7 @@ const state = {
             "thing": "Canastas",
             "cost": "300000",
             "priority": "Alta",
-            "date": "2020/02/26",
+            "date": "2020/02/14",
             "iconData": {
                 "category": 'Comida',
                 "name": 'utensils',
@@ -175,7 +176,7 @@ const state = {
             "thing": "Instituto",
             "cost": "150000",
             "priority": "Alta",
-            "date": "2020/02/26",
+            "date": "2020/02/16",
             "iconData": {
                 "category": 'Banco & Transacciones',
                 "name": 'money-bill-wave',
@@ -185,7 +186,7 @@ const state = {
         "thing": "Otros",
         "cost": "50000",
         "priority": "Baja",
-        "date": "2020/02/27",
+        "date": "2020/02/25",
         "iconData": {
             "category": 'Comida',
             "name": 'utensils',
@@ -195,7 +196,7 @@ const state = {
             "thing": "Audifonos (Balaca)",
             "cost": "80000",
             "priority": "Media",
-            "date": "2020/02/27",
+            "date": "2020/02/18",
             "iconData": {
                 "category": 'Tecnología',
                 "name": 'mobile-alt',
@@ -213,9 +214,9 @@ const state = {
             }
         }, {
             "thing": "Universidad",
-            "cost": "500000",
+            "cost": "800000",
             "priority": "Alta",
-            "date": "2020/03/25",
+            "date": "2020/03/01",
             "iconData": {
                 "category": "Tecnología",
                 "name": "mobile-alt",
@@ -223,9 +224,9 @@ const state = {
             }
         }, {
             "thing": "Universidad",
-            "cost": "500000",
+            "cost": "10000",
             "priority": "Alta",
-            "date": "2020/03/25",
+            "date": "2020/03/05",
             "iconData": {
                 "category": "Juegos",
                 "name": "mobile-alt",
@@ -233,9 +234,9 @@ const state = {
             }
         }, {
             "thing": "Universidad",
-            "cost": "500000",
+            "cost": "1000000",
             "priority": "Alta",
-            "date": "2020/03/25",
+            "date": "2020/03/15",
             "iconData": {
                 "category": "Moda",
                 "name": "mobile-alt",
@@ -243,9 +244,9 @@ const state = {
             }
         }, {
             "thing": "Universidad",
-            "cost": "500000",
+            "cost": "900000",
             "priority": "Alta",
-            "date": "2020/03/25",
+            "date": "2020/03/18",
             "iconData": {
                 "category": "Tecnología",
                 "name": "mobile-alt",
@@ -336,7 +337,13 @@ const state = {
 }
 
 const getters = {
-
+    getSortSelectedData(state){
+        let newArr = _.cloneDeep(state.selectedData);
+        let sortArray = newArr.sort((a,b) => {
+            return new Date(b.date) - new Date(a.date);
+        });
+        return sortArray;
+    }
 }
 
 const mutations = {
@@ -354,6 +361,9 @@ const mutations = {
     },
     setEventData(state, payload){
         state.eventData = payload;
+    },
+    setSelectedData(state, payload){
+        state.selectedData = payload;
     },
 }
 
@@ -374,6 +384,9 @@ const actions = {
     },
     updateEventData({ commit }, payload){
         commit("setEventData", payload );
+    },
+    updateSelectedData({ commit }, payload){
+        commit("setSelectedData", payload );
     },
 }
 
