@@ -51,12 +51,13 @@ export default {
 
             // Create axes
             var dateAxis = this.chart.xAxes.push(new am4charts.DateAxis());
+            dateAxis.renderer.minGridDistance = 50;
             var valueAxis = this.chart.yAxes.push(new am4charts.ValueAxis());
 
             var series = this.chart.series.push(new am4charts.LineSeries());
             series.dataFields.valueY = "value";
             series.dataFields.dateX = "date";
-            series.tooltipText = "Item: {thing}"
+            series.tooltipText = "Item: {thing} \n Category: {category}"
             series.strokeWidth = 2;
             series.minBulletDistance = 15;
 
@@ -87,14 +88,41 @@ export default {
             // Create vertical scrollbar and place it before the value axis
             this.chart.scrollbarY = new am4core.Scrollbar();
             this.chart.scrollbarY.parent = this.chart.leftAxesContainer;
-            this.chart.scrollbarY.toBack();
 
             // Create a horizontal scrollbar with previe and place it underneath the date axis
             this.chart.scrollbarX = new am4charts.XYChartScrollbar();
             this.chart.scrollbarX.series.push(series);
             this.chart.scrollbarX.parent = this.chart.bottomAxesContainer;
+            
+            
+            function customizeGrip(grip) {
+                // Remove default grip image
+                grip.icon.disabled = true;
+                
+                // Disable background
+                grip.background.disabled = true;
+                
+                // Add rotated rectangle as bi-di arrow
+                    var img = grip.createChild(am4core.Rectangle);
+                img.width = 15;
+                img.height = 15;
+                img.fill = am4core.color("#999");
+                img.rotation = 45;
+                img.align = "center";
+                img.valign = "middle";
+                
+                // Add vertical bar
+                var line = grip.createChild(am4core.Rectangle);
+                line.height = 60;
+                line.width = 3;
+                line.fill = am4core.color("#999");
+                line.align = "center";
+                line.valign = "middle";
+            }
+            customizeGrip(this.chart.scrollbarX.startGrip);
+            customizeGrip(this.chart.scrollbarX.endGrip);
 
-            dateAxis.start = 0.79;
+            // dateAxis.start = 0.79;
             dateAxis.keepSelection = true;
         }
     },

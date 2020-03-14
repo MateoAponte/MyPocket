@@ -96,7 +96,7 @@
             selectedData(){
                 let narr = [];
                 this.getSortSelectedData.forEach(y => {
-                    narr.push({ date: app.moment(y.date).format("MM-DD"), value: parseInt(y.cost), thing: y.thing })
+                    narr.push({ date: app.moment(y.date).format("MM-DD"), value: parseInt(y.cost), thing: y.thing, category: y.iconData.category })
                 });
                 this.xChartData = narr;
             }
