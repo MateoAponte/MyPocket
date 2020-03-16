@@ -17,6 +17,7 @@ import axios from 'axios';
 import ColorPicker from '@Components/common/colorPicker';
 import PieChart from '@Components/common/amCharts/pieChart';
 import xAxisChart from '@Components/common/amCharts/xAxisChart';
+import dropdownCategorys from "@Components/common/dropdownCategorys";
 
 
 Vue.set(Vue.prototype, "moment", moment);
@@ -84,7 +85,6 @@ extend('radio', {
 
 extend('category', {
     validate(value){
-        console.log(value);
         return {
             required: true,
             valid: value.iconName || value === {}
@@ -100,6 +100,7 @@ Vue.component('ValidationObserver', ValidationObserver);
 Vue.component('ColorPicker', ColorPicker);
 Vue.component('PieChart', PieChart);
 Vue.component('xAxisChart', xAxisChart);
+Vue.component('dropdownCategorys', dropdownCategorys);
 
 window.eventBus = new Vue();
 Vue.config.productionTip = false;

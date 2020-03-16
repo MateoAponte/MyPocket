@@ -5,7 +5,8 @@ const state = {
         type: "",
         action: "",
         subject: "",
-        title: ""
+        title: "",
+        injectData: {}
     },
     personalData: {
         userData: {
@@ -80,7 +81,8 @@ const state = {
             "iconData": {
                 "category": 'Tecnología',
                 "iconName": 'mobile-alt',
-                "class": '#BE4BDB'
+                "class": '#BE4BDB',
+                'prefix': 'fas'
             }
         }, {
             "thing": "Celular",
@@ -90,7 +92,8 @@ const state = {
             "iconData": {
                 "category": 'Banco & Transacciones',
                 "iconName": 'money-bill-wave',
-                "class": '#12BB85'
+                "class": '#12BB85',
+                'prefix': 'fas'
             }
         }, {
             "thing": "Bicicleta",
@@ -100,7 +103,8 @@ const state = {
             "iconData": {
                 "category": 'Banco & Transacciones',
                 "iconName": 'money-bill-wave',
-                "class": '#12BB85'
+                "class": '#12BB85',
+                'prefix': 'fas'
             }
         }, {
             "thing": "Comida",
@@ -110,7 +114,8 @@ const state = {
             "iconData": {
                 "category": 'Comida',
                 "iconName": 'utensils',
-                "class": '#FD7E14'
+                "class": '#FD7E14',
+                'prefix': 'fas'
             }
         }, {
             "thing": "Transporte",
@@ -120,7 +125,8 @@ const state = {
             "iconData": {
                 "category": 'Viajes',
                 "iconName": 'plane',
-                "class": '#F963A0'
+                "class": '#F963A0',
+                'prefix': 'fas'
             }
         }, {
             "thing": "Canastas",
@@ -130,7 +136,8 @@ const state = {
             "iconData": {
                 "category": 'Comida',
                 "iconName": 'utensils',
-                "class": '#FD7E14'
+                "class": '#FD7E14',
+                'prefix': 'fas'
             }
         }, {
             "thing": "Instituto",
@@ -140,7 +147,8 @@ const state = {
             "iconData": {
                 "category": 'Banco & Transacciones',
                 "iconName": 'money-bill-wave',
-                "class": '#12BB85'
+                "class": '#12BB85',
+                'prefix': 'fas'
             }
         }, {
             "thing": "Otros",
@@ -150,7 +158,8 @@ const state = {
             "iconData": {
                 "category": 'Comida',
                 "iconName": 'utensils',
-                "class": '#FD7E14'
+                "class": '#FD7E14',
+                'prefix': 'fas'
             }
         }, {
             "thing": "Audifonos (Balaca)",
@@ -160,7 +169,8 @@ const state = {
             "iconData": {
                 "category": 'Tecnología',
                 "iconName": 'mobile-alt',
-                "class": '#BE4BDB'
+                "class": '#BE4BDB',
+                'prefix': 'fas'
             }
         }, {
             "thing": "Audifonos (Balaca)",
@@ -170,7 +180,8 @@ const state = {
             "iconData": {
                 "category": 'Moda',
                 "iconName": 'tshirt',
-                "class": '#4C6EF5'
+                "class": '#4C6EF5',
+                'prefix': 'fas'
             }
         }
     ],
@@ -219,6 +230,11 @@ const actions = {
         item.unshift(payload);
         commit('setItemsData', item);
     },   
+    updateItem({ commit, state }, payload){
+        let item = _.cloneDeep(state.itemsData);
+        item.splice(payload.index, 1, payload.data);
+        commit('setItemsData', item);
+    },
     updatePersonalData({ commit, state }, payload){
         let item = _.cloneDeep(state.personalData);
         item.userData = payload.userData;

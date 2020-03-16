@@ -55,27 +55,7 @@
                     </span>
                 </div>
                 <ValidationProvider class="relative" v-slot="{ errors }" rules="category">
-                    <div name="categorias"
-                                        class="container-item__column icons-container--toggle item--unset-flex"
-                                        :class="toogleClass">
-                        <div class="container-item__col-row space-around" v-for="(iconSections, i) in getIconSections" :key="i">
-                            <div class="container-item__column simple-column" v-for="(icon, index) in iconSections" :key="index">
-                                <div class="radio-button icons-category"><!-- .tooltip -->
-                                    <input :id="'icon' + icon.iconName + (index + i)" class="categories-radio" name="category" type="radio" :value="icon" v-model="itemData.iconData" />
-                                    <label :for="'icon' + icon.iconName + (index + i)" >
-                                        <font-awesome-icon :icon="icon.iconName" :style="{ backgroundColor:icon.class }"/>
-                                    </label>
-                                    <!--<div class="top">
-                                        {{icon.category}}
-                                        <i></i>
-                                    </div>-->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <span class="toogle-icon">
-                        <font-awesome-icon @click="toggleCard" icon="sort-down" class="rotate-icon" :class="iconRotate"/>
-                    </span>
+                    <dropdown-categorys type="finance" :data="getIconSections" v-model="itemData.iconData" />
                     <span class="m-error relative" style="left: 0; bottom: -5px">{{errors[0]}}</span>
                 </ValidationProvider>
             </div>
@@ -89,6 +69,7 @@
 
 <script>
 import { mapState, mapActions } from 'vuex';
+
 export default {
     name: 'FinanceHeader',
     data: function() {
@@ -110,12 +91,6 @@ export default {
         comprobeData(){
             let data = this.itemData;
             return data.thing && data.cost && data.priority && data.iconData.iconName ? false : true
-        },
-        toogleClass(){
-            return this.toggleIcon ? "max-height-toggle" : "min-height-toggle";
-        },
-        iconRotate(){
-            return this.toggleIcon ? "icon--rotate-180" : "icon--rotate-0";
         },
         getIconSections(){
             return _.chunk(_.cloneDeep(this.iconsData), 4);
@@ -141,9 +116,6 @@ export default {
         },
         saveData(e){
             console.log(e)
-        },
-        toggleCard(){
-            this.toggleIcon = !this.toggleIcon;
         }
     }
 }

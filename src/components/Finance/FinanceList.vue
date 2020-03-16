@@ -78,6 +78,9 @@
                             <font-awesome-icon icon="trash" @click="deleteItems(index)"/>
                         </div>
                         <div class="container-item-actions--column">
+                            <font-awesome-icon icon="pen" @click="editItems(index, data)"/>
+                        </div>
+                        <div class="container-item-actions--column">
                             <font-awesome-icon icon="check-circle" @click="checkedItems(index)"/>
                         </div>
                     </div>
@@ -151,6 +154,19 @@ export default {
         checkedItems(i){
             this.checkedItemsData(i);
             this.arrayData[i].priority = "Check";
+        },
+        editItems(i, val){
+            let arr = _.cloneDeep(val);
+            this.updateModalData({
+                type: "edit",
+                title: "Editar a: ",
+                injectData: {
+                    index: i,
+                    data: arr,
+                    type: 'expenses'
+                }
+            });
+            document.querySelector(".overlay").classList.replace('hide', 'show');
         }
     },
     mounted(){

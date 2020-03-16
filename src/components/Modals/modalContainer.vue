@@ -28,19 +28,36 @@
                 </template>
             </summary-filter-modal>
         </transition>
+        <transition name="slide">
+            <edit-item-modal
+                v-if="modalData.type == 'edit'" 
+                :type="modalData.type" 
+                :title="modalData.title"
+                :subject="modalData.subject" 
+                :action="modalData.action"
+                :modalData="modalData.injectData"
+                width="500px" 
+            >
+                <template #footer>
+                    <button class="m-button" @click="dimissModal()">Cerrar</button>
+                </template>
+            </edit-item-modal>
+        </transition>
     </div>
 </template>
 
 <script>
 import notificationModal from "@Components/Modals/notification";
 import summaryFilterModal from "@Components/Modals/summaryFilter";
+import editItemModal from "@Components/Modals/editItem";
 import { mapState } from 'vuex';
 
 export default {
     name: "modalContainer",
     components: {
         notificationModal,
-        summaryFilterModal
+        summaryFilterModal,
+        editItemModal
     },
     computed: {
         ...mapState('common', {

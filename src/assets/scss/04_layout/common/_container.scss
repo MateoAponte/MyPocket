@@ -61,6 +61,18 @@
         font-size: 35px;
     }
 }
+.icons-category--medium-big{
+    svg{
+        padding: 7px;
+        min-width: 65px;
+        max-width: 65px;
+        min-height: 65px;
+        max-height: 65px;
+        box-shadow: 0px 3px 4px $clrP-black;
+        border-radius: 50%;
+        color: $clrP-white;
+    }
+}
 .icons-category--bigger{
     position: relative;
     top: 20px;
@@ -164,6 +176,10 @@
 .container-item__column--mini{
     @extend .container-item__column;
     max-width: 20%;
+}
+.container-item__column--long{
+    @extend .container-item__column;
+    max-width: 45%;
 }
 .container-item__column--medium{
     @extend .container-item__column;
