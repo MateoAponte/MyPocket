@@ -29,6 +29,43 @@
             align-items: center;
             justify-content: center;
             color: $clrP-black;
+            position: relative;
+
+            &:hover .m-link-dropdown{
+                display: block;
+            }
+        }
+        .m-link-dropdown{
+            min-width: 90px;
+            position: absolute;
+            display: none;
+            bottom: -100%;
+            left: 0;
+            background-color: $clrP-white;
+            color: $clrP-azure;
+            font-size: 1em;
+            font-family: 'Questrial';
+            font-weight: 400;
+            border-radius: 0 0 8px 8px;
+            border: 1px solid #e0e0e0;
+            border-top: 0px solid transparent;
+            
+            .m-link-item{
+                text-align: left;
+                cursor: pointer;
+                padding: 5px 10px;
+
+                &:hover{
+                    background-color: darken($clrP-white, 7%);
+                    color: darken($clrP-azure, 7%);
+                }
+            }
+            .m-link-item:nth-last-child(1){
+                border-radius: 0 0 8px 8px;
+            }
+            .m-link-item:not(:nth-last-child(1)){
+                border-bottom: 1px solid #e0e0e0;
+            }
         }
 
         &-section{

@@ -12,6 +12,14 @@
                 <router-link to="/finance" class="m-link-container" active-class="m-link-active" >
                     <span class="m-link">
                         Finanzas
+                        <div class="m-link-dropdown">
+                            <div class="m-link-item">
+                                Gastos
+                            </div>
+                            <div class="m-link-item">
+                                Ingresos
+                            </div>
+                        </div>
                     </span>
                 </router-link>
                 <router-link to="/summary" class="m-link-container" active-class="m-link-active" >
@@ -32,6 +40,14 @@
                 <router-link to="/genericReport" class="m-link-container" active-class="m-link-active" >
                     <span class="m-link">
                         Reporte
+                        <div class="m-link-dropdown">
+                            <div class="m-link-item">
+                                Detallado
+                            </div>
+                            <div class="m-link-item">
+                                Ingresos
+                            </div>
+                        </div>
                     </span>
                 </router-link>
             </div>
