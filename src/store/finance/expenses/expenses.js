@@ -1,11 +1,4 @@
-const state = {
-    userData: {},
-    budgetData: {
-        budget: 1900000,
-        expenses: 0,
-        percentil: 8
-    }
-}
+const state = {}
 
 const getters = {}
 

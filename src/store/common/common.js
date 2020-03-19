@@ -27,31 +27,36 @@ const state = {
             category: 'Casa',
             iconName: 'home',
             class: '#24C1FD',
-            prefix: "fas"
+            prefix: "fas",
+            type: "expense"
         },
         {
             category: 'Servicios',
             iconName: 'lightbulb',
             class: '#FFBF53',
-            prefix: "fas"
+            prefix: "fas",
+            type: "expense"
         },
         {
             category: 'Banco & Transacciones',
             iconName: 'money-bill-wave',
             class: '#12BB85',
-            prefix: "fas"
+            prefix: "fas",
+            type: "expense"
         },
         {
             category: 'Comida',
             iconName: 'utensils',
             class: '#FD7E14',
-            prefix: "fas"
+            prefix: "fas",
+            type: "expense"
         },
         {
             category: 'Tecnología',
             iconName: 'mobile-alt',
             class: '#BE4BDB',
-            prefix: "fas"
+            prefix: "fas",
+            type: "expense"
         },
         {
             category: 'Viajes',
@@ -63,13 +68,29 @@ const state = {
             category: 'Entretenimiento',
             iconName: 'gamepad',
             class: '#FF5154',
-            prefix: "fas"
+            prefix: "fas",
+            type: "expense"
         },
         {
             category: 'Moda',
             iconName: 'tshirt',
             class: '#4C6EF5',
-            prefix: "fas"
+            prefix: "fas",
+            type: "expense"
+        },
+        {
+            category: 'Trabajo',
+            iconName: 'mouse-pointer',
+            class: '#07D6BD',
+            prefix: "fas",
+            type: "earning"
+        },
+        {
+            category: 'Cadenas',
+            iconName: 'money-check-alt',
+            class: '#DC90EE',
+            prefix: "fas",
+            type: "earning"
         }
     ],
     itemsData: [
@@ -82,7 +103,8 @@ const state = {
                 "category": 'Tecnología',
                 "iconName": 'mobile-alt',
                 "class": '#BE4BDB',
-                'prefix': 'fas'
+                'prefix': 'fas',
+                'type': 'expense'
             }
         }, {
             "thing": "Celular",
@@ -93,7 +115,8 @@ const state = {
                 "category": 'Banco & Transacciones',
                 "iconName": 'money-bill-wave',
                 "class": '#12BB85',
-                'prefix': 'fas'
+                'prefix': 'fas',
+                'type': 'expense'
             }
         }, {
             "thing": "Bicicleta",
@@ -104,7 +127,8 @@ const state = {
                 "category": 'Banco & Transacciones',
                 "iconName": 'money-bill-wave',
                 "class": '#12BB85',
-                'prefix': 'fas'
+                'prefix': 'fas',
+                'type': 'expense'
             }
         }, {
             "thing": "Comida",
@@ -115,7 +139,8 @@ const state = {
                 "category": 'Comida',
                 "iconName": 'utensils',
                 "class": '#FD7E14',
-                'prefix': 'fas'
+                'prefix': 'fas',
+                'type': 'expense'
             }
         }, {
             "thing": "Transporte",
@@ -126,7 +151,8 @@ const state = {
                 "category": 'Viajes',
                 "iconName": 'plane',
                 "class": '#F963A0',
-                'prefix': 'fas'
+                'prefix': 'fas',
+                'type': 'expense'
             }
         }, {
             "thing": "Canastas",
@@ -137,7 +163,8 @@ const state = {
                 "category": 'Comida',
                 "iconName": 'utensils',
                 "class": '#FD7E14',
-                'prefix': 'fas'
+                'prefix': 'fas',
+                'type': 'expense'
             }
         }, {
             "thing": "Instituto",
@@ -148,7 +175,8 @@ const state = {
                 "category": 'Banco & Transacciones',
                 "iconName": 'money-bill-wave',
                 "class": '#12BB85',
-                'prefix': 'fas'
+                'prefix': 'fas',
+                'type': 'expense'
             }
         }, {
             "thing": "Otros",
@@ -159,7 +187,8 @@ const state = {
                 "category": 'Comida',
                 "iconName": 'utensils',
                 "class": '#FD7E14',
-                'prefix': 'fas'
+                'prefix': 'fas',
+                'type': 'expense'
             }
         }, {
             "thing": "Audifonos (Balaca)",
@@ -170,7 +199,8 @@ const state = {
                 "category": 'Tecnología',
                 "iconName": 'mobile-alt',
                 "class": '#BE4BDB',
-                'prefix': 'fas'
+                'prefix': 'fas',
+                'type': 'expense'
             }
         }, {
             "thing": "Audifonos (Balaca)",
@@ -181,10 +211,38 @@ const state = {
                 "category": 'Moda',
                 "iconName": 'tshirt',
                 "class": '#4C6EF5',
-                'prefix': 'fas'
+                'prefix': 'fas',
+                'type': 'expense'
             }
         }
     ],
+    earningData: [
+        {
+            "thing": "Trabajo",
+            "cost": "2500000",
+            "date": "2019/08/23",
+            "percent": "8",
+            "iconData": {
+                "category": 'Trabajo',
+                "iconName": 'mouse-pointer',
+                "class": '#07D6BD',
+                'prefix': 'fas',
+                'type': 'earning'
+            }
+        }, {
+            "thing": "Cadenas",
+            "cost": "850000",
+            "date": "2019/11/25",
+            "percent": "2",
+            "iconData": {
+                "category": 'Cadenas',
+                "iconName": 'money-check-alt',
+                "class": '#DC90EE',
+                'prefix': 'fas',
+                'type': 'earning'
+            }
+        }
+    ]
 }
 
 const getters = {}
@@ -205,12 +263,25 @@ const mutations = {
     setItemsData(state, payload){
         state.itemsData = payload;
     },
+    setEarningData(state, payload){
+        state.earningData = payload;
+    },
     setPersonalData(state, payload){
         state.personalData = payload;
     }
 }
 
 const actions = {
+    updateIcon({ commit, state }, payload){
+        let icons = _.cloneDeep(state.iconsData);
+        icons.splice(payload.index, 1, payload);
+        commit('setIconsData', icons);
+    },
+    deleteIcon({ commit, state }, payload){
+        let icons = _.cloneDeep(state.iconsData);
+        icons.splice(payload.index, 1);
+        commit('setIconsData', icons);
+    },
     updateCalculator({ commit }, payload){
         commit("setCalculator", payload);
     },
@@ -235,6 +306,16 @@ const actions = {
         item.splice(payload.index, 1, payload.data);
         commit('setItemsData', item);
     },
+    updateEarningItem({ commit, state }, payload){
+        let item = _.cloneDeep(state.earningData);
+        item.splice(payload.index, 1, payload.data);
+        commit('setEarningData', item);
+    },
+    updateEarningsData({ commit, state }, payload){
+        let icons = _.cloneDeep(state.earningData);
+        icons.unshift(payload);
+        commit('setEarningData', icons);
+    },   
     updatePersonalData({ commit, state }, payload){
         let item = _.cloneDeep(state.personalData);
         item.userData = payload.userData;

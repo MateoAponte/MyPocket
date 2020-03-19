@@ -55,7 +55,7 @@
                     </span>
                 </div>
                 <ValidationProvider class="relative" v-slot="{ errors }" rules="category">
-                    <dropdown-categorys type="finance" :data="getIconSections" v-model="itemData.iconData" />
+                    <dropdown-categorys type="finance" keyFilter="expense" :data="iconsData" v-model="itemData.iconData" />
                     <span class="m-error relative" style="left: 0; bottom: -5px">{{errors[0]}}</span>
                 </ValidationProvider>
             </div>
@@ -69,6 +69,7 @@
 
 <script>
 import { mapState, mapActions } from 'vuex';
+import moment from 'moment';
 
 export default {
     name: 'FinanceHeader',
@@ -80,7 +81,8 @@ export default {
                 thing: '',
                 cost: '',
                 priority: '',
-                iconData: {}
+                iconData: {},
+                date: moment().format('YYYY/MM/DD')
             }
         }
     },
@@ -91,9 +93,6 @@ export default {
         comprobeData(){
             let data = this.itemData;
             return data.thing && data.cost && data.priority && data.iconData.iconName ? false : true
-        },
-        getIconSections(){
-            return _.chunk(_.cloneDeep(this.iconsData), 4);
         }
     },
     methods: {

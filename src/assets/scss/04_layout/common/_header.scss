@@ -59,6 +59,10 @@
                     background-color: darken($clrP-white, 7%);
                     color: darken($clrP-azure, 7%);
                 }
+
+                a{
+                    color: $clrP-azure;
+                }
             }
             .m-link-item:nth-last-child(1){
                 border-radius: 0 0 8px 8px;

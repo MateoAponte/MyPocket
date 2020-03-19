@@ -9,19 +9,19 @@
         </div>
         <div class="header-container-column">
             <div class="header-container-column-section">
-                <router-link to="/finance" class="m-link-container" active-class="m-link-active" >
+                <div class="m-link-container" active-class="m-link-active" >
                     <span class="m-link">
                         Finanzas
                         <div class="m-link-dropdown">
                             <div class="m-link-item">
-                                Gastos
+                               <router-link to="/finance/expenses"> Gastos </router-link>
                             </div>
                             <div class="m-link-item">
-                                Ingresos
+                                <router-link to="/finance/earnings"> Ingresos </router-link>
                             </div>
                         </div>
                     </span>
-                </router-link>
+                </div>
                 <router-link to="/summary" class="m-link-container" active-class="m-link-active" >
                     <span class="m-link">
                         Resumen

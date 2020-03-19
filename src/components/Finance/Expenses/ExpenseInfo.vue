@@ -81,23 +81,39 @@
 import { mapState } from 'vuex';
 export default {
     name: 'FinanceInfo',
+    data: function(){
+        return{
+            expenses: 0,
+            earnings: 0,
+            percent: 0
+        }
+    },
     computed: {
         ...mapState('common', {
             'itemsData': (state) => (state.itemsData),
-            'budgetData': (state) => (state.personalData.budgetData)
+            'budgetData': (state) => (state.personalData.budgetData),
+            'earningData': (state) => (state.earningData)
         }),
         setExpenses(){
-            this.budgetData.expenses = 0;
+            this.expenses = 0;
             this.itemsData.forEach( x => {
-                this.budgetData.expenses += parseInt(x.cost);
+                this.expenses += parseInt(x.cost);
             } );
-            return this.budgetData.expenses;
+            return this.expenses;
         },
         setBudget(){
-            return this.budgetData.budget;
+            this.earnings = 0;
+            this.earningData.forEach( x => {
+                this.earnings += parseInt(x.cost);
+            } );
+            return this.earnings;
         },
         setPercentil(){
-            return this.budgetData.budget * (this.budgetData.percentil / 100);
+            this.percent = 0;
+            this.earningData.forEach( x => {
+                this.percent += parseFloat(x.cost * (x.percent / 100));
+            } );
+            return this.percent;
         },
         setRes(){
             return this.setBudget - this.setExpenses;

@@ -43,7 +43,7 @@ extend('string', {
     validate(value){
         return {
             required: true,
-            valid: value.match(/[0-9]/g) === null && value != false
+            valid: value && value.match(/[0-9]/g) === null && value != false
         }
     },
     message: "* El campo {_field_} es incorrecto",

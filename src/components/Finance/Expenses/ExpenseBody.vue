@@ -14,8 +14,8 @@
 </template>
 
 <script>
-import FinanceList from '@Components/Finance/FinanceList';
-import FinanceInfo from '@Components/Finance/FinanceInfo';
+import FinanceList from './ExpenseList';
+import FinanceInfo from './ExpenseInfo';
 
 export default {
     name: 'FinanceBody',

@@ -107,9 +107,7 @@ export default {
     computed: {
         ...mapState('common', {
             "itemsData": (state) => (state.itemsData),
-        }),
-        ...mapState('finance', {
-            "budgetData": (state) => (state.budgetData),
+            'budgetData': (state) => (state.personalData.budgetData)
         })
     },
     methods: {
