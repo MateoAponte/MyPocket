@@ -3,7 +3,7 @@
         <div name="categorias"
                             class="container-item__column icons-container--toggle item--unset-flex"
                             :class="toogleClass">
-            <div class="container-item__col-row space-around" v-for="(iconSections, i) in data" :key="i">
+            <div class="container-item__col-row space-around" v-for="(iconSections, i) in iconFilter.length > 0 ? iconFilter : []" :key="i">
                 <div class="container-item__column simple-column" v-for="(icon, index) in iconSections" :key="index">
                     <div class="radio-button icons-category"><!-- .tooltip -->
                         <input :id="'icon' + icon.iconName + (index + i) + type" class="categories-radio" name="category" type="radio" :value="icon" @click="emitCategory(icon)"/>
@@ -39,11 +39,21 @@ export default {
         select: {
             type: Object,
             default: () => {}
+        },
+        keyFilter: {
+            type: String, 
+            default: "expense"
+        }
+    },
+    watch: {
+        data(){
+            this.filterArr();
         }
     },
     data: function(){
         return{
-            toggleIcon: false
+            toggleIcon: false,
+            iconFilter: []
         }
     },
     computed: {
@@ -61,6 +71,17 @@ export default {
         toggleCard(){
             this.toggleIcon = !this.toggleIcon;
         },
+        filterArr(){
+            let chunk = [];
+            chunk = this.data.filter( x => x.type === this.keyFilter);
+            this.iconFilter = _.chunk(_.cloneDeep(chunk), 4);
+        },
+        _init(){
+            this.filterArr();
+        }
     },
+    mounted(){
+        this._init();
+    }
 }
 </script>

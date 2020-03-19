@@ -75,8 +75,10 @@ export default {
             "toggle": (state) => (state.toggle),
             "copyRenderData": (state) => (state.copyRenderIcons),
             "renderData": (state) => (state.renderIcons),
-            "iconsData": (state) => (state.iconsData),
             "stepRender": (state) => (state.stepRender)
+        }),
+        ...mapState('common', {
+            "iconsData": (state) => (state.iconsData)
         }),
     },
     methods: {

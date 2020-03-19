@@ -47,11 +47,6 @@ const actions = {
         icons.unshift(payload);
         commit('setIconsData', icons);
     },
-    updateIcon({ commit, state }, payload){
-        let icons = _.cloneDeep(state.iconsData);
-        icons.splice(payload.index, 1, payload);
-        commit('setIconsData', icons);
-    },
     updatePreviewIcon({ commit }, payload){
         commit('setPreviewIcon', payload);
     },

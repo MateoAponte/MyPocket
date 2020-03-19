@@ -44,8 +44,9 @@
             <div class="container-item__column" v-if="toggle">
                 <button class="m-button m-button-esmerald m-button-long" type="submit" @click="addNewIcon()">Guardar</button>
             </div>
-            <div class="container-item__column" v-if="!toggle">
+            <div class="container-item__row" v-if="!toggle">
                 <button class="m-button m-button-esmerald m-button-long" @click="updateAvalible(false)" v-if="avalible">Editar</button>
+                <button class="m-button m-button-pink m-button-long" @click="deleteSelectIcon()" v-if="avalible">Eliminar</button>
             </div>
             <div class="container-item__row" v-if="!toggle && !avalible">
                 <button class="m-button m-button-pink m-button-long" @click="cancelToggle()">Cancelar</button>
@@ -83,10 +84,12 @@ export default {
         ...mapActions('icons', [
             'updateAvalible',
             'updateToggle',
-            'updateIcon'
+            'updatePreviewIcon'
         ]),
         ...mapActions('common', [
-            'updateIconsData'
+            'updateIconsData',
+            'updateIcon',
+            'deleteIcon'
         ]),
         onSubmit(){
 
@@ -103,6 +106,11 @@ export default {
                 this.updateToggle(false);
                 this.updateAvalible(true);   
             }
+        },
+        deleteSelectIcon(){
+            this.deleteIcon(this.previewIcon);
+            this.updatePreviewIcon(this.iconsData[0]);
+            this.updateAvalible(true);
         }
     },
 }

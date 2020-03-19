@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 export default {
     name: "list-icons-icon",
     props: {
@@ -32,19 +32,31 @@ export default {
             default: 0
         }
     },
+    computed: {
+        ...mapState('common', {
+            "iconsData": (state) => (state.iconsData)
+        })
+    },
     methods: {
         ...mapActions('icons', [
             'updatePreviewIcon'
         ]),
         selectIcon(icon, className, index){
+            let newIndex = 0;
+            this.iconsData.find( (x, i) =>{
+                if(JSON.stringify(x) === JSON.stringify(icon)){
+                    newIndex = i
+                }
+            });
             let iconsSelect = {
                 class: className ? icon.class : "#739AFF",
                 category: className ? icon.category : "",
                 iconName: icon.iconName,
                 prefix: icon.prefix,
-                index: index
+                index: newIndex,
+                type: icon.type
             };
-            this.updatePreviewIcon(iconsSelect)
+            this.updatePreviewIcon(iconsSelect);
         },
     }
 }

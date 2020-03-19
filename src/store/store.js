@@ -1,5 +1,6 @@
 import common from '@Store/common/common';
-import finance from '@Store/finance/finance';
+import earnings from '@Store/finance/earnings/earnings';
+import expenses from '@Store/finance/expenses/expenses';
 import userAdmin from '@Store/userAdmin/userAdmin';
 import summary from '@Store/summary/Summary';
 import icons from '@Store/icons/icons';
@@ -13,7 +14,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     modules: {
         common,
-        finance,
+        earnings,
+        expenses,
         userAdmin,
         summary,
         icons,

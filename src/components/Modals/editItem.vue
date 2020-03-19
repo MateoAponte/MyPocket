@@ -100,7 +100,7 @@
                                     </span>
                                 </label>
                                 <ValidationProvider class="relative" v-slot="{ errors }" rules="category">
-                                    <dropdown-categorys type="edit" :select="itemData.iconData" :data="getIconSections" v-model="itemData.iconData" />
+                                    <dropdown-categorys type="edit" :select="itemData.iconData" :data="iconsData" v-model="itemData.iconData" />
                                     <span class="m-error relative" style="left: 0; bottom: -5px">{{errors[0]}}</span>
                                 </ValidationProvider>
                             </div>
