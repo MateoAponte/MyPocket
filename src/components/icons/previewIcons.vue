@@ -41,6 +41,29 @@
             </div>
         </div>
         <div class="container-item__row minify-padding">
+            <div class="container-item__column" name="usuario" rules="radio">
+                <div class="container-item__column">
+                    <label class="m-label">
+                        Tipo:
+                    </label>
+                </div>
+                <div class="container-item__row">
+                    <div class="container-item__column">
+                        <div class="radio-button">
+                            <input id="hight" name="type" type="radio" value="expense" v-model="previewIcon.type" :disabled="avalible"/>
+                            <label for="hight" class="radio-label">Gastos</label>
+                        </div>
+                    </div>
+                    <div class="container-item__column">
+                        <div class="radio-button">
+                            <input id="medium" name="type" type="radio" value="earning" v-model="previewIcon.type" :disabled="avalible"/>
+                            <label for="medium" class="radio-label">Ingresos</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-item__row minify-padding">
             <div class="container-item__column" v-if="toggle">
                 <button class="m-button m-button-esmerald m-button-long" type="submit" @click="addNewIcon()">Guardar</button>
             </div>
