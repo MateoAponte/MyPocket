@@ -21,22 +21,6 @@ export default {
                 []
             }
         },
-        type: {
-            type: String,
-            default: "chart"
-        },
-        label: {
-            type: String,
-            default: ""
-        },
-        radius: {
-            type: Number,
-            default: 80
-        },
-        fontSize: {
-            type: Number,
-            default: 20
-        }
     },
     methods: {
         destroy(){

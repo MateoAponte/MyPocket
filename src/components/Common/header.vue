@@ -37,19 +37,19 @@
                         Configuración
                     </span>
                 </router-link>
-                <router-link to="/genericReport" class="m-link-container" active-class="m-link-active" >
+                <div class="m-link-container" >
                     <span class="m-link">
                         Reporte
                         <div class="m-link-dropdown">
                             <div class="m-link-item">
-                                Detallado
+                                <router-link to="/report/genericReport"> Informe Gastos </router-link>
                             </div>
                             <div class="m-link-item">
-                                Ingresos
+                                <router-link to="/report/comparationReport"> Ganancias Vs Ingresos </router-link>
                             </div>
                         </div>
                     </span>
-                </router-link>
+                </div>
             </div>
             <div class="header-container-column-section">                
                 <span class="toogle-activador">

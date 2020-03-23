@@ -7,6 +7,7 @@ import Configuration from '@Views/userAdmin/Configuration'
 import Summary from '@Views/summary/Summary'
 import iconsConfig from '@Views/icons/iconsConfig'
 import GenericReport from '@Views/report/generic/genericReport'
+import ComparationReport from '@Views/report/comparation/comparationReport'
 
 Vue.use(Router)
 
@@ -43,9 +44,14 @@ export default new Router ({
             component: Configuration
         },
         {
-            path: '/genericReport',
+            path: '/report/genericReport',
             name: 'genericReport',
             component: GenericReport
+        },
+        {
+            path: '/report/comparationReport',
+            name: 'comparationReport',
+            component: ComparationReport
         }
     ]
 })

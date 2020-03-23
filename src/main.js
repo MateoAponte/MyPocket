@@ -17,6 +17,7 @@ import axios from 'axios';
 import ColorPicker from '@Components/common/colorPicker';
 import PieChart from '@Components/common/amCharts/pieChart';
 import xAxisChart from '@Components/common/amCharts/xAxisChart';
+import negativeAxisChart from '@Components/common/amCharts/negativeAxisChart';
 import dropdownCategorys from "@Components/common/dropdownCategorys";
 
 
@@ -101,6 +102,7 @@ Vue.component('ColorPicker', ColorPicker);
 Vue.component('PieChart', PieChart);
 Vue.component('xAxisChart', xAxisChart);
 Vue.component('dropdownCategorys', dropdownCategorys);
+Vue.component('negativeAxisChart', negativeAxisChart);
 
 window.eventBus = new Vue();
 Vue.config.productionTip = false;
