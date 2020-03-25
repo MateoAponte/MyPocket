@@ -1462,7 +1462,13 @@ const state = {
                 'type': 'expense'
             }
         },
-    ]
+    ],
+    financeData: {
+        earnings: 0,
+        acum: 0,
+        expense: 0,
+        quantity: 0
+    }
 }
 
 const getters = {}
@@ -1474,6 +1480,9 @@ const mutations = {
     setMainDateCategories(state, payload){
         state.mainDateCategories = payload;
     },
+    setFinanceData(state, payload){
+        state.financeData = payload;
+    },
 }
 
 const actions = {
@@ -1482,6 +1491,11 @@ const actions = {
     },
     updateDateCategories({ commit }, payload){
         commit("setDateCategories", payload );
+    },
+    updateFinanceData({ commit, state }, payload){
+        let financeData = _.cloneDeep(state.financeData);
+        financeData = Object.assign(payload, payload);
+        commit("setFinanceData", financeData );
     },
 }
 

@@ -63,70 +63,9 @@
                                 </span>
                             </div>
                             <div class="container-item__row">
-                                <div class="container-item__column">
-                                    <div class="m-card">
-                                        <div class="m-card-body">
-                                            <div class="container-item__row">
-                                                <div class="container-item__column">
-                                                    <span class="m-label">
-                                                        Ingresos :
-                                                    </span>
-                                                    <span class="m-small">(Total de los ingresos)</span>
-                                                </div>
-                                                <div class="container-item__column">
-                                                    <span class="m-label">
-                                                        {{numeral(this.earnings).format('$0,0')}}
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="container-item__row">
-                                            <div class="container-item__column">
-                                                <span class="m-label" :style="{Color: this.expenses >= this.earnings ? '#FB7185' : '#545454'}">
-                                                    Gastos :
-                                                </span>
-                                                <span class="m-small">(Total de los gastos)</span>
-                                            </div>
-                                            <div class="container-item__column">
-                                                <span class="m-label">
-                                                    {{numeral(this.expenses).format('$0,0')}}
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="container-item__column">
-                                    <div class="m-card">
-                                        <div class="m-card-body">
-                                            <div class="container-item__row">
-                                                <div class="container-item__column">
-                                                    <span class="m-label">
-                                                        Total Acum. :
-                                                    </span>
-                                                    <span class="m-small">(Total acumulado de los elementos)</span>
-                                                </div>
-                                                <div class="container-item__column">
-                                                    <span class="m-label">
-                                                        {{numeral(this.acum).format('$0,0')}}
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="container-item__row">
-                                            <div class="container-item__column">
-                                                <span class="m-label">
-                                                    Cantidad :
-                                                </span>
-                                                <span class="m-small">(Total de elementos financieros)</span>
-                                            </div>
-                                            <div class="container-item__column">
-                                                <span class="m-label">
-                                                    {{this.quantity}}
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <report-comparation-left-card />
+
+                                <report-comparation-right-card />
                             </div>
                         </div>
                     </div>
@@ -137,6 +76,9 @@
 </template>
 
 <script>
+    import reportComparationLeftCard from '@Components/report/comparation/reportComparationLeftCard';
+    import reportComparationRightCard from '@Components/report/comparation/reportComparationRightCard';
+
     import {
         mapGetters,
         mapActions,
@@ -144,6 +86,10 @@
     } from 'vuex';
     export default {
         name: "comparation-report",
+        components: {
+            reportComparationLeftCard,
+            reportComparationRightCard,
+        },
         data: function () {
             return {
                 chartData: [],
@@ -201,19 +147,28 @@
                 }
             },
             getFinanceData() {
-                this.earnings = 0;
-                this.expenses = 0;
-                this.quantity = 0;
-                this.acum = 0;
+                this.updateFinanceData({
+                    earnings: 0,
+                    expenses: 0,
+                    quantity: 0,
+                    acum: 0
+                });
+                let expenses = 0, earnings = 0, acum = 0, quantity = 0;
                 this.chartData.forEach(x => {
                     if (x.iconData.type === 'earning') {
-                        this.earnings += parseInt(x.cost)
+                        earnings += parseInt(x.cost)
                     } else {
-                        this.expenses += parseInt(x.cost * -1)
+                        expenses += parseInt(x.cost * -1)
                     }
-                    this.acum += parseInt(x.cost);
-                    this.quantity = this.chartData.length;
+                    acum += parseInt(x.cost);
+                    quantity = this.chartData.length;
                 })
+                this.updateFinanceData({
+                    earnings: earnings,
+                    expenses: expenses,
+                    acum: acum,
+                    quantity: quantity
+                });
             },
             getIterateDataDate() {
                 let repeatData = _.cloneDeep(this.xyChartData);
@@ -240,7 +195,8 @@
         methods: {
             ...mapActions('comparation', [
                 'updateMainDateCategories',
-                'updateDateCategories'
+                'updateDateCategories',
+                'updateFinanceData'
             ]),
             spliceArray(arr, init, limit) {
                 let cloneArr = _.cloneDeep(arr);
