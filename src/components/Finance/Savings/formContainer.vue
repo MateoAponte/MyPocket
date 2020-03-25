@@ -10,9 +10,18 @@
                         <input type="text" class="custom-form" placeholder="Ejm. Libros" v-model="itemData.thing" />
                         <span class="m-error">{{ errors[0] }}</span>
                     </ValidationProvider>
+                </div>
+                <div class="container-item__row">
                     <ValidationProvider name="costo" rules="number" v-slot="{ errors }" class="container-item__column">
                         <label class="m-label">
-                            Costo:
+                            Cantidad Total:
+                        </label>
+                         <input type="text" class="custom-form" placeholder="Ejm. 400000" v-model="itemData.maxCost" />
+                        <span class="m-error">{{ errors[0] }}</span>
+                    </ValidationProvider>
+                    <ValidationProvider name="costo" rules="number" v-slot="{ errors }" class="container-item__column">
+                        <label class="m-label">
+                            Ahorro:
                         </label>
                         <input type="text" class="custom-form" placeholder="Ejm. 400000" v-model="itemData.cost" />
                         <span class="m-error">{{ errors[0] }}</span>
@@ -21,9 +30,9 @@
                 <div class="container-item__row">
                     <ValidationProvider name="costo" rules="number" v-slot="{ errors }" class="container-item__column">
                         <label class="m-label">
-                            Fecha:
+                            Fecha Limite:
                         </label>
-                        <date-picker v-model="itemData.date"  :displayFormat="moment(itemData.date).format('ll')" :isDateDisabled="isFutureDate" />
+                        <date-picker v-model="itemData.maxDate" placeholder="Ingrese una fecha"  :displayFormat="moment(itemData.maxDate).format('YYYY/MM/DD')" :isDateDisabled="isFutureDate" :formatDate="formatDate" :format="format" />
                         <span class="m-error">{{ errors[0] }}</span>
                     </ValidationProvider>
                     <ValidationProvider name="costo" rules="string" v-slot="{ errors }" class="container-item__dropdown">
@@ -37,16 +46,18 @@
                 <!-- <div class="container-item__row">
                 </div> -->
                 <div class="container-item__row">
-                    <label class="m-label">
-                        Categoría:
-                        <span class="m-small" v-if="itemData.iconData.iconName">
-                            ({{itemData.iconData.category}})
-                        </span>
-                    </label>
-                    <ValidationProvider class="relative" v-slot="{ errors }" rules="category">
-                        <dropdown-categorys type="finance" keyFilter="saving" :data="iconsData" v-model="itemData.iconData" />
-                        <span class="m-error relative" style="left: 0; bottom: -5px">{{errors[0]}}</span>
-                    </ValidationProvider>
+                    <div class="container-item__row">
+                        <label class="m-label">
+                            Categoría:
+                            <span class="m-label m-small" v-if="itemData.iconData.iconName">
+                                ({{itemData.iconData.category}})
+                            </span>
+                        </label>
+                        <ValidationProvider class="relative" v-slot="{ errors }" rules="category">
+                            <dropdown-categorys type="finance" keyFilter="saving" :data="iconsData" v-model="itemData.iconData" />
+                            <span class="m-error relative" style="left: 0; bottom: -5px">{{errors[0]}}</span>
+                        </ValidationProvider>
+                    </div>
                 </div>
                 <div class="container-item__row">
                     <button class="m-button m-button-esmerald m-button-long" type="submit" @click="addItem()">Guardar</button>
@@ -58,6 +69,8 @@
 
 <script>
 import { mapState, mapActions } from 'vuex';
+import moment from 'moment';
+
 export default {
     name: "formContainer",
     data: function() {
@@ -65,10 +78,13 @@ export default {
             itemData: {
                 thing: '',
                 cost: 0,
-                date: '',
+                maxCost: 0,
+                maxDate: '',
+                date: moment().add(1, 'month').format('YYYY/MM/DD'),
                 from: 0,
                 iconData: {}
-            }
+            },
+            format: 'YYYY/MM/DD',
         }
     },
     computed: {
@@ -78,7 +94,7 @@ export default {
         }),
         comprobeData(){
             let data = this.itemData;
-            return data.thing && data.cost && data.date && data.from && data.iconData.iconName ? false : true;
+            return data.thing && data.cost && data.maxCost && data.maxDate && data.date && data.from && data.iconData.iconName ? false : true;
         },
     },
     methods: {
@@ -89,7 +105,8 @@ export default {
             if(!this.comprobeData){            
                 this.itemData.thing ='';
                 this.itemData.cost ='';
-                this.itemData.date ='';
+                this.itemData.maxCost ='';
+                this.itemData.maxDate ='';
                 this.itemData.from ='';
                 this.itemData.iconData = {};
             }
@@ -102,9 +119,16 @@ export default {
         isFutureDate(date) {
             const today = new Date();
             const currentDate = new Date(today.setDate(today.getDate() - 1));
-            console.log(date, currentDate);
             return date < currentDate;
+        },
+        formatDate(dateObj, format) {
+            return moment(dateObj).format(format);
         }
+    },
+    mounted() {
+        let input = document.querySelector('.vdpComponent.vdpWithInput').childNodes[0];
+        input.setAttribute('placeholder', 'Ingrese un fecha');
+        input.classList.add('custom-form')
     }
 }
 </script>

@@ -253,10 +253,10 @@ const state = {
     savingData: [
         {
             "thing": "Libreta Militar",
-            "cost": "1800000",
-            "quantity": "400000",
-            "date": "2020/05/23",
-            "maxDate": "2020/09/23",
+            "maxCost": "1800000",
+            "cost": "400000",
+            "date": "2020/02/23",
+            "maxDate": "2020/06/23",
             "from": "Trabajo",
             "iconData":  {
                 "category": 'Libreta Militar',
