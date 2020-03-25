@@ -3,6 +3,20 @@
         <div class="m-container generic-report-container">
             <div class="m-container-row">
                 <div class="m-container-column">
+                    <div class="m-container-tabs">
+                        <div class="m-container-tabs__tab" @click="updateToggle(true)" :class="toggle ? 'active-tab' : ''">
+                            <font-awesome-icon icon="money-check-alt" />
+                            <span class="m-label">
+                                Ganancias vs Gastos
+                            </span>
+                        </div>
+                        <div class="m-container-tabs__tab" @click="updateToggle(false)" :class="toggle ? '' : 'active-tab'">
+                            <font-awesome-icon icon="piggy-bank" />
+                            <span class="m-label">
+                                Gastos vs Ahorros
+                            </span>
+                        </div>
+                    </div>
                     <div class="m-card">
                         <div class="m-card-header">
                             <div>
@@ -17,7 +31,8 @@
                         <div class="m-card-body">
                             <div class="container-item__row flex-center">
                                 <div class="container-item__column">
-                                    <negative-axis-chart :data="chartData" ref="comparateAxisChart" />                                    
+                                    <negative-axis-chart v-if="toggle" :data="chartData" ref="comparateAxisChart" />                                    
+                                    <semi-pie-chart v-else :data="semiPieChart" ref="semiPieChart" />                                    
                                 </div>
                             </div>
                             <div class="container-item__row">
@@ -30,28 +45,28 @@
                                     <div class="container-item__column">
                                         <div class="radio-button">
                                             <input id="thisM" name="typeChart" type="radio" value="thisM"
-                                                v-model="chartFilter" />
+                                                v-model="chartFilter" :disabled="mainDateCategories.length < 0"/>
                                             <label for="thisM" class="radio-label">Mes actual</label>
                                         </div>
                                     </div>
                                     <div class="container-item__column">
                                         <div class="radio-button">
                                             <input id="treeM" name="typeChart" type="radio" value="treeM"
-                                                v-model="chartFilter" />
+                                                v-model="chartFilter" :disabled="mainDateCategories.length < 2"/>
                                             <label for="treeM" class="radio-label">últimos 3 meses</label>
                                         </div>
                                     </div>
                                     <div class="container-item__column">
                                         <div class="radio-button">
                                             <input id="sixM" name="typeChart" type="radio" value="sixM"
-                                                v-model="chartFilter" />
+                                                v-model="chartFilter" :disabled="mainDateCategories.length < 5"/>
                                             <label for="sixM" class="radio-label">últimos 6 meses</label>
                                         </div>
                                     </div>
                                     <div class="container-item__column">
                                         <div class="radio-button">
                                             <input id="allM" name="typeChart" type="radio" value="allM"
-                                                v-model="chartFilter" />
+                                                v-model="chartFilter" :disabled="mainDateCategories.length < 6"/>
                                             <label for="allM" class="radio-label">Todo el año</label>
                                         </div>
                                     </div>
@@ -62,10 +77,15 @@
                                     Resumen por selección:
                                 </span>
                             </div>
-                            <div class="container-item__row">
+                            <div class="container-item__row" v-if="toggle">
                                 <report-comparation-left-card />
 
                                 <report-comparation-right-card />
+                            </div>
+                            <div class="container-item__row" v-else>
+                                <report-savings-left-card style="width: 50%"/>
+
+                                <!-- <report-savings-right-card /> -->
                             </div>
                         </div>
                     </div>
@@ -78,6 +98,8 @@
 <script>
     import reportComparationLeftCard from '@Components/report/comparation/reportComparationLeftCard';
     import reportComparationRightCard from '@Components/report/comparation/reportComparationRightCard';
+    import reportSavingsRightCard from '@Components/report/comparation/reportSavingsRightCard';
+    import reportSavingsLeftCard from '@Components/report/comparation/reportSavingsLeftCard';
 
     import {
         mapGetters,
@@ -89,15 +111,19 @@
         components: {
             reportComparationLeftCard,
             reportComparationRightCard,
+            reportSavingsRightCard,
+            reportSavingsLeftCard,
         },
         data: function () {
             return {
                 chartData: [],
+                semiPieChart: [],
                 chartFilter: 'thisM',
                 expenses: 0,
                 earnings: 0,
                 acum: 0,
-                quantity: 0
+                quantity: 0,
+                toggle: true
             }
         },
         watch: {
@@ -120,15 +146,30 @@
                 this.chartData = this.getSortSelectedData(this.convertData(this.chartData));
                 this.getFinanceData;
                 setTimeout(() => {
-                    this.$refs["comparateAxisChart"].destroy();
+                    this.toggle ? this.$refs["comparateAxisChart"].destroy() : this.$refs["semiPieChart"].destroy();
                 }, 500)
+            },
+            financeData(newVal) {
+                this.semiPieChart = [];
+                this.semiPieChart.push(...[
+                    {
+                        type: 'Gastos',
+                        value: (newVal.expenses * 100) / newVal.earnings
+                    },
+                    {
+                        type: 'Ahorros',
+                        value: (newVal.savings * 100) / newVal.earnings
+                    }
+                ])
+                newVal
             }
         },
         computed: {
             ...mapState('comparation', {
                 'xyChartData': (state) => (state.xyChartData),
                 'dateCategories': (state) => (state.dateCategories),
-                'mainDateCategories': (state) => (state.mainDateCategories)
+                'mainDateCategories': (state) => (state.mainDateCategories),
+                'financeData': (state) => (state.financeData),
             }),
             textFeedBack() {
                 switch (this.chartFilter) {
@@ -151,14 +192,17 @@
                     earnings: 0,
                     expenses: 0,
                     quantity: 0,
+                    savings: 0,
                     acum: 0
                 });
-                let expenses = 0, earnings = 0, acum = 0, quantity = 0;
+                let expenses = 0, earnings = 0, acum = 0, quantity = 0, savings = 0;
                 this.chartData.forEach(x => {
                     if (x.iconData.type === 'earning') {
                         earnings += parseInt(x.cost)
-                    } else {
+                    } else if (x.iconData.type === 'expense') {
                         expenses += parseInt(x.cost * -1)
+                    } else {
+                        savings += parseInt(x.cost * -1)
                     }
                     acum += parseInt(x.cost);
                     quantity = this.chartData.length;
@@ -167,6 +211,7 @@
                     earnings: earnings,
                     expenses: expenses,
                     acum: acum,
+                    savings: savings,
                     quantity: quantity
                 });
             },
@@ -191,6 +236,9 @@
                 });
                 this.updateDateCategories(newArrDate);
             },
+            setPieChart(){
+
+            }
         },
         methods: {
             ...mapActions('comparation', [
@@ -198,6 +246,9 @@
                 'updateDateCategories',
                 'updateFinanceData'
             ]),
+            updateToggle(val){
+                this.toggle = val;
+            },
             spliceArray(arr, init, limit) {
                 let cloneArr = _.cloneDeep(arr);
                 let newArr = [];
@@ -263,7 +314,7 @@
             this.chartData = this.getSortSelectedData(this.convertData(this.chartData));
 
             setTimeout(() => {
-                this.$refs["comparateAxisChart"].destroy();
+                this.toggle ? this.$refs["comparateAxisChart"].destroy() : this.$refs["semiPieChart"].destroy();
                 this.getFinanceData;
             }, 500)
         },

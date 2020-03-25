@@ -48,7 +48,7 @@
                                 <router-link to="/report/genericReport"> Informe Gastos </router-link>
                             </div>
                             <div class="m-link-item">
-                                <router-link to="/report/comparationReport"> Ganancias Vs Ingresos </router-link>
+                                <router-link to="/report/comparationReport"> Informe comparativo </router-link>
                             </div>
                         </div>
                     </span>

@@ -40,6 +40,18 @@ const state = {
                 'type': 'expense'
             }
         }, {
+            "thing": "Libreta",
+            "cost": "400000",
+            "priority": "Alta",
+            "date": "2020/03/05",
+            "iconData": {
+                "category": 'Tecnología',
+                "iconName": 'mobile-alt',
+                "class": '#BE4BDB',
+                'prefix': 'fas',
+                'type': 'saving'
+            }
+        }, {
             "thing": "Celular",
             "cost": "250000",
             "priority": "Alta",
@@ -161,6 +173,18 @@ const state = {
                 'type': 'earning'
             }
         }, {
+            "thing": "Libreta",
+            "cost": "400000",
+            "priority": "Alta",
+            "date": "2020/03/05",
+            "iconData": {
+                "category": 'Tecnología',
+                "iconName": 'mobile-alt',
+                "class": '#BE4BDB',
+                'prefix': 'fas',
+                'type': 'saving'
+            }
+        }, {
             "thing": "Cadenas",
             "cost": "850000",
             "date": "2020/04/01",
@@ -186,6 +210,30 @@ const state = {
                 'type': 'expense'
             }
         }, {
+            "thing": "Libreta",
+            "cost": "400000",
+            "priority": "Alta",
+            "date": "2020/04/05",
+            "iconData": {
+                "category": 'Tecnología',
+                "iconName": 'mobile-alt',
+                "class": '#BE4BDB',
+                'prefix': 'fas',
+                'type': 'saving'
+            }
+        }, {
+            "thing": "Libreta",
+            "cost": "400000",
+            "priority": "Alta",
+            "date": "2020/05/05",
+            "iconData": {
+                "category": 'Tecnología',
+                "iconName": 'mobile-alt',
+                "class": '#BE4BDB',
+                'prefix': 'fas',
+                'type': 'saving'
+            }
+        },{
             "thing": "Celular",
             "cost": "250000",
             "priority": "Alta",
@@ -453,6 +501,18 @@ const state = {
                 'type': 'earning'
             }
         }, {
+            "thing": "Libreta",
+            "cost": "400000",
+            "priority": "Alta",
+            "date": "2020/06/05",
+            "iconData": {
+                "category": 'Tecnología',
+                "iconName": 'mobile-alt',
+                "class": '#BE4BDB',
+                'prefix': 'fas',
+                'type': 'saving'
+            }
+        }, {
             "thing": "Cadenas",
             "cost": "850000",
             "date": "2020/06/01",
@@ -597,6 +657,18 @@ const state = {
                 "class": '#07D6BD',
                 'prefix': 'fas',
                 'type': 'earning'
+            }
+        }, {
+            "thing": "Libreta",
+            "cost": "400000",
+            "priority": "Alta",
+            "date": "2020/07/05",
+            "iconData": {
+                "category": 'Tecnología',
+                "iconName": 'mobile-alt',
+                "class": '#BE4BDB',
+                'prefix': 'fas',
+                'type': 'saving'
             }
         }, {
             "thing": "Cadenas",
@@ -745,6 +817,18 @@ const state = {
                 'type': 'earning'
             }
         }, {
+            "thing": "Libreta",
+            "cost": "400000",
+            "priority": "Alta",
+            "date": "2020/08/05",
+            "iconData": {
+                "category": 'Tecnología',
+                "iconName": 'mobile-alt',
+                "class": '#BE4BDB',
+                'prefix': 'fas',
+                'type': 'saving'
+            }
+        }, {
             "thing": "Cadenas",
             "cost": "850000",
             "date": "2020/08/01",
@@ -889,6 +973,18 @@ const state = {
                 "class": '#09D6BD',
                 'prefix': 'fas',
                 'type': 'earning'
+            }
+        }, {
+            "thing": "Libreta",
+            "cost": "400000",
+            "priority": "Alta",
+            "date": "2020/09/05",
+            "iconData": {
+                "category": 'Tecnología',
+                "iconName": 'mobile-alt',
+                "class": '#BE4BDB',
+                'prefix': 'fas',
+                'type': 'saving'
             }
         }, {
             "thing": "Cadenas",
@@ -1037,6 +1133,18 @@ const state = {
                 'type': 'earning'
             }
         }, {
+            "thing": "Libreta",
+            "cost": "400000",
+            "priority": "Alta",
+            "date": "2020/10/05",
+            "iconData": {
+                "category": 'Tecnología',
+                "iconName": 'mobile-alt',
+                "class": '#BE4BDB',
+                'prefix': 'fas',
+                'type': 'saving'
+            }
+        }, {
             "thing": "Cadenas",
             "cost": "850000",
             "date": "2020/10/01",
@@ -1181,6 +1289,18 @@ const state = {
                 "class": '#11D6BD',
                 'prefix': 'fas',
                 'type': 'earning'
+            }
+        }, {
+            "thing": "Libreta",
+            "cost": "400000",
+            "priority": "Alta",
+            "date": "2020/11/05",
+            "iconData": {
+                "category": 'Tecnología',
+                "iconName": 'mobile-alt',
+                "class": '#BE4BDB',
+                'prefix': 'fas',
+                'type': 'saving'
             }
         }, {
             "thing": "Cadenas",
@@ -1329,6 +1449,18 @@ const state = {
                 'type': 'earning'
             }
         }, {
+            "thing": "Libreta",
+            "cost": "400000",
+            "priority": "Alta",
+            "date": "2020/12/05",
+            "iconData": {
+                "category": 'Tecnología',
+                "iconName": 'mobile-alt',
+                "class": '#BE4BDB',
+                'prefix': 'fas',
+                'type': 'saving'
+            }
+        }, {
             "thing": "Cadenas",
             "cost": "850000",
             "date": "2020/12/01",
@@ -1467,7 +1599,8 @@ const state = {
         earnings: 0,
         acum: 0,
         expense: 0,
-        quantity: 0
+        quantity: 0,
+        savings: 0
     }
 }
 

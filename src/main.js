@@ -18,6 +18,7 @@ import ColorPicker from '@Components/common/colorPicker';
 import PieChart from '@Components/common/amCharts/pieChart';
 import xAxisChart from '@Components/common/amCharts/xAxisChart';
 import negativeAxisChart from '@Components/common/amCharts/negativeAxisChart';
+import semiPieChart from '@Components/common/amCharts/semiPieChart';
 import dropdownCategorys from "@Components/common/dropdownCategorys";
 import vSelect from 'vue-select';
 import datePicker from 'vue-date-pick';
@@ -109,7 +110,8 @@ Vue.component('xAxisChart', xAxisChart);
 Vue.component('dropdownCategorys', dropdownCategorys);
 Vue.component('negativeAxisChart', negativeAxisChart);
 Vue.component('datePicker', datePicker);
-Vue.component('v-select', vSelect);
+Vue.component('vSelect', vSelect);
+Vue.component('semiPieChart', semiPieChart);
 
 window.eventBus = new Vue();
 Vue.config.productionTip = false;
