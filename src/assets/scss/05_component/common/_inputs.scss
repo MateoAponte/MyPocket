@@ -33,3 +33,26 @@ input[type="text"].custom-form, input[type="password"].custom-form{
 .special-check{
     min-height: 80px;
 }
+
+.v-select.vs--single.vs--searchable{
+    font-family: 'Nunito';
+    font-weight: 400;
+    font-size: 0.8em;
+
+    .vs__dropdown-toggle{
+        padding: 0px;
+        color: $clrP-black;
+        border: 1px solid #cccc;
+        height: 30px;
+        border-radius: 8px;
+    }
+
+    .vs__search{
+        color: lighten($clrP-gray, 25%);
+        font-family: 'Questrial';
+        font-weight: 400;
+        letter-spacing: 0.2px;
+        font-size: 1.1em;
+        margin: 0px;
+    }
+}

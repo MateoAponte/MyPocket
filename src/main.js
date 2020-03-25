@@ -19,6 +19,8 @@ import PieChart from '@Components/common/amCharts/pieChart';
 import xAxisChart from '@Components/common/amCharts/xAxisChart';
 import negativeAxisChart from '@Components/common/amCharts/negativeAxisChart';
 import dropdownCategorys from "@Components/common/dropdownCategorys";
+import vSelect from 'vue-select';
+import 'vue-select/dist/vue-select.css';
 
 
 Vue.set(Vue.prototype, "moment", moment);
@@ -103,6 +105,7 @@ Vue.component('PieChart', PieChart);
 Vue.component('xAxisChart', xAxisChart);
 Vue.component('dropdownCategorys', dropdownCategorys);
 Vue.component('negativeAxisChart', negativeAxisChart);
+Vue.component('v-select', vSelect);
 
 window.eventBus = new Vue();
 Vue.config.productionTip = false;

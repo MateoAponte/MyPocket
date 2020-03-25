@@ -2,15 +2,15 @@
     <div class="m-card">
         <div class="m-card-body">
             <div class="m-container-column minify-padding">
-                <div>
+                <div class="value-card">
                     <span class="m-title">{{data.thing}}</span>
                 </div>
-                <div>
+                <div class="value-card">
                     <span class="m-value-bolder">
-                    Finaliza en {{moment(data.maxDate).format('ll')}}
+                        Finaliza en {{moment(data.maxDate).format('ll')}}
                     </span>
                 </div>
-                <div>
+                <div class="value-card">
                     <span class="m-value-bolder">
                         Ahorro de {{data.from}}
                     </span>

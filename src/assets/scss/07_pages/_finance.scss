@@ -299,6 +299,13 @@
             .m-card{
                 justify-content: center;
                 .m-card-body{
+                    & > .m-container-row{
+                        justify-content: flex-start;
+
+                        .m-container-column{
+                            width: auto;
+                        }
+                    }
                     overflow-x: hidden;
                     min-height: 150px;
                 }

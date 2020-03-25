@@ -28,11 +28,11 @@
                     </ValidationProvider>
                 </div>
                 <div class="container-item__row">
-                    <ValidationProvider name="costo" rules="string" v-slot="{ errors }" class="container-item__column">
+                    <ValidationProvider name="costo" rules="string" v-slot="{ errors }" class="container-item__dropdown">
                         <label class="m-label">
                             Ingreso relacionado:
                         </label>
-                        <input type="text" class="custom-form" placeholder="Ejm. 400000" v-model="itemData.from" />
+                         <v-select :options="earningData" label="thing" :reduce="earningData => earningData.thing" v-model="itemData.from" placeholder="Seleccione una opción"></v-select>
                         <span class="m-error">{{ errors[0] }}</span>
                     </ValidationProvider>
                 </div>
@@ -40,7 +40,7 @@
                     <label class="m-label">
                         Categoría:
                         <span class="m-small" v-if="itemData.iconData.iconName">
-                            ({{itemData.iconData.iconName}})
+                            ({{itemData.iconData.category}})
                         </span>
                     </label>
                     <ValidationProvider class="relative" v-slot="{ errors }" rules="category">
@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions } from 'vuex';
 export default {
     name: "formContainer",
     data: function() {
@@ -73,7 +73,8 @@ export default {
     },
     computed: {
         ...mapState('common', {
-            'iconsData': (state) => (state.iconsData)
+            'iconsData': (state) => (state.iconsData),
+            'earningData': (state) => (state.earningData)
         }),
         comprobeData(){
             let data = this.itemData;

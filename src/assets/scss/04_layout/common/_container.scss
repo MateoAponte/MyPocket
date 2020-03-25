@@ -173,6 +173,12 @@
     align-items: flex-start;
     position: relative;
 }
+.container-item__dropdown{
+    width: 100%;
+    padding: 3px 7px;
+    margin-bottom: 8px;
+    position: relative;
+}
 .container-item__column--mini{
     @extend .container-item__column;
     max-width: 20%;
