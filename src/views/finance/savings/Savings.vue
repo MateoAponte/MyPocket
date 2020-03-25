@@ -7,7 +7,7 @@
                         <div class="m-container-column">
                             <img src="@Assets/img/safeMoney.png" alt="" width="100%">
                         </div>
-                        <div class="separator-columns"></div>
+                        <div class="separator-column"></div>
                         <div class="m-container-column">
                             <form-container />
                         </div>

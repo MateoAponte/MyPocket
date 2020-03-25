@@ -50,14 +50,20 @@
                 <div class="container-item__row">
                     <div class="container-item__column">
                         <div class="radio-button">
-                            <input id="hight" name="type" type="radio" value="expense" v-model="previewIcon.type" :disabled="avalible"/>
-                            <label for="hight" class="radio-label">Gastos</label>
+                            <input id="expense" name="type" type="radio" value="expense" v-model="previewIcon.type" :disabled="avalible"/>
+                            <label for="expense" class="radio-label">Gastos</label>
                         </div>
                     </div>
                     <div class="container-item__column">
                         <div class="radio-button">
-                            <input id="medium" name="type" type="radio" value="earning" v-model="previewIcon.type" :disabled="avalible"/>
-                            <label for="medium" class="radio-label">Ingresos</label>
+                            <input id="earnings" name="type" type="radio" value="earning" v-model="previewIcon.type" :disabled="avalible"/>
+                            <label for="earnings" class="radio-label">Ingresos</label>
+                        </div>
+                    </div>
+                    <div class="container-item__column">
+                        <div class="radio-button">
+                            <input id="savings" name="type" type="radio" value="saving" v-model="previewIcon.type" :disabled="avalible"/>
+                            <label for="savings" class="radio-label">Ahorros</label>
                         </div>
                     </div>
                 </div>

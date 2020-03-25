@@ -31,6 +31,13 @@ const state = {
             type: "expense"
         },
         {
+            category: 'Libreta Militar',
+            iconName: 'book-open',
+            class: '#54C168',
+            prefix: "fas",
+            type: "saving"
+        },
+        {
             category: 'Servicios',
             iconName: 'lightbulb',
             class: '#FFBF53',
@@ -242,6 +249,23 @@ const state = {
                 'type': 'earning'
             }
         }
+    ],
+    savingData: [
+        {
+            "thing": "Libreta Militar",
+            "cost": "1800000",
+            "quantity": "400000",
+            "date": "2020/05/23",
+            "maxDate": "2020/09/23",
+            "from": "Trabajo",
+            "iconData":  {
+                "category": 'Libreta Militar',
+                "iconName": 'book-open',
+                "class": '#54C168',
+                "prefix": "fas",
+                "type": "saving"
+            },
+        }
     ]
 }
 
@@ -268,6 +292,9 @@ const mutations = {
     },
     setPersonalData(state, payload){
         state.personalData = payload;
+    },
+    setSavingData(state, payload){
+        state.savingData = payload;
     }
 }
 
@@ -321,7 +348,17 @@ const actions = {
         item.userData = payload.userData;
         item.budgetData = payload.budgetData;
         commit('setPersonalData', item);
-    }   
+    },
+    updateSavingItem({ commit, state }, payload){
+        let item = _.cloneDeep(state.savingData);
+        item.splice(payload.index, 1, payload.data);
+        commit('setSavingData', item);
+    },
+    updateSavingData({ commit, state }, payload){
+        let icons = _.cloneDeep(state.savingData);
+        icons.unshift(payload);
+        commit('setSavingData', icons);
+    }
 }
 
 export default {

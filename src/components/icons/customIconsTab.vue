@@ -17,6 +17,14 @@
                     <list-icons-icon :icon="icon" :index="index" type="custom" />
                 </div> 
             </div>
+            <div class="icon-section__title">
+                <span class="m-title-big">Ahorros</span>
+            </div>
+            <div class="container-item__row flex-wrap custom-icons" style="flex-wrap: wrap; justify-content: center; max-height: 416px; min-width: 750px; overflow: auto; ">
+                <div class="container-item__column" v-for="(icon, index) in savingsIcons" :key="index" style="width: auto">
+                    <list-icons-icon :icon="icon" :index="index" type="custom" />
+                </div> 
+            </div>
         </div>
     </div>
 </template>
@@ -42,6 +50,11 @@ export default {
         earningsIcons(){
             let arr = _.cloneDeep(this.iconsData);
             arr = arr.filter(x => x.type === 'earning');
+            return arr;
+        },
+        savingsIcons(){
+            let arr = _.cloneDeep(this.iconsData);
+            arr = arr.filter(x => x.type === 'saving');
             return arr;
         }
     }

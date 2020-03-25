@@ -285,3 +285,57 @@
 .table-body{
     overflow: hidden;
 }
+
+.savings-container{
+    .m-card-body{
+        .m-container-row:nth-child(1){
+            .m-container-column:nth-child(1){
+                img{
+                    height: 320px;
+                }
+            }
+        }
+        .m-container-row:nth-child(2){
+            .m-card{
+                justify-content: center;
+                .m-card-body{
+                    overflow-x: hidden;
+                    min-height: 150px;
+                }
+                .m-card{
+                    width: 350px;
+                    .m-card-body{
+                        height: 100px;
+                        overflow-y: hidden;
+                        .m-container-column {
+                            margin: 0px;
+                        }
+                    }
+                }
+    
+                .progress-container{
+                    height: 20px;
+                    border-radius: 16px;
+                    background-color: $bg-light-gray;
+                    border: 1px solid #cccccc;
+                    position: relative;
+                }
+                .progress-percent{
+                    height: 100%;
+                    border-radius: 16px;
+                    background-color: $clrP-azure;
+                }
+                .progress-acum{
+                    position: absolute;
+                    left: 0;
+                    top: 20px;
+                }
+                .progress-limit{
+                    position: absolute;
+                    right: 0;
+                    top: 20px;
+                }
+            }
+        }
+    }
+}

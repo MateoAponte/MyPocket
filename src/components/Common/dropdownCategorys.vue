@@ -19,7 +19,7 @@
             </div>
         </div>
         <span class="toogle-icon">
-            <font-awesome-icon @click="toggleCard" icon="sort-down" class="rotate-icon" :class="iconRotate"/>
+            <font-awesome-icon v-if="iconFilter.length >= 2" @click="toggleCard" icon="sort-down" class="rotate-icon" :class="iconRotate"/>
         </span>
     </div>
 </template>
