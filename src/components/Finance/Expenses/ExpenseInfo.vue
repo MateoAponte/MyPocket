@@ -55,7 +55,7 @@
                 </div>
                 <div class="container-item__column column-underline"></div>
                 <div class="container-item__column--medium simple-column simple-column-right">
-                    <label class="m-label" :style="{ color: setExpenses > budgetData.budget ? '#FB7185' : '#545454'}">
+                    <label class="m-label" :style="{ color: setExpenses > setBudget ? '#FB7185' : '#545454'}">
                         {{numeral(setExpenses).format('$0,0')}}
                     </label>
                 </div>
@@ -92,13 +92,17 @@ export default {
         ...mapState('common', {
             'itemsData': (state) => (state.itemsData),
             'budgetData': (state) => (state.personalData.budgetData),
-            'earningData': (state) => (state.earningData)
+            'earningData': (state) => (state.earningData),
+            'savingData': (state) => (state.savingData),
         }),
         setExpenses(){
             this.expenses = 0;
             this.itemsData.forEach( x => {
                 this.expenses += parseInt(x.cost);
             } );
+            this.savingData.forEach(x => {
+                this.expenses += parseInt(x.cost);
+            })
             return this.expenses;
         },
         setBudget(){
