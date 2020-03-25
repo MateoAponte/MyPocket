@@ -4,10 +4,9 @@
             <div class="m-card">
                 <div class="m-card-body">
                     <div class="m-container-row">
-                        <div class="m-container-column">
+                        <div class="m-container-column" style="border-right: 1px solid #cccccc">
                             <img src="@Assets/img/safeMoney.png" alt="" width="100%">
                         </div>
-                        <div class="separator-column"></div>
                         <div class="m-container-column">
                             <form-container />
                         </div>

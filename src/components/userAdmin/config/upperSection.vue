@@ -48,20 +48,6 @@
                     <input type="text" class="custom-form" placeholder="Ingrese su apellido" v-model="personalData.userData.lastname" />
                 </div>
             </div>
-            <div class="container-item__row">
-                <div class="container-item__column--mini">
-                    <label class="m-label">
-                        Descuento:
-                    </label>
-                    <input type="text" class="custom-form" placeholder="0%" :disabled="watchUserOffice" v-model="personalData.budgetData.percentil" />
-                </div>
-                <div class="container-item__column">
-                    <label class="m-label">
-                        Presupuesto:
-                    </label>
-                    <input type="text" class="custom-form" placeholder="Ingrese su presupuesto" v-model="personalData.budgetData.budget" />
-                </div>
-            </div>
         </div>
     </div>
 </template>

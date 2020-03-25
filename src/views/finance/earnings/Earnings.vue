@@ -1,10 +1,12 @@
 <template>
-    <div class="m-container">
-        <div class="m-container-row">
+    <div class="m-general-container">
+        <div class="m-container">
             <div class="m-container-row">
-                <earning-added />
+                <div class="m-container-row">
+                    <earning-added />
 
-                <earning-list />
+                    <earning-list />
+                </div>
             </div>
         </div>
     </div>
