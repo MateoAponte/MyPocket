@@ -23,11 +23,9 @@
                         <label class="m-label">
                             Fecha:
                         </label>
-                        <input type="text" class="custom-form" placeholder="Ejm. 400000" v-model="itemData.date" />
+                        <date-picker v-model="itemData.date"  :displayFormat="moment(itemData.date).format('ll')" :isDateDisabled="isFutureDate" />
                         <span class="m-error">{{ errors[0] }}</span>
                     </ValidationProvider>
-                </div>
-                <div class="container-item__row">
                     <ValidationProvider name="costo" rules="string" v-slot="{ errors }" class="container-item__dropdown">
                         <label class="m-label">
                             Ingreso relacionado:
@@ -36,6 +34,8 @@
                         <span class="m-error">{{ errors[0] }}</span>
                     </ValidationProvider>
                 </div>
+                <!-- <div class="container-item__row">
+                </div> -->
                 <div class="container-item__row">
                     <label class="m-label">
                         Categoría:
@@ -79,7 +79,7 @@ export default {
         comprobeData(){
             let data = this.itemData;
             return data.thing && data.cost && data.date && data.from && data.iconData.iconName ? false : true;
-        }
+        },
     },
     methods: {
         ...mapActions('common', [
@@ -99,6 +99,12 @@ export default {
                 this.updateSavingData(_.cloneDeep(this.itemData));
             }
         },
+        isFutureDate(date) {
+            const today = new Date();
+            const currentDate = new Date(today.setDate(today.getDate() - 1));
+            console.log(date, currentDate);
+            return date < currentDate;
+        }
     }
 }
 </script>

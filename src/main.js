@@ -20,7 +20,10 @@ import xAxisChart from '@Components/common/amCharts/xAxisChart';
 import negativeAxisChart from '@Components/common/amCharts/negativeAxisChart';
 import dropdownCategorys from "@Components/common/dropdownCategorys";
 import vSelect from 'vue-select';
+import datePicker from 'vue-date-pick';
+
 import 'vue-select/dist/vue-select.css';
+import 'vue-date-pick/dist/vueDatePick.css';
 
 
 Vue.set(Vue.prototype, "moment", moment);
@@ -105,6 +108,7 @@ Vue.component('PieChart', PieChart);
 Vue.component('xAxisChart', xAxisChart);
 Vue.component('dropdownCategorys', dropdownCategorys);
 Vue.component('negativeAxisChart', negativeAxisChart);
+Vue.component('datePicker', datePicker);
 Vue.component('v-select', vSelect);
 
 window.eventBus = new Vue();
