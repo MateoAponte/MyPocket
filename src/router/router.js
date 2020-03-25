@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from "vue-router";
 import Expenses from '@Views/finance/expenses/Expenses'
 import Earnings from '@Views/finance/earnings/Earnings'
+import Savings from '@Views/finance/savings/Savings'
 import userAdmin from '@Views/userAdmin/userAdmin'
 import Configuration from '@Views/userAdmin/Configuration'
 import Summary from '@Views/summary/Summary'
@@ -27,6 +28,11 @@ export default new Router ({
             path: '/finance/earnings',
             name: 'earnings',
             component: Earnings
+        },
+        {
+            path: '/finance/savings',
+            name: 'Savings',
+            component: Savings
         },
         {
             path: '/summary',

@@ -19,6 +19,9 @@
                             <div class="m-link-item">
                                 <router-link to="/finance/earnings"> Ingresos </router-link>
                             </div>
+                            <div class="m-link-item">
+                                <router-link to="/finance/savings"> Ahorros </router-link>
+                            </div>
                         </div>
                     </span>
                 </div>
