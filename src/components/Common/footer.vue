@@ -3,10 +3,10 @@
         <div class="footer-container-row">
             <div class="footer-container-column izqPanel">
                 <span class="m-title">What I Do?</span>
-                <span class="m-paragraph">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga quae eveniet incidunt. Esse rerum eligendi qui vel hic.</span>
+                <span class="m-paragraph-light">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga quae eveniet incidunt. Esse rerum eligendi qui vel hic.</span>
             </div>
             <div class="footer-vertical-separator"></div>
-            <div class="footer-container-column derPanel">
+            <div class="footer-container-column footer-networks derPanel">
                 <div class="m-social-networks">
                     <span class="m-icon-networks">
                         <i class="la la-instagram"></i>
@@ -19,12 +19,24 @@
                     </span>
                     <span class="m-value-networks">mateAp_design</span>
                 </div>
+                <div class="m-social-networks">
+                    <span class="m-icon-networks">
+                        <i class="lab la-linkedin-in"></i>
+                    </span>
+                    <span class="m-value-networks">mateAp_design</span>
+                </div>
+                <div class="m-social-networks">
+                    <span class="m-icon-networks">
+                        <i class="lab la-pinterest"></i>
+                    </span>
+                    <span class="m-value-networks">mateAp_design</span>
+                </div>
             </div>
         </div>
         <div class="footer-container-row">
             <div class="footer-horizontal-separator"></div>
         </div>
-        <div class="footer-container-row">
+        <div class="footer-container-row copyright-container">
             <span class="copyright-container">
                 <i class="la la-heart"></i> Created by MateoAp - Web Developer Junior <font-awesome-icon icon="file-code"/>
             </span>
