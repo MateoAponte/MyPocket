@@ -16,7 +16,7 @@
     &-column{
         width: 100%;
         min-height: 100%;
-        margin-right: 40px;
+        margin: 0px 0px 0px 40px;
         @include FlexBox(row);
         flex: 1;
         justify-content: flex-start;
@@ -25,21 +25,31 @@
             min-width: 80px;
             height: 100%;
             margin: 0 15px;
+            color: $clrP-black;
+            position: relative;
+            list-style: none;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: $clrP-black;
-            position: relative;
 
             &:hover .m-link-dropdown{
                 display: block;
             }
+
+            a{
+                height: 100%;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
         }
         .m-link-dropdown{
-            min-width: 150px;
-            position: absolute;
+            width: 150px;
+            padding: 0;
             display: none;
-            bottom: -100%;
+            position: absolute;
+            top: 100%;
             left: 0;
             background-color: $clrP-white;
             color: $clrP-azure;
@@ -49,11 +59,12 @@
             border-radius: 0 0 8px 8px;
             border: 1px solid #e0e0e0;
             border-top: 0px solid transparent;
+            list-style: none;
             
             .m-link-item{
+                padding: 5px 8px;
                 text-align: left;
                 cursor: pointer;
-                padding: 5px 10px;
 
                 &:hover{
                     background-color: darken($clrP-white, 7%);

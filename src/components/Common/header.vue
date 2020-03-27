@@ -7,54 +7,60 @@
                 </span>
             </router-link>
         </div>
-        <div class="header-container-column">
+        <div class="header-container-column">                
+            <ul class="header-container-column-section">
+                <li class="m-link-container">
+                    <span class="m-link">Finanzas</span>
+                    <ul class="m-link-dropdown">
+                        <li class="m-link-item">
+                            <router-link to="/finance/expenses">
+                                <span class="m-link">Gastos</span>
+                            </router-link>
+                        </li>
+                        <li class="m-link-item">
+                            <router-link to="/finance/earnings">
+                                <span class="m-link">Ingresos</span>
+                            </router-link>
+                        </li>
+                        <li class="m-link-item">
+                            <router-link to="/finance/savings">
+                                <span class="m-link">Ahorros</span>
+                            </router-link>
+                        </li>
+                    </ul>
+                </li>
+                <li class="m-link-container">
+                    <router-link to="/summary">
+                        <span class="m-link">Resumen</span>
+                    </router-link>
+                </li>
+                <li class="m-link-container">
+                    <router-link to="/icons">
+                        <span class="m-link">Iconos</span>
+                    </router-link>
+                </li>
+                <li class="m-link-container">
+                    <router-link to="/configuration">
+                        <span class="m-link">Configuración</span>
+                    </router-link>
+                </li>
+                <li class="m-link-container">
+                    <span class="m-link">Finanzas</span>
+                    <ul class="m-link-dropdown">
+                        <li class="m-link-item">
+                            <router-link to="/report/genericReport">
+                                <span class="m-link">Informe Gastos</span>
+                            </router-link>
+                        </li>
+                        <li class="m-link-item">
+                            <router-link to="/report/comparationReport">
+                                <span class="m-link">Informe comparativo</span>
+                            </router-link>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
             <div class="header-container-column-section">
-                <div class="m-link-container" active-class="m-link-active" >
-                    <span class="m-link">
-                        Finanzas
-                        <div class="m-link-dropdown">
-                            <div class="m-link-item">
-                               <router-link to="/finance/expenses"> Gastos </router-link>
-                            </div>
-                            <div class="m-link-item">
-                                <router-link to="/finance/earnings"> Ingresos </router-link>
-                            </div>
-                            <div class="m-link-item">
-                                <router-link to="/finance/savings"> Ahorros </router-link>
-                            </div>
-                        </div>
-                    </span>
-                </div>
-                <router-link to="/summary" class="m-link-container" active-class="m-link-active" >
-                    <span class="m-link">
-                        Resumen
-                    </span>
-                </router-link>
-                <router-link to="/icons" class="m-link-container" active-class="m-link-active" >
-                    <span class="m-link">
-                        Iconos
-                    </span>
-                </router-link>
-                <router-link to="/configuration" class="m-link-container" active-class="m-link-active" >
-                    <span class="m-link">
-                        Configuración
-                    </span>
-                </router-link>
-                <div class="m-link-container" >
-                    <span class="m-link">
-                        Reporte
-                        <div class="m-link-dropdown">
-                            <div class="m-link-item">
-                                <router-link to="/report/genericReport"> Informe Gastos </router-link>
-                            </div>
-                            <div class="m-link-item">
-                                <router-link to="/report/comparationReport"> Informe comparativo </router-link>
-                            </div>
-                        </div>
-                    </span>
-                </div>
-            </div>
-            <div class="header-container-column-section">                
                 <span class="toogle-activador">
                     <div class="header-info-container">
                         <div class="relative flex-center" v-if="personalData">
@@ -98,8 +104,8 @@
                         </div>
                     </div>
                 </span>
-            </div>  
-        </div>
+            </div>
+        </div>  
     </header>
 </template>
 
