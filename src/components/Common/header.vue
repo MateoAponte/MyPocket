@@ -1,7 +1,7 @@
 <template>
     <header class="header-container">
         <div class="header-container-column">
-            <router-link to="/" class="m-link-container">
+            <router-link to="/" class="m-link-container" active-class="active-link">
                 <span class="m-link">
                     Provisional
                 </span>
@@ -12,51 +12,41 @@
                 <li class="m-link-container">
                     <span class="m-link">Finanzas</span>
                     <ul class="m-link-dropdown">
-                        <li class="m-link-item">
-                            <router-link to="/finance/expenses">
-                                <span class="m-link">Gastos</span>
-                            </router-link>
-                        </li>
-                        <li class="m-link-item">
-                            <router-link to="/finance/earnings">
-                                <span class="m-link">Ingresos</span>
-                            </router-link>
-                        </li>
-                        <li class="m-link-item">
-                            <router-link to="/finance/savings">
-                                <span class="m-link">Ahorros</span>
-                            </router-link>
-                        </li>
+                        <router-link to="/finance/expenses" active-class="active-link-dropdown" class="m-link-item">
+                            <span class="m-link">Gastos</span>
+                        </router-link>
+                        <router-link to="/finance/earnings" active-class="active-link-dropdown" class="m-link-item">
+                            <span class="m-link">Ingresos</span>
+                        </router-link>
+                        <router-link tag="li" to="/finance/savings" active-class="active-link-dropdown" class="m-link-item">
+                            <span class="m-link">Ahorros</span>
+                        </router-link>
                     </ul>
                 </li>
                 <li class="m-link-container">
-                    <router-link to="/summary">
+                    <router-link to="/summary" active-class="active-link">
                         <span class="m-link">Resumen</span>
                     </router-link>
                 </li>
                 <li class="m-link-container">
-                    <router-link to="/icons">
+                    <router-link to="/icons" active-class="active-link">
                         <span class="m-link">Iconos</span>
                     </router-link>
                 </li>
-                <li class="m-link-container">
+                <li class="m-link-container" active-class="active-link">
                     <router-link to="/configuration">
                         <span class="m-link">Configuración</span>
                     </router-link>
                 </li>
                 <li class="m-link-container">
-                    <span class="m-link">Finanzas</span>
+                    <span class="m-link">Reportería</span>
                     <ul class="m-link-dropdown">
-                        <li class="m-link-item">
-                            <router-link to="/report/genericReport">
-                                <span class="m-link">Informe Gastos</span>
-                            </router-link>
-                        </li>
-                        <li class="m-link-item">
-                            <router-link to="/report/comparationReport">
-                                <span class="m-link">Informe comparativo</span>
-                            </router-link>
-                        </li>
+                        <router-link tag="li" to="/report/genericReport" active-class="active-link-dropdown" class="m-link-item">
+                            <span class="m-link">Informe Gastos</span>
+                        </router-link>
+                        <router-link tag="li" to="/report/comparationReport" active-class="active-link-dropdown" class="m-link-item">
+                            <span class="m-link">Informe comparativo</span>
+                        </router-link>
                     </ul>
                 </li>
             </ul>

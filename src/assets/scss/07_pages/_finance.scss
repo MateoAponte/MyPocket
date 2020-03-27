@@ -296,6 +296,10 @@
             }
         }
         .m-container-row:nth-child(2){
+            & > .m-card {
+                box-shadow: none;
+                background-color: $bg-light-blue;
+            }
             .m-card{
                 justify-content: center;
                 .m-card-body{

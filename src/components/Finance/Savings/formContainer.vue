@@ -50,7 +50,7 @@
                         <label class="m-label">
                             Categoría:
                             <span class="m-label m-small" v-if="itemData.iconData.iconName">
-                                ({{itemData.iconData.category}})
+                                ({{itemData.iconData.category}})<font-awesome-icon style="margin-left: 10px" :icon="itemData.iconData.iconName"/>
                             </span>
                         </label>
                         <ValidationProvider class="relative" v-slot="{ errors }" rules="category">
