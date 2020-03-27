@@ -33,8 +33,8 @@
                         <span class="m-link">Iconos</span>
                     </router-link>
                 </li>
-                <li class="m-link-container" active-class="active-link">
-                    <router-link to="/configuration">
+                <li class="m-link-container" >
+                    <router-link to="/configuration" active-class="active-link">
                         <span class="m-link">Configuración</span>
                     </router-link>
                 </li>
