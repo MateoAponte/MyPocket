@@ -48,6 +48,9 @@ export default {
     watch: {
         data(){
             this.filterArr();
+        },
+        keyFilter(){
+            this.filterArr();
         }
     },
     data: function(){

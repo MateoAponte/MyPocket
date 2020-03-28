@@ -6,7 +6,7 @@
                 <div class="m-card-body">
                     <div class="m-container-row minify-padding">
                         <div class="m-container-column" v-for="(item, index) in savingData" :key="index">
-                            <saving-card :data="item" />
+                            <saving-card :data="item" :index="index" />
                         </div>
                     </div>
                 </div>

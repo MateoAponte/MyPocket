@@ -39,7 +39,7 @@
                         <label class="m-label">
                             Ingreso relacionado:
                         </label>
-                         <v-select :options="earningData" label="thing" :reduce="earningData => earningData.thing" v-model="itemData.from" placeholder="Seleccione una opción"></v-select>
+                        <v-select :options="earningData" label="thing" :reduce="earningData => earningData.thing" v-model="itemData.from" placeholder="Seleccione una opción"></v-select>
                         <span class="m-error">{{ errors[0] }}</span>
                     </ValidationProvider>
                 </div>
@@ -54,7 +54,7 @@
                             </span>
                         </label>
                         <ValidationProvider class="relative" v-slot="{ errors }" rules="category">
-                            <dropdown-categorys type="finance" keyFilter="saving" :data="iconsData" v-model="itemData.iconData" />
+                            <dropdown-categorys type="saving" keyFilter="saving" :data="iconsData" v-model="itemData.iconData" />
                             <span class="m-error relative" style="left: 0; bottom: -5px">{{errors[0]}}</span>
                         </ValidationProvider>
                     </div>

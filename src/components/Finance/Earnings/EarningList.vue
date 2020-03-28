@@ -43,7 +43,7 @@
                     </div>
                     <div class="container-item-actions expense">
                         <div class="container-item-actions--column">
-                            <font-awesome-icon icon="trash" @click="deleteItems(index)"/>
+                            <font-awesome-icon icon="trash" @click="deleteEarningItem(index)"/>
                         </div>
                         <div class="container-item-actions--column">
                             <font-awesome-icon icon="pen" @click="editItems(index, data)"/>
@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 export default {
     name: "earning-list",
     computed: {
@@ -65,11 +65,21 @@ export default {
         })
     },
     methods: {
-        deleteItems(){
-
-        },
-        editItems(){
-            
+        ...mapActions('common', [
+            'updateModalData'
+        ]),
+        editItems(i, val){
+            let arr = _.cloneDeep(val);
+            this.updateModalData({
+                type: "edit",
+                title: "Editar a: ",
+                injectData: {
+                    index: i,
+                    data: arr,
+                    type: 'earnings'
+                }
+            });
+            document.querySelector(".overlay").classList.replace('hide', 'show');
         }
     }
 }

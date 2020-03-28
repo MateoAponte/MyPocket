@@ -338,6 +338,11 @@ const actions = {
         item.splice(payload.index, 1, payload.data);
         commit('setEarningData', item);
     },
+    deleteEarningItem({ commit, state }, payload){
+        let item = _.cloneDeep(state.earningData);
+        item.splice(payload, 1);
+        commit('setEarningData', item);
+    },
     updateEarningsData({ commit, state }, payload){
         let icons = _.cloneDeep(state.earningData);
         icons.unshift(payload);
@@ -352,6 +357,11 @@ const actions = {
     updateSavingItem({ commit, state }, payload){
         let item = _.cloneDeep(state.savingData);
         item.splice(payload.index, 1, payload.data);
+        commit('setSavingData', item);
+    },
+    deleteSavingItem({ commit, state }, payload){
+        let item = _.cloneDeep(state.savingData);
+        item.splice(payload, 1);
         commit('setSavingData', item);
     },
     updateSavingData({ commit, state }, payload){
