@@ -50,13 +50,13 @@
 .layer
 {
     width: 100%;
-    background-color: rgba(lighten($clrP-esmerald, 40%), 20%);
-    border: .5px solid rgba(lighten($clrP-esmerald, 5%), 20%);
+    background-color: rgba(lighten($clrP-pink, 23%), 20%);
+    border: .5px solid rgba(lighten($clrP-pink, 5%), 10%);
     transition: 0.3s ease all;
     z-index: 1;
 }
 
-#button-3 .knobs:before
+.toggle-button .knobs:before
 {
     content: '';
     position: absolute;
@@ -70,31 +70,31 @@
     text-align: center;
     line-height: 1;
     padding: 9px 4px;
-    background-color: $clrP-esmerald;
+    background-color: $clrP-pink;
     border-radius: 50%;
     transition: 0.3s ease all, left 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15);
 }
 
-#button-3 .checkbox:active + .knobs:before
+.toggle-button .checkbox:active + .knobs:before
 {
     width: 26px;
     border-radius: 100px;
 }
 
-#button-3 .checkbox:checked:active + .knobs:before
+.toggle-button .checkbox:checked:active + .knobs:before
 {
     margin-left: -8px;
 }
 
-#button-3 .checkbox:checked + .knobs:before
+.toggle-button .checkbox:checked + .knobs:before
 {
     content: '';
     left: 35px;
-    background-color: $clrP-pink;
+    background-color: $clrP-esmerald;
 }
 
-#button-3 .checkbox:checked ~ .layer
+.toggle-button .checkbox:checked ~ .layer
 {
-    background-color: rgba(lighten($clrP-pink, 23%), 20%);
-    border: .5px solid rgba(lighten($clrP-pink, 5%), 10%);
+    background-color: rgba(lighten($clrP-esmerald, 40%), 20%);
+    border: .5px solid rgba(lighten($clrP-esmerald, 5%), 20%);
 }

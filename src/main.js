@@ -15,6 +15,7 @@ import is from 'is_js';
 import axios from 'axios';
 
 import ColorPicker from '@Components/common/colorPicker';
+import toggleButton from '@Components/common/toggleButton';
 import PieChart from '@Components/common/amCharts/pieChart';
 import xAxisChart from '@Components/common/amCharts/xAxisChart';
 import negativeAxisChart from '@Components/common/amCharts/negativeAxisChart';
@@ -105,6 +106,7 @@ Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.component('ValidationProvider', ValidationProvider);
 Vue.component('ValidationObserver', ValidationObserver);
 Vue.component('ColorPicker', ColorPicker);
+Vue.component('toggleButton', toggleButton);
 Vue.component('PieChart', PieChart);
 Vue.component('xAxisChart', xAxisChart);
 Vue.component('dropdownCategorys', dropdownCategorys);
