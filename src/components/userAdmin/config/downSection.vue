@@ -37,18 +37,10 @@
                     </label>
                 </div>
                 <div class="container-item__column simple-column-left">
-                    <div class="toggle-button-cover">
-                        <div class="button-cover">
-                            <div class="button r" id="button-3">
-                                <input type="checkbox" class="checkbox" v-model="showPassword" />
-                                <div class="knobs"></div>
-                                <div class="layer"></div>
-                            </div>
-                        </div>
-                    </div>
+                    <toggle-button v-model="showPassword" />
                 </div>
             </div>
-            <transition v-if="!showPassword">
+            <transition v-if="showPassword">
                 <div class="container-item__row">
                     <div class="container-item__column">
                         <label class="m-label">
@@ -83,7 +75,7 @@
         name: "downSection",
         data: function () {
             return {
-                showPassword: true,
+                showPassword: false,
                 password: "",
                 confirmPassword: ""
             }

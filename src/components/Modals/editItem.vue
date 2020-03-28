@@ -40,14 +40,14 @@
                             </ValidationProvider>
                         </div>
                         <div class="container-item__row vertical-center minify-padding" v-if="modalData.type === 'savings'">
-                            <ValidationProvider name="expense" rules="number" v-slot="{ errors }"  class="container-item__column">
+                            <ValidationProvider name="expense" rules="number" v-slot="{ errors }"  class="container-item__column" style="display: block; text-align: left;">
                                 <label class="m-label">
                                     Meta:
                                 </label>
                                 <input type="text" class="custom-form" placeholder="Ingrese su presupuesto" v-model="itemData.maxCost" />
                                 <span class="m-error relative" style="left: 0; bottom: -5px">{{errors[0]}}</span>
                             </ValidationProvider>
-                            <ValidationProvider name="expense" rules="string" v-slot="{ errors }"  class="container-item__column">
+                            <ValidationProvider name="expense" rules="string" v-slot="{ errors }"  class="container-item__column" style="display: block; text-align: left;">
                                 <label class="m-label">
                                     Ganancia Relac. :
                                 </label>

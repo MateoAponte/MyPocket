@@ -59,6 +59,23 @@
                     <span class="m-error relative" style="left: 0; bottom: -5px">{{errors[0]}}</span>
                 </ValidationProvider>
             </div>
+            <div class="advance-config__container">
+                <div class="container-item__row">
+                    <label for="" class="m-label">
+                        Config. Avanzada
+                    </label>
+                    <toggle-button v-model="showDateConfig"/>
+                </div>
+                <div class="container-item__row" v-if="showDateConfig">
+                    <ValidationProvider name="objeto" rules="string" v-slot="{ errors }" class="container-item__column">
+                        <label class="m-label">
+                            Fecha Límite:
+                        </label>
+                        <date-picker v-model="itemData.maxDate" placeholder="Ingrese una fecha"  :displayFormat="moment(itemData.maxDate).format('YYYY/MM/DD')" :isDateDisabled="isFutureDate" :formatDate="formatDate" format="YYYY/MM/DD" />
+                        <span class="m-error">{{ errors[0] }}</span>
+                    </ValidationProvider>
+                </div>
+            </div>
             <div class="container-item__row">
                 <button class="m-button m-button-esmerald m-button-flex" type="submit">Guardar <font-awesome-icon icon="save" /></button>
                 <button class="m-button m-button-azure m-button-flex" type="submit" @click="addItem()">Agregar <font-awesome-icon icon="plus" /></button>
@@ -83,7 +100,8 @@ export default {
                 priority: '',
                 iconData: {},
                 date: moment().format('YYYY/MM/DD')
-            }
+            },
+            showDateConfig: false
         }
     },
     computed: {
