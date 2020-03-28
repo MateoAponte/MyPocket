@@ -131,8 +131,13 @@ export default {
                 document.querySelector(".m-card-body.max-height-card.relative").scrollTop = 0;
             }
         },
-        saveData(e){
-            console.log(e)
+        isFutureDate(date) {
+            const today = new Date();
+            const currentDate = new Date(today.setDate(today.getDate() - 1));
+            return date < currentDate;
+        },
+        formatDate(dateObj, format) {
+            return moment(dateObj).format(format);
         }
     }
 }

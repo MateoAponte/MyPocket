@@ -132,3 +132,9 @@ export default {
     }
 }
 </script>
+
+<style lang="scss" scoped>
+    .m-card-body{
+        overflow-y: visible;
+    }
+</style>

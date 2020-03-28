@@ -1,7 +1,7 @@
 <template>
     <div class="container-item__column--long">
         <ValidationObserver class="m-card" v-slot="{ handleSubmit }">
-            <form @submit.prevent="handleSubmit(onSubmit())" class="m-card-body">
+            <form @submit.prevent="handleSubmit(onSubmit())" class="m-card-body" style="overflow: visible">
                 <div class="container-item__row">
                     <ValidationProvider name="objeto" rules="string" v-slot="{ errors }" class="container-item__column">
                         <label class="m-label">
@@ -79,7 +79,8 @@ export default {
                 percentil: 0,
                 thing: '',
                 iconData: {},
-                date: moment().format('YYYY/MM/DD')
+                date: moment().format('YYYY/MM/DD'),
+                maxDate: ''
             },
             showDateConfig: false
         }
@@ -94,14 +95,18 @@ export default {
             'updateEarningsData'
         ]),
         addItem(){
+            this.updateEarningsData(_.cloneDeep(this.itemData));
             this.itemData = {
                 cost: 0,
                 percentil: 0,
                 thing: '',
                 iconData: {},
-                date: moment().format('YYYY/MM/DD')
+                date: moment().format('YYYY/MM/DD'),
+                maxDate: ''
             }
-            this.updateEarningsData(this.itemData)
+        },
+        onSubmit() {
+            console.log('Submit')
         },
         isFutureDate(date) {
             const today = new Date();

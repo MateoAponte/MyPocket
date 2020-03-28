@@ -6,12 +6,11 @@
 
     display: flex;
     flex: 1;
-    position: sticky;
+    position: relative;
     box-shadow: 0px 5px 7px 0px #e6e6e6;
     top: 0;
+    z-index: 1;
     background-color: $bg-white;
-    z-index: 10;
-
 
     &-column{
         width: 100%;

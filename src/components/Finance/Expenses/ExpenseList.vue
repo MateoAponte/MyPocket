@@ -48,7 +48,7 @@
                         </div>
                         <div class="relative container-item__icon__item">
                             <span class="m-paragraph item-overflow">{{data.iconData.category}}</span>
-                            <span class="m-small">{{moment(data.date).format('ll')}}</span>
+                            <span class="m-small">{{moment(data.date).format('ll')}} {{data.maxDate ? moment(data.maxDate).format('ll') : '' }}</span>
                         </div>
                     </div>
                     <div class="container-item-info">
@@ -172,3 +172,9 @@ export default {
     }
 }
 </script>
+
+<style lang="scss" scoped>
+    .m-card{
+        z-index: 1  ;
+    }
+</style>

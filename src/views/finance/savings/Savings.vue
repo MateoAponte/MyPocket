@@ -4,7 +4,7 @@
             <div class="m-card">
                 <div class="m-card-body">
                     <div class="m-container-row">
-                        <div class="m-container-column" style="border-right: 1px solid #cccccc">
+                        <div class="m-container-column" style="border-right: 1px solid #cccccc;">
                             <img src="@Assets/img/safeMoney.png" alt="" width="100%">
                         </div>
                         <div class="m-container-column">
@@ -32,3 +32,11 @@ export default {
     }
 }
 </script>
+
+<style lang="scss" scoped>
+    .m-container-row{
+        .m-container-column:nth-child(1){
+            z-index: 1;
+        }
+    }
+</style>
