@@ -10,6 +10,13 @@
                         <input type="text" class="custom-form" placeholder="Ejm. Libros" v-model="itemData.thing" />
                         <span class="m-error">{{ errors[0] }}</span>
                     </ValidationProvider>
+                    <ValidationProvider name="costo" rules="string" v-slot="{ errors }" class="container-item__dropdown">
+                        <label class="m-label">
+                            Ingreso relacionado:
+                        </label>
+                        <v-select :options="earningData" label="thing" :reduce="earningData => earningData.thing" v-model="itemData.from" placeholder="Seleccione una opción"></v-select>
+                        <span class="m-error">{{ errors[0] }}</span>
+                    </ValidationProvider>
                 </div>
                 <div class="container-item__row">
                     <ValidationProvider name="costo" rules="number" v-slot="{ errors }" class="container-item__column">
@@ -21,9 +28,9 @@
                     </ValidationProvider>
                     <ValidationProvider name="costo" rules="number" v-slot="{ errors }" class="container-item__column">
                         <label class="m-label">
-                            Ahorro:
+                            Cuotas:
                         </label>
-                        <input type="text" class="custom-form" placeholder="Ejm. 400000" v-model="itemData.cost" />
+                        <input type="text" class="custom-form" placeholder="Ejm. 400000" v-model="itemData.cost" disabled />
                         <span class="m-error">{{ errors[0] }}</span>
                     </ValidationProvider>
                 </div>
@@ -37,9 +44,9 @@
                     </ValidationProvider>
                     <ValidationProvider name="costo" rules="string" v-slot="{ errors }" class="container-item__dropdown">
                         <label class="m-label">
-                            Ingreso relacionado:
+                            Frecuencia:
                         </label>
-                        <v-select :options="earningData" label="thing" :reduce="earningData => earningData.thing" v-model="itemData.from" placeholder="Seleccione una opción"></v-select>
+                        <v-select :options="quantity" label="thing" v-model="itemData.quantity" placeholder="Seleccione una opción"></v-select>
                         <span class="m-error">{{ errors[0] }}</span>
                     </ValidationProvider>
                 </div>
@@ -80,11 +87,31 @@ export default {
                 cost: 0,
                 maxCost: 0,
                 maxDate: '',
-                date: moment().add(1, 'month').format('YYYY/MM/DD'),
+                date: moment().format('YYYY/MM/DD'),
                 from: 0,
-                iconData: {}
+                iconData: {},
+                quantity: ''
             },
             format: 'YYYY/MM/DD',
+            quantity: []
+        }
+    },
+    watch: {
+        "itemData.maxCost"(newVal) {
+            if(this.itemData.maxDate && this.itemData.quantity){
+                this.getFee();
+            }
+        },
+        "itemData.quantity"(newVal) {
+            if(this.itemData.maxDate){
+                this.getFee();
+            }
+        },
+        "itemData.maxDate"(newVal) {
+            this.getFeeOptions();
+            if(this.itemData.quantity){
+                this.getFee();
+            }
         }
     },
     computed: {
@@ -109,6 +136,7 @@ export default {
                 this.itemData.maxDate ='';
                 this.itemData.from ='';
                 this.itemData.iconData = {};
+                this.itemData.quantity = '';
             }
         },
         addItem(){
@@ -123,6 +151,50 @@ export default {
         },
         formatDate(dateObj, format) {
             return moment(dateObj).format(format);
+        },
+        getFeeOptions() {
+            this.quantity = [];
+            let months = moment(this.itemData.maxDate).diff(this.itemData.date, 'month');
+            let finalMonth = moment(this.itemData.maxDate);
+            let startDate = moment(finalMonth).startOf('month');
+            let days = finalMonth.diff(startDate, 'days');
+            this.quantity.push('Una cuota');
+            if (days >= 15){
+                this.quantity.push('15 días');
+            } if(months >= 2){
+                this.quantity.push('1 mes');
+            } if(months >= 4){
+                this.quantity.push('2 meses');
+            } if(months >= 6){
+                this.quantity.push('3 meses');
+            } if(months >= 12){
+                this.quantity.push('6 meses');
+            }
+        },
+        getFee(){
+            let months = moment(this.itemData.maxDate).diff(this.itemData.date, 'month');
+            switch (this.itemData.quantity){
+                case 'Una cuota':
+                    months = 1;
+                break;
+                case '15 días':
+                    months = months * 2;
+                break;
+                case '1 mes':
+                    months = months;
+                break;
+                case '2 meses':
+                    months = months / 2;
+                break;
+                case '3 meses':
+                    months = months / 3;
+                break;
+                case '6 meses':
+                    months = months / 6;
+                break;
+            }
+            let costByMonth = this.itemData.maxCost / months;
+            this.itemData.cost = parseInt(costByMonth);
         }
     },
     mounted() {
